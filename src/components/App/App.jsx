@@ -12,20 +12,6 @@ class App extends Component {
 
   componentDidMount() {
     this.fetchArticles();
-    const persistedComments = localStorage.getItem("array");
-    if (persistedComments) {
-      this.setState({ array: JSON.parse(persistedComments) });
-    }
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    console.log("prevState: ", prevState);
-    console.log("this.state: ", this.state);
-
-    if (prevState.array !== this.state.array) {
-      localStorage.setItem("categ", JSON.stringify(this.state.array));
-    }
-    this.fetchArticles();
   }
 
   fetchArticles = () => {
@@ -57,7 +43,6 @@ class App extends Component {
       this.setState(state => ({
         cart: [...state.cart, note]
       }));
-      // this.addFetch(note);
     }
   };
 
@@ -79,9 +64,7 @@ class App extends Component {
   };
 
   render() {
-    const { array, cart } = this.state;
-    console.log(array);
-    console.log(cart);
+    const { array } = this.state;
 
     return (
       <Container>

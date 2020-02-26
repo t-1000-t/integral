@@ -13,8 +13,6 @@ class CategoriesCart extends Component {
 
   render() {
     const { num, name, id } = this.props;
-    const { cart } = this.state;
-    console.log(cart);
 
     return (
       <div className="btn" onClick={this.toggle}>
@@ -26,6 +24,7 @@ class CategoriesCart extends Component {
               count={num}
               type="checkbox"
               checked={this.state.checked}
+              onChange={() => {}}
             />
           </div>
         </div>
