@@ -1,19 +1,19 @@
 import React from "react";
-import { Menu, Popup, List, Button, Image } from "semantic-ui-react";
+import { Menu, Popup } from "semantic-ui-react";
 
-const CartComponent = ({ title, id, image, removeFromCart }) => (
-  <List selection divided verticalAlign="middle">
-    <List.Item>
-      <List.Content floated="right">
-        <Button onClick={removeFromCart.bind(this, id)} color="red">
-          Удалить
-        </Button>
-      </List.Content>
-      <Image avatar src={image} />
-      <List.Content>{title}</List.Content>
-    </List.Item>
-  </List>
-);
+// const CartComponent = ({ title, id, image, removeFromCart }) => (
+//   <List selection divided verticalAlign="middle">
+//     <List.Item>
+//       <List.Content floated="right">
+//         <Button onClick={removeFromCart.bind(this, id)} color="red">
+//           Удалить
+//         </Button>
+//       </List.Content>
+//       <Image avatar src={image} />
+//       <List.Content>{title}</List.Content>
+//     </List.Item>
+//   </List>
+// );
 
 const MenuComponent = ({ totalPrice, count, items }) => (
   <Menu>
@@ -27,7 +27,7 @@ const MenuComponent = ({ totalPrice, count, items }) => (
       <Popup
         trigger={
           <Menu.Item name="help">
-            Корзина (<b>{count}</b>)
+            Корзина (&nbsp;<b>{count}</b>&nbsp;)
           </Menu.Item>
         }
         // content={items.map(book => (

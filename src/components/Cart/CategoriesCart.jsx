@@ -1,20 +1,34 @@
 import React, { Component } from "react";
-import { Button, Checkbox } from "semantic-ui-react";
 
 class CategoriesCart extends Component {
-  state = { checked: false };
-  toggle = () => this.setState(prevState => ({ checked: !prevState.checked }));
+  state = {
+    checked: false
+  };
+
+  toggle = e => {
+    const { addNote, num, name, id } = this.props;
+    this.setState(prevState => ({ checked: !prevState.checked }));
+    addNote(num, name, id);
+  };
 
   render() {
-    const { num, name } = this.props;
+    const { num, name, id } = this.props;
+    const { cart } = this.state;
+    console.log(cart);
+
     return (
-      <div className="btn">
-        <Button onClick={this.toggle} size="tiny" inverted color="vk">
-          <div className="btnCheck">
-            <div className="btnName">{name}</div>
-            <Checkbox onChange={this.toggle} checked={this.state.checked} />
+      <div className="btn" onClick={this.toggle}>
+        <div className="Button">
+          <div className="btnName">{name}</div>
+          <div className="btnInput">
+            <input
+              id={id}
+              count={num}
+              type="checkbox"
+              checked={this.state.checked}
+            />
           </div>
-        </Button>
+        </div>
       </div>
     );
   }
