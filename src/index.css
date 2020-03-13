@@ -1,72 +1,17 @@
-body {
+* {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+}
+body {
+  background-color: rgb(208, 208, 255);
+  /* background: linear-gradient(
+    0deg,
+    rgb(111, 111, 211) 0%,
+    rgb(158, 158, 235) 27%,
+    rgb(208, 208, 255) 100%
+  ); */
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
-}
-
-.Note {
-  display: inline-flex;
-  list-style: none;
-  padding: 8px;
-}
-
-.Note__text {
-  margin-right: 24px;
-}
-.Button {
-  display: inline-flex;
-  justify-content: flex-start;
-  color: rgb(116, 37, 0);
-  background-color: #6a95ce;
-  border: 0;
-  outline: 0;
-  padding: 8px 24px;
-  border-radius: 4px;
-  cursor: pointer;
-  box-shadow: 0px 2px 1px 1px rgba(0, 0, 0, 0.05);
-  font: inherit;
-  text-transform: uppercase;
-  user-select: none;
-
-  transition: background-color 200ms ease-in-out;
-}
-
-.Button:hover {
-  box-shadow: 0px 2px 1px 1px rgba(0, 0, 0, 0.15);
-  background-color: #86e09c;
-}
-
-.btn {
-  /* display: inline-flex; */
-}
-
-.btnName {
-  padding-top: 4px;
-  padding-right: 5px;
-}
-
-.btnInput {
-  padding: 5px;
-}
-
-.btnFooter {
-  display: flex;
-  justify-content: center;
-  padding: 50px;
-  padding-bottom: 100px;
-}
-
-[type="checkbox"]:not(:checked),
-[type="checkbox"]:checked {
-  position: relative;
-  padding-left: 1.95em;
-  cursor: pointer;
+li {
+  list-style-type: none;
 }

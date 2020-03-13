@@ -1,0 +1,40 @@
+@media (max-width: 375px) {
+  .containerMainIntegral {
+    display: flex;
+    flex-direction: column;
+  }
+  .boxContainerInputPanel {
+    display: flex;
+    flex-direction: column;
+  }
+  .togglePanel {
+    width: 70%;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    background-color: rgb(158, 158, 235);
+  }
+  .boxPanel {
+    display: flex;
+    flex-direction: row;
+  }
+  .boxSearch {
+    text-align: center;
+    width: 280px;
+    height: 35px;
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border: 1px #ccc solid;
+  }
+  .wrappInput {
+    display: flex;
+    justify-content: center;
+  }
+  .nameLi {
+    text-align: center;
+    padding: 3px;
+    border-bottom: 1px solid #faf692;
+    color: rgb(25, 18, 168);
+  }
+}
