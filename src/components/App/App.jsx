@@ -26,7 +26,11 @@ class App extends Component {
           isOpenPanel={isOpenPanel}
           isOpenSearch={isOpenSearch}
         />
-        <MainIntegral isOpenPanel={isOpenPanel} isOpenSearch={isOpenSearch} />
+        <MainIntegral
+          toggLogo={this.toggLogo}
+          isOpenPanel={isOpenPanel}
+          isOpenSearch={isOpenSearch}
+        />
       </div>
     );
   }

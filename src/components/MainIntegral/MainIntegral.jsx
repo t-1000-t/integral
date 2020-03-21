@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Bounce from "react-reveal/Bounce";
 import db from "../../db/dbcatigories.json";
+import TogPanel from "../TogglePanel/TogglePanel";
 
 import styled from "./MainIntegral.module.css";
 
@@ -8,61 +9,81 @@ const {
   containerMainIntegral,
   boxContainerInputPanel,
   togglePanel,
-  boxPanel,
   boxSearch,
   wrappInput,
-  nameLi
+  toggleInputSearch,
+  nameLi,
+  imgCard,
+  imgCardFont,
+  imgCardFontBold,
+  boxImg,
+  img
 } = styled;
 
 class MainIntegral extends Component {
   state = {
-    array: [],
-    filter: "",
+    arrayCategory: [],
+    filterCategory: "",
+    arrayProducts: [],
+    filterProducts: "",
     isLoading: false
   };
 
-  handlerFilterChange = e => {
+  handlerFilterCateg = e => {
     this.setState({
-      filter: e.currentTarget.value
+      filterCategory: e.currentTarget.value
+    });
+  };
+  handlerFilterProd = e => {
+    this.setState({
+      filterProducts: e.currentTarget.value
     });
   };
 
   componentDidMount() {
     this.fetchArticles();
+    this.fetchProducts();
   }
 
   fetchArticles = () => {
     this.setState({
-      array: Object.entries(db.categories).map(el => el[1].elem)
+      arrayCategory: Object.entries(db.categories).map(el => el[1].elem)
     });
   };
 
-  // fetchArticles = () => {
-  //   try {
-  //     return fetch("https://shop-integral.herokuapp.com/categories")
-  //       .then(res => res.json())
-  //       .then(data => data.result)
-  //       .then(arr =>
-  //         this.setState({
-  //           array: arr
-  //         })
-  //       );
-  //   } catch (err) {
-  //     console.error(err);
-  //   }
-  // };
+  fetchProducts = () => {
+    try {
+      return fetch("https://shop-integral.herokuapp.com/api/products")
+        .then(res => res.json())
+        .then(data => data.list)
+        .then(arr =>
+          this.setState({
+            arrayProducts: arr
+          })
+        );
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   render() {
-    const { array, filter } = this.state;
-
-    const { isOpenPanel, isOpenSearch } = this.props;
-
-    const filterArray = array.filter(elem =>
-      elem.name.toLowerCase().includes(filter.toLowerCase())
+    const {
+      arrayCategory,
+      arrayProducts,
+      filterCategory,
+      filterProducts
+    } = this.state;
+    const { isOpenPanel, isOpenSearch, toggLogo } = this.props;
+    const newArrayCategory = arrayCategory.filter(elem =>
+      elem.name.toLowerCase().includes(filterCategory.toLowerCase())
     );
-    console.log(array);
-    // const base = Object.entries(db.categories).map(el => el[1].elem);
-    // console.log(base);
+    const newArrayProducts = arrayProducts.filter(
+      elem =>
+        elem.name.toLowerCase().includes(filterProducts.toLowerCase()) ||
+        elem.product_code.toLowerCase().includes(filterProducts.toLowerCase())
+    );
+    console.log(newArrayProducts);
+
     return (
       <div className={containerMainIntegral}>
         {isOpenSearch && (
@@ -70,34 +91,56 @@ class MainIntegral extends Component {
             <div className={wrappInput}>
               <input
                 className={boxSearch}
-                placeholder="Ввведите навание продукта..."
+                placeholder="Ищу продукт..."
                 type="text"
-                name="filter"
-                value={this.state.filter}
-                onChange={this.handlerFilterChange}
+                name="filterProd"
+                value={this.state.filterProducts}
+                onChange={this.handlerFilterProd}
               ></input>
             </div>
           </Bounce>
         )}
-
-        <div className={boxContainerInputPanel}>
-          <div className={boxPanel}>
-            {isOpenPanel && (
-              <div className={togglePanel}>
-                <ul>
-                  <Bounce left>
-                    {filterArray.map(elem => (
-                      <li className={nameLi} key={elem.categoryID}>
-                        {elem.name}
-                      </li>
-                    ))}
-                  </Bounce>
-                </ul>
+        {isOpenPanel && (
+          <TogPanel toggLogo={toggLogo}>
+            <Bounce bottom>
+              <div className={toggleInputSearch}>
+                <input
+                  className={boxSearch}
+                  placeholder="Найти категорию по названию..."
+                  type="text"
+                  name="filterCateg"
+                  value={this.state.filterCategory}
+                  onChange={this.handlerFilterCateg}
+                ></input>
               </div>
-            )}
-            <div>345 {}</div>
-          </div>
+            </Bounce>
+            <div className={togglePanel}>
+              <ul>
+                {newArrayCategory.map(elem => (
+                  <li className={nameLi} key={elem.categoryID}>
+                    {elem.name}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </TogPanel>
+        )}
+        <div className={boxImg}>
+          {newArrayProducts &&
+            newArrayProducts.map(elem => (
+              <div key={elem.productID} className={imgCard}>
+                <img className={img} src={elem.small_image} alt="img" />
+                <div className={imgCardFont}>
+                  <p>{elem.name}</p>
+                </div>
+                <div className={imgCardFontBold}>
+                  {(elem.price_uah * 1.1).toFixed(2) + " грн."}
+                </div>
+                <div className={imgCardFont}>{elem.country}</div>
+              </div>
+            ))}
         </div>
+        <div className={boxContainerInputPanel}></div>
       </div>
     );
   }
