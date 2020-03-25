@@ -46,6 +46,13 @@
     color: rgb(25, 18, 168);
   }
 
+  .linkStyle {
+    color: rgb(25, 18, 168);
+  }
+  .linkStyle:hover {
+    color: rgb(252, 92, 0);
+  }
+
   .container {
     display: flex;
   }
@@ -79,11 +86,13 @@
     height: 175px;
     margin: 5px;
   }
+
   .imgCardFont {
     font-family: "Lato", sans-serif;
     font-size: 9px;
     line-height: 9px;
   }
+
   .imgCardFontBold {
     margin-top: 2px;
     margin-bottom: 2px;

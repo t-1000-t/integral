@@ -1,37 +1,25 @@
 import React, { Component } from "react";
-import HeaderIntegral from "../Header/HeaderIntegral";
-import MainIntegral from "../MainIntegral/MainIntegral";
+import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
+import routes from "../../routes/routes";
+import HomePage from "../Page/HomePage";
+import CategoryProduct from "../CategoryProduct/CategoryProduct";
+import AboutPage from "../AboutPage/AboutPage";
+import IntegralPage from "../IntegralPage/IntegralPage";
+// import ProductDetails from "../ProductDetails/ProductDetails";
 
 class App extends Component {
-  state = {
-    isOpenPanel: false,
-    isOpenSearch: false
-  };
-
-  toggFilter = () => {
-    this.setState({ isOpenSearch: !this.state.isOpenSearch });
-  };
-
-  toggLogo = () => {
-    this.setState({ isOpenPanel: !this.state.isOpenPanel });
-  };
-
   render() {
-    const { isOpenPanel, isOpenSearch } = this.state;
     return (
-      <div>
-        <HeaderIntegral
-          toggLogo={this.toggLogo}
-          toggFilter={this.toggFilter}
-          isOpenPanel={isOpenPanel}
-          isOpenSearch={isOpenSearch}
-        />
-        <MainIntegral
-          toggLogo={this.toggLogo}
-          isOpenPanel={isOpenPanel}
-          isOpenSearch={isOpenSearch}
-        />
-      </div>
+      <BrowserRouter>
+        <IntegralPage />
+        <Switch>
+          <Route exact path={routes.MAIN} component={HomePage} />
+          <Route exact path={routes.ABOUT} component={AboutPage} />
+          {/* <Route path={routes.PRODUCTS_DITEILS} component={ProductDetails} /> */}
+          <Route exact path={routes.PRODUCTS} component={CategoryProduct} />
+          <Redirect to="/" />
+        </Switch>
+      </BrowserRouter>
     );
   }
 }

@@ -1,9 +1,12 @@
 import React, { Component } from "react";
+import { NavLink } from "react-router-dom";
 import Bounce from "react-reveal/Bounce";
 import db from "../../db/dbcatigories.json";
 import TogPanel from "../TogglePanel/TogglePanel";
 
 import styled from "./MainIntegral.module.css";
+import routes from "../../routes/routes";
+const shortid = require("shortid");
 
 const {
   containerMainIntegral,
@@ -17,7 +20,8 @@ const {
   imgCardFont,
   imgCardFontBold,
   boxImg,
-  img
+  img,
+  linkStyle
 } = styled;
 
 class MainIntegral extends Component {
@@ -53,9 +57,9 @@ class MainIntegral extends Component {
 
   fetchProducts = () => {
     try {
-      return fetch("https://shop-integral.herokuapp.com/api/products")
+      return fetch("https://shop-integral.herokuapp.com/api/main")
         .then(res => res.json())
-        .then(data => data.list)
+        .then(data => data.main)
         .then(arr =>
           this.setState({
             arrayProducts: arr
@@ -77,12 +81,13 @@ class MainIntegral extends Component {
     const newArrayCategory = arrayCategory.filter(elem =>
       elem.name.toLowerCase().includes(filterCategory.toLowerCase())
     );
+    console.log(newArrayCategory);
     const newArrayProducts = arrayProducts.filter(
       elem =>
         elem.name.toLowerCase().includes(filterProducts.toLowerCase()) ||
         elem.product_code.toLowerCase().includes(filterProducts.toLowerCase())
     );
-    console.log(newArrayProducts);
+    // console.log(newArrayProducts);
 
     return (
       <div className={containerMainIntegral}>
@@ -115,13 +120,21 @@ class MainIntegral extends Component {
               </div>
             </Bounce>
             <div className={togglePanel}>
-              <ul>
-                {newArrayCategory.map(elem => (
-                  <li className={nameLi} key={elem.categoryID}>
+              {/* <ul> */}
+              {newArrayCategory.map(elem => (
+                <div key={shortid.generate()} className={nameLi}>
+                  <NavLink
+                    className={linkStyle}
+                    to={{
+                      pathname: routes.PRODUCTS,
+                      search: `?category=${elem.category}`
+                    }}
+                  >
                     {elem.name}
-                  </li>
-                ))}
-              </ul>
+                  </NavLink>
+                </div>
+              ))}
+              {/* </ul> */}
             </div>
           </TogPanel>
         )}
