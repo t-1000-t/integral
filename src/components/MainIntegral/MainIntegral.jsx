@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import Bounce from "react-reveal/Bounce";
 import db from "../../db/dbcatigories.json";
 import TogPanel from "../TogglePanel/TogglePanel";
+import MainProduct from "../MainProduct/MainProduct";
 
 import styled from "./MainIntegral.module.css";
 import routes from "../../routes/routes";
@@ -16,11 +17,7 @@ const {
   wrappInput,
   toggleInputSearch,
   nameLi,
-  imgCard,
-  imgCardFont,
-  imgCardFontBold,
   boxImg,
-  img,
   linkStyle
 } = styled;
 
@@ -45,13 +42,16 @@ class MainIntegral extends Component {
   };
 
   componentDidMount() {
-    this.fetchArticles();
+    this.fetchLocalCategories();
     this.fetchProducts();
   }
 
-  fetchArticles = () => {
+  fetchLocalCategories = () => {
+    const listCategory = Object.entries(db.categories).map(el => el[1].elem);
+    console.log("list :", listCategory);
+
     this.setState({
-      arrayCategory: Object.entries(db.categories).map(el => el[1].elem)
+      arrayCategory: listCategory.flat(3)
     });
   };
 
@@ -78,9 +78,11 @@ class MainIntegral extends Component {
       filterProducts
     } = this.state;
     const { isOpenPanel, isOpenSearch, toggLogo } = this.props;
+    console.log("arr ", arrayCategory.length);
     const newArrayCategory = arrayCategory.filter(elem =>
       elem.name.toLowerCase().includes(filterCategory.toLowerCase())
     );
+
     console.log(newArrayCategory);
     const newArrayProducts = arrayProducts.filter(
       elem =>
@@ -120,7 +122,6 @@ class MainIntegral extends Component {
               </div>
             </Bounce>
             <div className={togglePanel}>
-              {/* <ul> */}
               {newArrayCategory.map(elem => (
                 <div key={shortid.generate()} className={nameLi}>
                   <NavLink
@@ -134,24 +135,12 @@ class MainIntegral extends Component {
                   </NavLink>
                 </div>
               ))}
-              {/* </ul> */}
             </div>
           </TogPanel>
         )}
         <div className={boxImg}>
           {newArrayProducts &&
-            newArrayProducts.map(elem => (
-              <div key={elem.productID} className={imgCard}>
-                <img className={img} src={elem.small_image} alt="img" />
-                <div className={imgCardFont}>
-                  <p>{elem.name}</p>
-                </div>
-                <div className={imgCardFontBold}>
-                  {(elem.price_uah * 1.1).toFixed(2) + " грн."}
-                </div>
-                <div className={imgCardFont}>{elem.country}</div>
-              </div>
-            ))}
+            newArrayProducts.map(elem => <MainProduct elem={elem} />)}
         </div>
         <div className={boxContainerInputPanel}></div>
       </div>

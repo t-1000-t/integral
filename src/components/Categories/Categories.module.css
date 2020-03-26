@@ -1,0 +1,6 @@
+.boxImg {
+  flex-wrap: wrap;
+  display: flex;
+
+  /* background-color: #61603f; */
+}
