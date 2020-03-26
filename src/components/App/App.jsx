@@ -5,7 +5,7 @@ import HomePage from "../Page/HomePage";
 import Categories from "../Categories/Categories";
 import AboutPage from "../AboutPage/AboutPage";
 import IntegralPage from "../IntegralPage/IntegralPage";
-// import ProductDetails from "../ProductDetails/ProductDetails";
+import PresentPage from "../PresentPage/PresentPage";
 
 class App extends Component {
   render() {
@@ -13,9 +13,9 @@ class App extends Component {
       <BrowserRouter>
         <IntegralPage />
         <Switch>
+          <Route exact path={routes.HOME} component={PresentPage} />
           <Route exact path={routes.MAIN} component={HomePage} />
           <Route exact path={routes.ABOUT} component={AboutPage} />
-          {/* <Route path={routes.PRODUCTS_DITEILS} component={ProductDetails} /> */}
           <Route exact path={routes.PRODUCTS} component={Categories} />
           <Redirect to="/" />
         </Switch>

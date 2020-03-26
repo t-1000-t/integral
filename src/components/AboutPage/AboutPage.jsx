@@ -1,10 +1,11 @@
 import React, { Component } from "react";
+import styled from "./AboutPage.module.css";
 
 class AboutPage extends Component {
   render() {
     return (
-      <div>
-        <h2>ABOUT Integral</h2>{" "}
+      <div className={styled.wrapper}>
+        <div className={styled.container}>Информация о магазине Integral</div>{" "}
       </div>
     );
   }

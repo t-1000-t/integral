@@ -1,16 +1,20 @@
 import React, { Component } from "react";
 import ProductDateil from "../ProductDateil/ProductDateil";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+import Loader from "react-loader-spinner";
 
 import styled from "./Categories.module.css";
 
-const { boxImg } = styled;
+const { boxImg, loadPoition } = styled;
 
 class Categories extends Component {
   state = {
-    listProducts: []
+    listProducts: [],
+    isLoading: false
   };
 
   fetchCategories() {
+    this.setState({ isLoading: true });
     const category = new URLSearchParams(this.props.location.search).get(
       "category"
     );
@@ -25,7 +29,13 @@ class Categories extends Component {
           this.setState({
             listProducts: arr
           })
-        );
+        )
+        .catch(error => {
+          this.setState({ error });
+        })
+        .finally(() => {
+          this.setState({ isLoading: false });
+        });
     } catch (err) {
       console.error(err);
     }
@@ -36,10 +46,21 @@ class Categories extends Component {
   }
 
   render() {
-    const { listProducts } = this.state;
+    const { listProducts, isLoading } = this.state;
     console.log("listProducts", listProducts);
     return (
       <>
+        {isLoading && (
+          <div className={loadPoition}>
+            <Loader
+              type="BallTriangle"
+              color="rgb(117, 111, 228)"
+              height={80}
+              width={80}
+              // timeout={3000} //3 secs
+            />
+          </div>
+        )}
         <ul className={boxImg}>
           {listProducts &&
             listProducts.map(elem => (

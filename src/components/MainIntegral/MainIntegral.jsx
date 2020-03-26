@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+import Loader from "react-loader-spinner";
 import Bounce from "react-reveal/Bounce";
 import db from "../../db/dbcatigories.json";
 import TogPanel from "../TogglePanel/TogglePanel";
@@ -18,7 +20,8 @@ const {
   toggleInputSearch,
   nameLi,
   boxImg,
-  linkStyle
+  linkStyle,
+  loadPosition
 } = styled;
 
 class MainIntegral extends Component {
@@ -27,7 +30,8 @@ class MainIntegral extends Component {
     filterCategory: "",
     arrayProducts: [],
     filterProducts: "",
-    isLoading: false
+    isLoading: false,
+    isLoadingCategory: false
   };
 
   handlerFilterCateg = e => {
@@ -56,6 +60,7 @@ class MainIntegral extends Component {
   };
 
   fetchProducts = () => {
+    this.setState({ isLoading: true });
     try {
       return fetch("https://shop-integral.herokuapp.com/api/main")
         .then(res => res.json())
@@ -64,7 +69,13 @@ class MainIntegral extends Component {
           this.setState({
             arrayProducts: arr
           })
-        );
+        )
+        .catch(error => {
+          this.setState({ error });
+        })
+        .finally(() => {
+          this.setState({ isLoading: false });
+        });
     } catch (err) {
       console.error(err);
     }
@@ -75,24 +86,33 @@ class MainIntegral extends Component {
       arrayCategory,
       arrayProducts,
       filterCategory,
-      filterProducts
+      filterProducts,
+      isLoading,
+      isLoadingCategory
     } = this.state;
     const { isOpenPanel, isOpenSearch, toggLogo } = this.props;
-    console.log("arr ", arrayCategory.length);
     const newArrayCategory = arrayCategory.filter(elem =>
       elem.name.toLowerCase().includes(filterCategory.toLowerCase())
     );
-
-    console.log(newArrayCategory);
     const newArrayProducts = arrayProducts.filter(
       elem =>
         elem.name.toLowerCase().includes(filterProducts.toLowerCase()) ||
         elem.product_code.toLowerCase().includes(filterProducts.toLowerCase())
     );
-    // console.log(newArrayProducts);
 
     return (
       <div className={containerMainIntegral}>
+        {isLoading && (
+          <div className={loadPosition}>
+            <Loader
+              type="BallTriangle"
+              color="rgb(117, 111, 228)"
+              height={80}
+              width={80}
+              // timeout={3000} //3 secs
+            />
+          </div>
+        )}
         {isOpenSearch && (
           <Bounce bottom>
             <div className={wrappInput}>
@@ -106,6 +126,17 @@ class MainIntegral extends Component {
               ></input>
             </div>
           </Bounce>
+        )}
+        {isLoadingCategory && (
+          <div className={loadPosition}>
+            <Loader
+              type="BallTriangle"
+              color="rgb(117, 111, 228)"
+              height={80}
+              width={80}
+              // timeout={3000} //3 secs
+            />
+          </div>
         )}
         {isOpenPanel && (
           <TogPanel toggLogo={toggLogo}>

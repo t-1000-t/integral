@@ -4,3 +4,8 @@
 
   /* background-color: #61603f; */
 }
+.loadPoition {
+  display: flex;
+  justify-content: center;
+  margin-top: 50%;
+}
