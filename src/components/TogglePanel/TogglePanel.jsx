@@ -35,7 +35,6 @@ class TogglePanel extends Component {
 
   render() {
     const { children } = this.props;
-    console.log(children);
     return createPortal(
       <div
         className={styles.backdrop}

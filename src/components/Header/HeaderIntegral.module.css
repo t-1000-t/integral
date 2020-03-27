@@ -25,6 +25,7 @@
     align-items: center;
     width: 120px;
   }
+
   .logo {
     display: inline-block;
     font-family: "Boogaloo", cursive;
@@ -33,9 +34,20 @@
     color: rgb(25, 18, 168);
   }
 
-  .iconLogo {
+  .iconRight {
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    /* border: none; */
+    background-color: rgb(117, 111, 228);
+  }
+
+  .boxIcon {
     display: inline-block;
-    color: #ece863;
+  }
+
+  .IconLabel {
+    color: #faf692;
   }
 
   .list {
@@ -50,11 +62,15 @@
   .title {
     display: inline-block;
     margin-right: 10px;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
     color: #faf692;
+    background-color: rgb(117, 111, 228);
   }
 
   .boxSearch:hover {
     cursor: pointer;
-    box-shadow: 0 0 10px 0 #7f7f7f;
+    box-shadow: 0px 0px 5px #faf692;
   }
 }

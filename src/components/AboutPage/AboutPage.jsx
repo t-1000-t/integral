@@ -5,7 +5,10 @@ class AboutPage extends Component {
   render() {
     return (
       <div className={styled.wrapper}>
-        <div className={styled.container}>Информация о магазине Integral</div>{" "}
+        <div className={styled.container}>
+          Информация о магазине Integral
+          <div className={styled.iconLogo}></div>
+        </div>
       </div>
     );
   }

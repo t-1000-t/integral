@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, createRef } from "react";
 import styled from "./HeaderIntegral.module.css";
 
 import Icon from "@iconify/react";
@@ -8,7 +8,6 @@ import personCircleOutline from "@iconify/icons-ion/person-circle-outline";
 import cartOutline from "@iconify/icons-ion/cart-outline";
 
 import chevronForwardCircleOutline from "@iconify/icons-ion/chevron-forward-circle-outline";
-import chevronBackCircleOutline from "@iconify/icons-ion/chevron-back-circle-outline";
 
 const {
   container,
@@ -16,58 +15,71 @@ const {
   boxLogo,
   list,
   title,
-  iconLogo,
+  iconRight,
   icons,
-  boxSearch
+  boxSearch,
+  boxIcon,
+  IconLabel
 } = styled;
 
 class HeaderIntegral extends Component {
+  iconRef = createRef();
+  iconFilterRef = createRef();
+
+  // onGetFilter = () => {
+  //   this.props.toggFilter();
+  // };
+
   render() {
-    const { isOpenPanel, toggLogo, toggFilter } = this.props;
+    console.log(this.iconFilterRef);
+    const { toggLogo, toggFilter } = this.props;
     return (
       <div className={container}>
         <div className={boxLogo}>
-          {isOpenPanel ? (
-            <Icon
-              icon={chevronBackCircleOutline}
-              type="batton"
-              width="30px"
-              className={iconLogo}
-              onClick={toggLogo}
-            />
-          ) : (
-            <Icon
-              icon={chevronForwardCircleOutline}
-              type="batton"
-              width="30px"
-              className={iconLogo}
-              onClick={toggLogo}
-            />
-          )}
+          <button className={iconRight}>
+            <div className={boxIcon}>
+              <Icon
+                name="right"
+                type="batton"
+                icon={chevronForwardCircleOutline}
+                width="30px"
+                onClick={toggLogo}
+                className={IconLabel}
+              ></Icon>
+            </div>
+          </button>
+
           <div className={logo}>
             <p>integral</p>
           </div>
         </div>
 
         <div className={list}>
-          <ul className={icons}>
-            <li className={title}>
-              <Icon
-                className={boxSearch}
-                name="filtet"
-                type="batton"
-                icon={searchOutline}
-                width="30px"
-                onClick={toggFilter}
-              />
-            </li>
-            <li className={title}>
-              <Icon icon={personCircleOutline} width="30px" />
-            </li>
-            <li className={title}>
-              <Icon icon={cartOutline} width="30px" />
-            </li>
-          </ul>
+          <div className={icons}>
+            <button className={title} ref={this.iconFilterRef}>
+              <div className={boxIcon}>
+                <Icon
+                  ref={this.iconFilterRef}
+                  className={boxSearch}
+                  name="filtet"
+                  type="batton"
+                  icon={searchOutline}
+                  width="30px"
+                  onClick={toggFilter}
+                />
+              </div>
+            </button>
+            <button className={title}>
+              <div className={boxIcon}>
+                <Icon icon={personCircleOutline} width="30px" />
+              </div>
+            </button>
+            <button className={title}>
+              <div className={boxIcon}>
+                <Icon icon={cartOutline} width="30px" />
+              </div>
+            </button>
+          </div>
         </div>
       </div>
     );

@@ -9,7 +9,6 @@ import MainProduct from "../MainProduct/MainProduct";
 
 import styled from "./MainIntegral.module.css";
 import routes from "../../routes/routes";
-const shortid = require("shortid");
 
 const {
   containerMainIntegral,
@@ -30,8 +29,7 @@ class MainIntegral extends Component {
     filterCategory: "",
     arrayProducts: [],
     filterProducts: "",
-    isLoading: false,
-    isLoadingCategory: false
+    isLoading: false
   };
 
   handlerFilterCateg = e => {
@@ -87,13 +85,19 @@ class MainIntegral extends Component {
       arrayProducts,
       filterCategory,
       filterProducts,
-      isLoading,
-      isLoadingCategory
+      isLoading
     } = this.state;
-    const { isOpenPanel, isOpenSearch, toggLogo } = this.props;
+    const {
+      isOpenPanel,
+      isOpenSearch,
+      toggLogo,
+      isLoadingCategory
+    } = this.props;
+
     const newArrayCategory = arrayCategory.filter(elem =>
       elem.name.toLowerCase().includes(filterCategory.toLowerCase())
     );
+
     const newArrayProducts = arrayProducts.filter(
       elem =>
         elem.name.toLowerCase().includes(filterProducts.toLowerCase()) ||
@@ -127,17 +131,7 @@ class MainIntegral extends Component {
             </div>
           </Bounce>
         )}
-        {isLoadingCategory && (
-          <div className={loadPosition}>
-            <Loader
-              type="BallTriangle"
-              color="rgb(117, 111, 228)"
-              height={80}
-              width={80}
-              // timeout={3000} //3 secs
-            />
-          </div>
-        )}
+
         {isOpenPanel && (
           <TogPanel toggLogo={toggLogo}>
             <Bounce bottom>
@@ -153,8 +147,8 @@ class MainIntegral extends Component {
               </div>
             </Bounce>
             <div className={togglePanel}>
-              {newArrayCategory.map(elem => (
-                <div key={shortid.generate()} className={nameLi}>
+              {newArrayCategory.map((elem, i) => (
+                <div key={elem[i]} className={nameLi}>
                   <NavLink
                     className={linkStyle}
                     to={{

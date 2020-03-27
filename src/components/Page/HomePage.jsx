@@ -6,7 +6,8 @@ import MainIntegral from "../MainIntegral/MainIntegral";
 class HomePage extends Component {
   state = {
     isOpenPanel: false,
-    isOpenSearch: false
+    isOpenSearch: false,
+    isLoadingCategory: false
   };
 
   toggFilter = () => {
@@ -18,7 +19,7 @@ class HomePage extends Component {
   };
 
   render() {
-    const { isOpenPanel, isOpenSearch } = this.state;
+    const { isOpenPanel, isOpenSearch, isLoadingCategory } = this.state;
     return (
       <div>
         <HeaderIntegral
@@ -31,6 +32,7 @@ class HomePage extends Component {
           toggLogo={this.toggLogo}
           isOpenPanel={isOpenPanel}
           isOpenSearch={isOpenSearch}
+          isLoadingCategory={isLoadingCategory}
         />
       </div>
     );

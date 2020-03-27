@@ -5,3 +5,12 @@
 .container {
   margin-top: 50%;
 }
+.iconLogo {
+  background: url("../../icons/pixelbefor50/icons8-circled-right-32.png");
+  color: #8b8b88;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  text-align: center;
+  flex-shrink: 0;
+}

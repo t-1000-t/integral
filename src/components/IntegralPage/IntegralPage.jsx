@@ -7,7 +7,7 @@ class IntegralPage extends Component {
     return (
       <div>
         <ul className={styled.wrapper}>
-          <li>
+          <li className={styled.integral}>
             <NavLink
               exact
               style={{ color: "#212121" }}
