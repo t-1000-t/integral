@@ -84,7 +84,92 @@
   }
 }
 
-@media (min-width: 560px) and (max-width: 940px) {
+@media (min-width: 376px) and (max-width: 940px) {
+  .containerMainIntegral {
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+    height: 100vh;
+  }
+  .boxContainerInputPanel {
+    display: flex;
+    /* flex-direction: column; */
+  }
+  .togglePanel {
+    width: 100%;
+    margin-top: 35px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    background-color: rgb(158, 158, 235);
+  }
+  .boxSearch {
+    text-align: center;
+    width: 280px;
+    height: 35px;
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border: 1px #ccc solid;
+  }
+
+  .boxImg {
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: center;
+    /* background-color: #61603f; */
+  }
+
+  .wrappInput {
+    display: flex;
+    justify-content: center;
+    margin-top: 4px;
+  }
+  .toggleInputSearch {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+  }
+  .nameLi {
+    text-align: center;
+    padding: 3px;
+    border-bottom: 1px solid #faf692;
+    color: rgb(25, 18, 168);
+  }
+
+  .linkStyle {
+    color: rgb(25, 18, 168);
+  }
+  .linkStyle:hover {
+    color: rgb(252, 92, 0);
+  }
+
+  .container {
+    display: flex;
+  }
+
+  .fixed {
+    width: 200px;
+    height: 40px;
+    background: #eee;
+  }
+
+  .stretch {
+    width: 100%;
+    height: 40px;
+    background: #aaa;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  .loadPosition {
+    display: flex;
+    justify-content: center;
+    margin-top: 50%;
+  }
 }
 
 @media (min-width: 940px) {

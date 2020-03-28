@@ -14,11 +14,9 @@ const {
   logo,
   boxLogo,
   list,
-  title,
   iconRight,
   IconMenuNav,
   icons,
-  boxSearch,
   boxIcon,
   IconLabel
 } = stylish;
@@ -27,12 +25,7 @@ class HeaderIntegral extends Component {
   iconRef = createRef();
   iconFilterRef = createRef();
 
-  // onGetFilter = () => {
-  //   this.props.toggFilter();
-  // };
-
   render() {
-    console.log(this.iconFilterRef);
     const { toggLogo, toggFilter } = this.props;
     return (
       <div className={container}>
@@ -57,10 +50,9 @@ class HeaderIntegral extends Component {
 
         <div className={list}>
           <div className={icons}>
-            <button className={IconMenuNav} ref={this.iconFilterRef}>
+            <button className={IconMenuNav}>
               <div className={boxIcon}>
                 <Icon
-                  ref={this.iconFilterRef}
                   className={IconLabel}
                   name="filtet"
                   type="batton"

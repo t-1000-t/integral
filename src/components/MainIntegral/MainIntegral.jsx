@@ -6,6 +6,7 @@ import Bounce from "react-reveal/Bounce";
 import db from "../../db/dbcatigories.json";
 import TogPanel from "../TogglePanel/TogglePanel";
 import MainProduct from "../MainProduct/MainProduct";
+import shortid from "shortid";
 
 import stylish from "./MainIntegral.module.css";
 import routes from "../../routes/routes";
@@ -50,7 +51,6 @@ class MainIntegral extends Component {
 
   fetchLocalCategories = () => {
     const listCategory = Object.entries(db.categories).map(el => el[1].elem);
-    console.log("list :", listCategory);
 
     this.setState({
       arrayCategory: listCategory.flat(3)
@@ -124,7 +124,7 @@ class MainIntegral extends Component {
                 onChange={this.handlerFilterProd}
               ></input>
             </div>
-          </Bounce> 
+          </Bounce>
         )}
 
         {isOpenPanel && (
@@ -142,8 +142,8 @@ class MainIntegral extends Component {
               </div>
             </Bounce>
             <div className={togglePanel}>
-              {newArrayCategory.map((elem, i) => (
-                <div key={elem[i]} className={nameLi}>
+              {newArrayCategory.map(elem => (
+                <div key={shortid.generate()} className={nameLi}>
                   <NavLink
                     className={linkStyle}
                     to={{
@@ -160,7 +160,9 @@ class MainIntegral extends Component {
         )}
         <div className={boxImg}>
           {newArrayProducts &&
-            newArrayProducts.map(elem => <MainProduct elem={elem} />)}
+            newArrayProducts.map(elem => (
+              <MainProduct key={elem.productID} elem={elem} />
+            ))}
         </div>
         <div className={boxContainerInputPanel}></div>
       </div>

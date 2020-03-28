@@ -1,11 +1,11 @@
 import React, { Component, createRef } from "react";
 import { createPortal } from "react-dom";
 
-import stylish from "./ModalProductDetails.module.css";
+import stylish from "./ModalPhoto.module.css";
 
-const PANEL_PRODUCT_DATEILS = document.getElementById("panel-dateils-root");
+const MODAL_PHOTO = document.getElementById("modal-photo-root");
 
-class ModalProductDetails extends Component {
+class ModalPhoto extends Component {
   backdropRef = createRef();
 
   componentDidMount() {
@@ -21,7 +21,7 @@ class ModalProductDetails extends Component {
       return;
     }
 
-    this.props.handleOnModal();
+    this.props.handleOnModalPhoto();
   };
 
   handleBackdropClick = e => {
@@ -29,7 +29,7 @@ class ModalProductDetails extends Component {
       return;
     }
 
-    this.props.handleOnModal();
+    this.props.handleOnModalPhoto();
   };
 
   render() {
@@ -43,9 +43,9 @@ class ModalProductDetails extends Component {
       >
         <div className={stylish.modal}>{children}</div>
       </div>,
-      PANEL_PRODUCT_DATEILS
+      MODAL_PHOTO
     );
   }
 }
 
-export default ModalProductDetails;
+export default ModalPhoto;

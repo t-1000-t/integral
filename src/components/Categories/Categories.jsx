@@ -18,7 +18,7 @@ class Categories extends Component {
     const category = new URLSearchParams(this.props.location.search).get(
       "category"
     );
-    console.log(category);
+
     try {
       return fetch(
         `https://shop-integral.herokuapp.com/api/products?category=${category}`
@@ -47,7 +47,7 @@ class Categories extends Component {
 
   render() {
     const { listProducts, isLoading } = this.state;
-    console.log("listProducts", listProducts);
+
     return (
       <>
         {isLoading && (
@@ -64,7 +64,7 @@ class Categories extends Component {
         <ul className={boxImg}>
           {listProducts &&
             listProducts.map(elem => (
-              <li key={elem.id}>
+              <li key={elem.productID}>
                 <ProductDateil elem={elem} />
               </li>
             ))}

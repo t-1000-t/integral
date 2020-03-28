@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import ModalProductDetails from "../ModalProductDetails/ModalProductDetails";
+import ModalPhoto from "../ModalPhoto/ModalPhoto";
 
 import stylish from "./MainProduct.module.css";
 
@@ -7,7 +8,16 @@ const { imgCard, imgCardFont, imgCardFontBold, img } = stylish;
 
 class MainProduct extends Component {
   state = {
-    isOpen: false
+    isOpen: false,
+    isOpenLargeImg: false,
+    isOpenPhoto: false
+  };
+
+  handleOnModalPhoto = () => {
+    const { isOpenPhoto } = this.state;
+    this.setState({
+      isOpenPhoto: !isOpenPhoto
+    });
   };
 
   handleOnModal = () => {
@@ -18,11 +28,11 @@ class MainProduct extends Component {
   };
 
   render() {
-    const { isOpen } = this.state;
+    const { isOpen, isOpenPhoto } = this.state;
     const { elem } = this.props;
     return (
       <>
-        <div key={elem.productID} className={imgCard}>
+        <div className={imgCard}>
           <img
             className={img}
             src={elem.small_image}
@@ -39,11 +49,12 @@ class MainProduct extends Component {
         </div>
         {isOpen && (
           <ModalProductDetails handleOnModal={this.handleOnModal}>
+            <button onClick={this.handleOnModalPhoto}>Open Large Photo</button>
             <h2>{elem.productID}</h2>
             <img
               src={elem.medium_image}
               alt="img"
-              onClick={this.handleOnModal}
+              onClick={this.handleOnModalPhoto}
             />
             <div className={imgCardFont}>
               <p>{elem.name}</p>
@@ -52,6 +63,12 @@ class MainProduct extends Component {
               {(elem.price_uah * 1.1).toFixed(2) + " грн."}
             </div>
             <div className={imgCardFont}>{elem.country}</div>
+            {isOpenPhoto && (
+              <ModalPhoto handleOnModalPhoto={this.handleOnModalPhoto}>
+                <button onClick={this.handleOnModalPhoto}>Close</button>
+                <img src={elem.large_image} alt="img" />
+              </ModalPhoto>
+            )}
           </ModalProductDetails>
         )}
       </>
