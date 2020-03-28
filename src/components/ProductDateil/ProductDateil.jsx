@@ -1,12 +1,14 @@
 import React, { Component } from "react";
 import ModalProductDetails from "../ModalProductDetails/ModalProductDetails";
 import stylish from "./ProductDateil.module.css";
+import ModalPhoto from "../ModalPhoto/ModalPhoto";
 
 const { imgCard, imgCardFont, imgCardFontBold, img } = stylish;
 
 class ProductDateil extends Component {
   state = {
-    isOpen: false
+    isOpen: false,
+    isOpenPhotoCategory: false
   };
 
   handleOnModal = () => {
@@ -16,8 +18,15 @@ class ProductDateil extends Component {
     });
   };
 
+  handleOnModalPhotoCategory = () => {
+    const { isOpenPhotoCategory } = this.state;
+    this.setState({
+      isOpenPhotoCategory: !isOpenPhotoCategory
+    });
+  };
+
   render() {
-    const { isOpen } = this.state;
+    const { isOpen, isOpenPhotoCategory } = this.state;
     const { elem } = this.props;
     return (
       <>
@@ -41,10 +50,13 @@ class ProductDateil extends Component {
         {isOpen && (
           <ModalProductDetails handleOnModal={this.handleOnModal}>
             <h2>{elem.productID}</h2>
+            <button onClick={this.handleOnModalPhotoCategory}>
+              Open Large Photo Category
+            </button>
             <img
               src={elem.medium_image}
               alt="img"
-              onClick={this.handleOnModal}
+              onClick={this.handleOnModalPhotoCategory}
             />
             <div className={imgCardFont}>
               <p>{elem.name}</p>
@@ -53,6 +65,12 @@ class ProductDateil extends Component {
               {(elem.price_uah * 1.1).toFixed(2) + " грн."}
             </div>
             <div className={imgCardFont}>{elem.country}</div>
+            {isOpenPhotoCategory && (
+              <ModalPhoto handleOnModalPhoto={this.handleOnModalPhotoCategory}>
+                <button onClick={this.handleOnModalPhotoCategory}>Close</button>
+                <img src={elem.large_image} alt="img" />
+              </ModalPhoto>
+            )}
           </ModalProductDetails>
         )}
       </>

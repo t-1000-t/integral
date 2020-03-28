@@ -9,7 +9,7 @@ const { imgCard, imgCardFont, imgCardFontBold, img } = stylish;
 class MainProduct extends Component {
   state = {
     isOpen: false,
-    isOpenLargeImg: false,
+    // isOpenLargeImg: false,
     isOpenPhoto: false
   };
 

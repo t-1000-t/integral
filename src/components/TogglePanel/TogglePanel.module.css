@@ -21,7 +21,25 @@
 }
 
 @media (min-width: 560px) and (max-width: 940px) {
+  .modal {
+    /* padding: 16px; */
+    max-width: 280px;
+    width: 100%;
+
+    overflow-y: hidden;
+
+    /* background-color: #fff; */
+  }
 }
 
 @media (min-width: 940px) {
+  .modal {
+    padding-top: 50px;
+    max-width: 380px;
+    width: 100%;
+
+    overflow-y: hidden;
+
+    /* background-color: #fff; */
+  }
 }
