@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
-import styled from "./IntegralPage.module.css";
+import stylish from "./IntegralPage.module.css";
 
 class IntegralPage extends Component {
   render() {
     return (
       <div>
-        <ul className={styled.wrapper}>
-          <li className={styled.integral}>
+        <ul className={stylish.wrapper}>
+          <li className={stylish.integral}>
             <NavLink
               exact
               style={{ color: "#212121" }}
@@ -17,7 +17,7 @@ class IntegralPage extends Component {
               integral
             </NavLink>
           </li>
-          <li>
+          <li className={stylish.main}>
             <NavLink
               exact
               style={{ color: "#212121" }}
@@ -27,7 +27,7 @@ class IntegralPage extends Component {
               main
             </NavLink>
           </li>
-          <li>
+          <li className={stylish.about}>
             <NavLink
               exact
               style={{ color: "#212121" }}

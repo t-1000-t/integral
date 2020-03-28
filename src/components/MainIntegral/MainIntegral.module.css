@@ -1,4 +1,4 @@
-@media (max-width: 375px) {
+@media (max-width: 375px) and (max-width: 559px) {
   .containerMainIntegral {
     display: flex;
     flex-direction: column;
@@ -82,4 +82,10 @@
     justify-content: center;
     margin-top: 50%;
   }
+}
+
+@media (min-width: 560px) and (max-width: 940px) {
+}
+
+@media (min-width: 940px) {
 }

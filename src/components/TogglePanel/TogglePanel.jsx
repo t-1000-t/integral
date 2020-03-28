@@ -1,6 +1,6 @@
 import React, { Component, createRef } from "react";
 import { createPortal } from "react-dom";
-import styles from "./TogglePanel.module.css";
+import stylish from "./TogglePanel.module.css";
 
 const PANEL = document.querySelector("#panel-root");
 
@@ -37,12 +37,12 @@ class TogglePanel extends Component {
     const { children } = this.props;
     return createPortal(
       <div
-        className={styles.backdrop}
+        className={stylish.backdrop}
         ref={this.backdropRef}
         onClick={this.handleBackdropClick}
         role="presentation"
       >
-        <div className={styles.modal}>{children}</div>
+        <div className={stylish.modal}>{children}</div>
       </div>,
       PANEL
     );

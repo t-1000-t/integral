@@ -3,9 +3,9 @@ import ProductDateil from "../ProductDateil/ProductDateil";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Loader from "react-loader-spinner";
 
-import styled from "./Categories.module.css";
+import stylish from "./Categories.module.css";
 
-const { boxImg, loadPoition } = styled;
+const { boxImg, loadPoition } = stylish;
 
 class Categories extends Component {
   state = {

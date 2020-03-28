@@ -1,5 +1,5 @@
 import React, { Component, createRef } from "react";
-import styled from "./HeaderIntegral.module.css";
+import stylish from "./HeaderIntegral.module.css";
 
 import Icon from "@iconify/react";
 
@@ -16,11 +16,12 @@ const {
   list,
   title,
   iconRight,
+  IconMenuNav,
   icons,
   boxSearch,
   boxIcon,
   IconLabel
-} = styled;
+} = stylish;
 
 class HeaderIntegral extends Component {
   iconRef = createRef();
@@ -56,11 +57,11 @@ class HeaderIntegral extends Component {
 
         <div className={list}>
           <div className={icons}>
-            <button className={title} ref={this.iconFilterRef}>
+            <button className={IconMenuNav} ref={this.iconFilterRef}>
               <div className={boxIcon}>
                 <Icon
                   ref={this.iconFilterRef}
-                  className={boxSearch}
+                  className={IconLabel}
                   name="filtet"
                   type="batton"
                   icon={searchOutline}
@@ -69,14 +70,18 @@ class HeaderIntegral extends Component {
                 />
               </div>
             </button>
-            <button className={title}>
+            <button className={IconMenuNav}>
               <div className={boxIcon}>
-                <Icon icon={personCircleOutline} width="30px" />
+                <Icon
+                  icon={personCircleOutline}
+                  width="30px"
+                  className={IconLabel}
+                />
               </div>
             </button>
-            <button className={title}>
+            <button className={IconMenuNav}>
               <div className={boxIcon}>
-                <Icon icon={cartOutline} width="30px" />
+                <Icon icon={cartOutline} width="30px" className={IconLabel} />
               </div>
             </button>
           </div>

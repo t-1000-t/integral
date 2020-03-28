@@ -1,7 +1,7 @@
 import React, { Component, createRef } from "react";
 import { createPortal } from "react-dom";
 
-import styles from "./ModalProductDetails.module.css";
+import stylish from "./ModalProductDetails.module.css";
 
 const PANEL_PRODUCT_DATEILS = document.getElementById("panel-dateils-root");
 
@@ -38,12 +38,12 @@ class ModalProductDetails extends Component {
     const { children } = this.props;
     return createPortal(
       <div
-        className={styles.backdrop}
+        className={stylish.backdrop}
         ref={this.backdropRef}
         onClick={this.handleBackdropClick}
         role="presentation"
       >
-        <div className={styles.modal}>{children}</div>
+        <div className={stylish.modal}>{children}</div>
       </div>,
       PANEL_PRODUCT_DATEILS
     );

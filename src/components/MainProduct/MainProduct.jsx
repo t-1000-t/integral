@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import ModalProductDetails from "../ModalProductDetails/ModalProductDetails";
 
-import styled from "./MainProduct.module.css";
+import stylish from "./MainProduct.module.css";
 
-const { imgCard, imgCardFont, imgCardFontBold, img } = styled;
+const { imgCard, imgCardFont, imgCardFontBold, img } = stylish;
 
 class MainProduct extends Component {
   state = {

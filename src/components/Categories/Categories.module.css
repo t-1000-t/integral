@@ -9,3 +9,9 @@
   justify-content: center;
   margin-top: 50%;
 }
+
+@media (min-width: 560px) and (max-width: 940px) {
+}
+
+@media (min-width: 940px) {
+}

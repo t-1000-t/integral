@@ -36,3 +36,9 @@
   height: 100px;
   background-size: auto;
 }
+
+@media (min-width: 560px) and (max-width: 940px) {
+}
+
+@media (min-width: 940px) {
+}

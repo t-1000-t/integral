@@ -7,7 +7,7 @@ import db from "../../db/dbcatigories.json";
 import TogPanel from "../TogglePanel/TogglePanel";
 import MainProduct from "../MainProduct/MainProduct";
 
-import styled from "./MainIntegral.module.css";
+import stylish from "./MainIntegral.module.css";
 import routes from "../../routes/routes";
 
 const {
@@ -21,7 +21,7 @@ const {
   boxImg,
   linkStyle,
   loadPosition
-} = styled;
+} = stylish;
 
 class MainIntegral extends Component {
   state = {
@@ -87,12 +87,7 @@ class MainIntegral extends Component {
       filterProducts,
       isLoading
     } = this.state;
-    const {
-      isOpenPanel,
-      isOpenSearch,
-      toggLogo,
-      isLoadingCategory
-    } = this.props;
+    const { isOpenPanel, isOpenSearch, toggLogo } = this.props;
 
     const newArrayCategory = arrayCategory.filter(elem =>
       elem.name.toLowerCase().includes(filterCategory.toLowerCase())
@@ -129,7 +124,7 @@ class MainIntegral extends Component {
                 onChange={this.handlerFilterProd}
               ></input>
             </div>
-          </Bounce>
+          </Bounce> 
         )}
 
         {isOpenPanel && (

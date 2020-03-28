@@ -21,3 +21,9 @@
 
   background-color: rgb(179, 159, 159);
 }
+
+@media (min-width: 560px) and (max-width: 940px) {
+}
+
+@media (min-width: 940px) {
+}

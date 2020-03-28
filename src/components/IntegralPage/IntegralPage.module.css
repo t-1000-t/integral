@@ -4,9 +4,20 @@
   padding: 15px;
 }
 
-.integral {
+.integral:hover {
+  box-shadow: 0px 0px 10px #faf692;
 }
 
-.integral:hover {
-  box-shadow: 0px 0px 5px #faf692;
+.main:hover {
+  box-shadow: 0px 0px 10px #faf692;
+}
+
+.about:hover {
+  box-shadow: 0px 0px 10px #faf692;
+}
+
+@media (min-width: 560px) and (max-width: 940px) {
+}
+
+@media (min-width: 940px) {
 }

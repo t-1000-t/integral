@@ -4,10 +4,15 @@ import routes from "../../routes/routes";
 import HomePage from "../Page/HomePage";
 import Categories from "../Categories/Categories";
 import AboutPage from "../AboutPage/AboutPage";
+import widthResize from "../../services/widthResize";
 import IntegralPage from "../IntegralPage/IntegralPage";
 import PresentPage from "../PresentPage/PresentPage";
 
 class App extends Component {
+  componentDidMount() {
+    widthResize();
+  }
+
   render() {
     return (
       <BrowserRouter>
