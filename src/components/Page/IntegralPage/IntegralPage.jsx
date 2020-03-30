@@ -1,5 +1,7 @@
 import React, { Component, createRef } from "react";
 
+import ModalLicategory from "../../Modals/ModalLicategory/ModalLicategory";
+
 import stylish from "./IntegralPage.module.css";
 
 export class IntegralPage extends Component {
@@ -16,7 +18,8 @@ export class IntegralPage extends Component {
       { name: "Наушники" },
       { name: "Бытовая техника" }
     ],
-    isOpenArrCategory: false
+    isOpenArrCategory: false,
+    isOpenModalLiCategory: false
   };
 
   toggleTrue = () => {
@@ -25,6 +28,18 @@ export class IntegralPage extends Component {
 
   toggleFalse = () => {
     this.setState({ isOpenArrCategory: false });
+  };
+
+  liHandlerCategoryTrue = () => {
+    this.setState({
+      isOpenModalLiCategory: true
+    });
+  };
+
+  liHandlerCategoryFalse = () => {
+    this.setState({
+      isOpenModalLiCategory: false
+    });
   };
 
   // toggle for on click
@@ -57,35 +72,62 @@ export class IntegralPage extends Component {
     }
 
     this.toggleFalse();
+    this.liHandlerCategoryFalse();
   };
 
   render() {
-    const { arrCategory, isOpenArrCategory } = this.state;
+    const {
+      arrCategory,
+      isOpenArrCategory,
+      isOpenModalLiCategory
+    } = this.state;
     return (
       <div className={stylish.wrapper}>
         <div className={stylish.container}>
           <div className={stylish.boxNavMenu}>
-            <div
-              className={stylish.btnList}
-              onMouseEnter={this.toggleTrue}
-              onMouseLeave={this.toggleFalse}
-            >
-              <button onClick={this.toggleTrue} onMouseEnter={this.toggleTrue}>
+            <div className={stylish.btnList}>
+              <button
+                onClick={this.toggleTrue}
+                onMouseEnter={this.toggleTrue}
+                className={stylish.btnTest}
+              >
                 Shop By Catalog
               </button>
-              <ul
-                className={stylish.ulList}
-                onMouseEnter={this.toggleTrue}
-                onMouseLeave={this.toggleFalse}
+              <div
+                className={stylish.boxTest}
+                ref={this.btnRef}
                 onClick={this.handleBackdropClick}
+                onMouseLeave={this.toggleFalse}
               >
-                {isOpenArrCategory &&
-                  arrCategory.map((el, i) => (
-                    <li className={stylish.liList} key={i}>
-                      {el.name}
-                    </li>
-                  ))}
-              </ul>
+                {isOpenArrCategory && (
+                  <ul
+                    className={stylish.ulList}
+                    onMouseEnter={this.toggleTrue}
+                    // onMouseLeave={this.toggleFalse}
+                    onClick={this.handleBackdropClick}
+                  >
+                    {arrCategory.map((el, i) => (
+                      <li className={stylish.liList} key={i}>
+                        <div
+                          onMouseEnter={this.liHandlerCategoryTrue}
+                          className={stylish.liNameCategory}
+                        >
+                          {el.name}
+                        </div>
+
+                        {isOpenModalLiCategory && (
+                          <div
+                            className={stylish.backdropLiNameCategory}
+                            onMouseEnter={this.liHandlerCategoryTrue}
+                          >
+                            111111111111111111
+                          </div>
+                        )}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
             </div>
             <input />
             <div>Phone namber</div>

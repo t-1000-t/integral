@@ -19,14 +19,27 @@
 }
 .btnList {
   display: inline-block;
-  position: relative;
+  /* position: relative; */
   padding: 10px;
   background-color: tomato;
 }
+.btnTest {
+  position: relative;
+}
+.boxTest {
+  position: absolute;
+  top: 100px;
+  left: 370px;
+  display: flex;
+  width: 1180px;
+  height: 700px;
+  background-color: yellowgreen;
+}
+
 .ulList {
   position: absolute;
   top: 42px;
-  left: -100px;
+  left: 0;
   background-color: yellow;
 }
 .liList {
@@ -34,11 +47,24 @@
   text-align: center;
   padding: 3px;
   border-bottom: 1px solid #faf692;
-  color: rgb(120, 118, 170);
+  color: rgb(44, 39, 212);
 }
-.liList:hover {
-  color: rgb(25, 18, 168);
+
+.liNameCategory {
+  /* position: relative; */
   cursor: pointer;
+}
+
+.backdropLiNameCategory {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0px;
+  left: 250px;
+  width: 700px;
+  height: 500px;
+  background-color: rgba(112, 111, 111, 0.7);
 }
 
 @media (min-width: 376px) and (max-width: 940px) {
