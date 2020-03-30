@@ -23,7 +23,6 @@ const {
 
 class HeaderIntegral extends Component {
   iconRef = createRef();
-  iconFilterRef = createRef();
 
   render() {
     const { toggLogo, toggFilter } = this.props;

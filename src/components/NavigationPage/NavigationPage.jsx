@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
-import stylish from "./IntegralPage.module.css";
+import stylish from "./NavigationPage.module.css";
 
-class IntegralPage extends Component {
+class NavigationPage extends Component {
   render() {
     return (
       <div>
@@ -43,4 +43,4 @@ class IntegralPage extends Component {
   }
 }
 
-export default IntegralPage;
+export default NavigationPage;

@@ -5,8 +5,9 @@ import HomePage from "../Page/HomePage";
 import Categories from "../Categories/Categories";
 import AboutPage from "../AboutPage/AboutPage";
 import widthResize from "../../services/widthResize";
-import IntegralPage from "../IntegralPage/IntegralPage";
+import NavigationPage from "../NavigationPage/NavigationPage";
 import PresentPage from "../PresentPage/PresentPage";
+import IntegralPage from "../Page/IntegralPage/IntegralPage";
 
 class App extends Component {
   componentDidMount() {
@@ -16,13 +17,13 @@ class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        <IntegralPage />
+        <NavigationPage />
         <Switch>
-          <Route exact path={routes.HOME} component={PresentPage} />
+          <Route exact path={routes.HOME} component={IntegralPage} />
           <Route exact path={routes.MAIN} component={HomePage} />
           <Route exact path={routes.ABOUT} component={AboutPage} />
           <Route exact path={routes.PRODUCTS} component={Categories} />
-          <Redirect to="/" />
+          <Redirect to={routes.MAIN} />
         </Switch>
       </BrowserRouter>
     );

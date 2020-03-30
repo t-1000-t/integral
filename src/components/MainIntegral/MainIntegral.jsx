@@ -51,9 +51,23 @@ class MainIntegral extends Component {
 
   fetchLocalCategories = () => {
     const listCategory = Object.entries(db.categories).map(el => el[1].elem);
+    console.log("listCategory", listCategory);
+    // const updateCategory = listCategory.reduce((unique, item) => {
+    //   console.log("item", Object.values(item));
+    //   console.log("unique", unique);
+    //   console.log("unique.includes(item)", unique.includes(item));
+    //   console.log(
+    //     "unique.includes(item) ? unique : [...unique, item]",
+    //     unique.includes(item) ? unique : [...unique, item]
+    //   );
+    //   return unique.includes(item) ? unique : [...unique, item];
+    // }, []);
 
+    // console.log("updateCategory", updateCategory);
+    const noDuplicateCategory = listCategory;
+    console.log("noDuplicateCategory", noDuplicateCategory);
     this.setState({
-      arrayCategory: listCategory.flat(3)
+      arrayCategory: noDuplicateCategory
     });
   };
 
@@ -98,6 +112,7 @@ class MainIntegral extends Component {
         elem.name.toLowerCase().includes(filterProducts.toLowerCase()) ||
         elem.product_code.toLowerCase().includes(filterProducts.toLowerCase())
     );
+    console.log(newArrayProducts);
 
     return (
       <div className={containerMainIntegral}>
@@ -142,6 +157,7 @@ class MainIntegral extends Component {
               </div>
             </Bounce>
             <div className={togglePanel}>
+              {/* <div>Ноутбуки и компьютеры</div> */}
               {newArrayCategory.map(elem => (
                 <div key={shortid.generate()} className={nameLi}>
                   <NavLink

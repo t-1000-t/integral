@@ -5,7 +5,7 @@ import Loader from "react-loader-spinner";
 
 import stylish from "./Categories.module.css";
 
-const { boxImg, loadPoition } = stylish;
+const { boxImg, loadPosition } = stylish;
 
 class Categories extends Component {
   state = {
@@ -51,7 +51,7 @@ class Categories extends Component {
     return (
       <>
         {isLoading && (
-          <div className={loadPoition}>
+          <div className={loadPosition}>
             <Loader
               type="BallTriangle"
               color="rgb(117, 111, 228)"

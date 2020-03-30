@@ -4,14 +4,24 @@
 
   /* background-color: #61603f; */
 }
-.loadPoition {
+.loadPosition {
   display: flex;
   justify-content: center;
   margin-top: 50%;
 }
 
 @media (min-width: 560px) and (max-width: 940px) {
+  .loadPosition {
+    display: flex;
+    justify-content: center;
+    margin-top: 30%;
+  }
 }
 
 @media (min-width: 940px) {
+  .loadPosition {
+    display: flex;
+    justify-content: center;
+    margin-top: 20%;
+  }
 }

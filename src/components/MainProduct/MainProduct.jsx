@@ -43,7 +43,7 @@ class MainProduct extends Component {
             <p>{elem.name}</p>
           </div>
           <div className={imgCardFontBold}>
-            {(elem.price_uah * 1.1).toFixed(2) + " грн."}
+            {elem.retail_price_uah + " грн."}
           </div>
           <div className={imgCardFont}>{elem.country}</div>
         </div>
@@ -60,7 +60,7 @@ class MainProduct extends Component {
               <p>{elem.name}</p>
             </div>
             <div className={imgCardFontBold}>
-              {(elem.price_uah * 1.1).toFixed(2) + " грн."}
+              {elem.retail_price_uah + " грн."}
             </div>
             <div className={imgCardFont}>{elem.country}</div>
             {isOpenPhoto && (

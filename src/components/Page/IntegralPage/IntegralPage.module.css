@@ -1,0 +1,51 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  background-color: rgb(231, 213, 44);
+}
+
+.container {
+  width: 1180px;
+  height: 50px;
+  background-color: teal;
+}
+
+.boxNavMenu {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 50px;
+}
+.btnList {
+  display: inline-block;
+  position: relative;
+  padding: 10px;
+  background-color: tomato;
+}
+.ulList {
+  position: absolute;
+  top: 42px;
+  left: -100px;
+  background-color: yellow;
+}
+.liList {
+  width: 250px;
+  text-align: center;
+  padding: 3px;
+  border-bottom: 1px solid #faf692;
+  color: rgb(120, 118, 170);
+}
+.liList:hover {
+  color: rgb(25, 18, 168);
+  cursor: pointer;
+}
+
+@media (min-width: 376px) and (max-width: 940px) {
+  /* .container {
+    width: 50%;
+  } */
+}
+
+@media (min-width: 940px) {
+}
