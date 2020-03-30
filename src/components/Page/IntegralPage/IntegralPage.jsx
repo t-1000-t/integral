@@ -62,6 +62,7 @@ export class IntegralPage extends Component {
     }
 
     this.toggleFalse();
+    this.liHandlerCategoryFalse();
   };
 
   handleBackdropClick = e => {
