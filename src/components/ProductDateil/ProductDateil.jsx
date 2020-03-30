@@ -43,7 +43,7 @@ class ProductDateil extends Component {
             <p>{elem.name}</p>
           </div>
           <div className={imgCardFontBold}>
-            {elem.retail_price_uah.toFixed(2) + " грн."}
+            {elem.retail_price_uah + " грн."}
           </div>
           <div className={imgCardFont}>{elem.country}</div>
         </div>
@@ -62,7 +62,7 @@ class ProductDateil extends Component {
               <p>{elem.name}</p>
             </div>
             <div className={imgCardFontBold}>
-              {elem.retail_price_uah.toFixed(2) + " грн."}
+              {elem.retail_price_uah + " грн."}
             </div>
             <div className={imgCardFont}>{elem.country}</div>
             {isOpenPhotoCategory && (
