@@ -1,25 +1,27 @@
 import React, { Component, createRef } from "react";
 
-import ModalLicategory from "../../Modals/ModalLicategory/ModalLicategory";
+// import ModalLicategory from "../../Modals/ModalLicategory/ModalLicategory";
+// import IntegralPageCategorySub from "./IntegralPageCategorySub/IntegralPageCategorySub";
+import IntegralPageCategory from "./IntegralPageCategory/IntegralPageCategory";
 
 import stylish from "./IntegralPage.module.css";
 
-export class IntegralPage extends Component {
+class IntegralPage extends Component {
   state = {
     arrCategory: [
-      { name: "Ноутбуки" },
-      { name: "Планшеты" },
-      { name: "Компьютеры" },
-      { name: "Комплектующие" },
-      { name: "Смартфоны" },
-      { name: "Принтеры" },
-      { name: "Сетевое оборудование" },
-      { name: "Телевизоры и проекторы" },
-      { name: "Наушники" },
-      { name: "Бытовая техника" }
+      { id: "002", name: "Планшеты" },
+      { id: "001", name: "Ноутбуки" },
+      { id: "003", name: "Компьютеры" },
+      { id: "004", name: "Комплектующие" },
+      { id: "005", name: "Смартфоны" },
+      { id: "006", name: "Принтеры" },
+      { id: "007", name: "Сетевое оборудование" },
+      { id: "008", name: "Телевизоры и проекторы" },
+      { id: "009", name: "Наушники" },
+      { id: "010", name: "Бытовая техника" }
     ],
     isOpenArrCategory: false,
-    isOpenModalLiCategory: false
+    isOpenNameCategory: null
   };
 
   toggleTrue = () => {
@@ -30,9 +32,11 @@ export class IntegralPage extends Component {
     this.setState({ isOpenArrCategory: false });
   };
 
-  liHandlerCategoryTrue = () => {
+  liHandlerCategoryTrue = e => {
+    e.preventDefault();
     this.setState({
-      isOpenModalLiCategory: true
+      isOpenModalLiCategory: true,
+      selected: e.target.id
     });
   };
 
@@ -62,26 +66,20 @@ export class IntegralPage extends Component {
     }
 
     this.toggleFalse();
-    this.liHandlerCategoryFalse();
   };
 
   handleBackdropClick = e => {
-    console.log(this.btnRef.current);
-    console.log(e.target);
+    // console.log(this.btnRef.current);
+    // console.log(e.target);
     if (this.btnRef.current && e.target !== this.btnRef.current) {
       return;
     }
 
     this.toggleFalse();
-    this.liHandlerCategoryFalse();
   };
 
   render() {
-    const {
-      arrCategory,
-      isOpenArrCategory,
-      isOpenModalLiCategory
-    } = this.state;
+    const { arrCategory, isOpenArrCategory } = this.state;
     return (
       <div className={stylish.wrapper}>
         <div className={stylish.container}>
@@ -107,23 +105,14 @@ export class IntegralPage extends Component {
                     // onMouseLeave={this.toggleFalse}
                     onClick={this.handleBackdropClick}
                   >
-                    {arrCategory.map((el, i) => (
-                      <li className={stylish.liList} key={i}>
-                        <div
-                          onMouseEnter={this.liHandlerCategoryTrue}
+                    {arrCategory.map(el => (
+                      <li className={stylish.liList} key={el.id}>
+                        <IntegralPageCategory
+                          id={el.id}
+                          name={el.name}
+                          liHandlerCategoryTrue={this.liHandlerCategoryTrue}
                           className={stylish.liNameCategory}
-                        >
-                          {el.name}
-                        </div>
-
-                        {isOpenModalLiCategory && (
-                          <div
-                            className={stylish.backdropLiNameCategory}
-                            onMouseEnter={this.liHandlerCategoryTrue}
-                          >
-                            111111111111111111
-                          </div>
-                        )}
+                        />
                       </li>
                     ))}
                   </ul>

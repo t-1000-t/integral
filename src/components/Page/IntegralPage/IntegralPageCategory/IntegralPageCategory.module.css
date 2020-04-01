@@ -1,0 +1,11 @@
+.backdropLiNameCategory {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0px;
+  left: 250px;
+  width: 700px;
+  height: 500px;
+  background-color: rgba(163, 163, 163);
+}
