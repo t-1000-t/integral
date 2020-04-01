@@ -1,4 +1,4 @@
-.backdropLiNameCategory {
+/* .backdropLiNameCategory {
   position: absolute;
   display: flex;
   justify-content: center;
@@ -8,4 +8,23 @@
   width: 700px;
   height: 500px;
   background-color: rgba(163, 163, 163);
+} */
+
+.cellCatagory {
+  background-color: chocolate;
+
+  width: 250px;
+  height: 40px;
+}
+.boxName {
+  width: 100%;
+  height: 550px;
+  display: flex;
+  justify-content: left;
+
+  background-color: rgb(189, 126, 45);
+}
+.boxCell {
+  width: 30%;
+  height: 30px;
 }
