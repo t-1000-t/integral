@@ -145,7 +145,7 @@ class IntegralPage extends Component {
   };
 
   render() {
-    const { arrCategory, isOpenArrCategory } = this.state;
+    const { arrCategory, isOpenArrCategory, isOpen } = this.state;
     return (
       <div className={stylish.wrapper}>
         <div className={stylish.container}>
@@ -167,8 +167,6 @@ class IntegralPage extends Component {
                 {isOpenArrCategory && (
                   <ul
                     className={stylish.ulList}
-                    onMouseEnter={this.toggleTrue}
-                    // onMouseLeave={this.toggleFalse}
                     onClick={this.handleBackdropClick}
                   >
                     {arrCategory.map(el => (
@@ -179,6 +177,7 @@ class IntegralPage extends Component {
                           liHandlerCategoryTrue={this.liHandlerCategoryTrue}
                           className={stylish.liNameCategory}
                         />
+                        <div className={stylish.detector}></div>
                       </li>
                     ))}
                   </ul>

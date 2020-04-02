@@ -22,36 +22,61 @@ class IntegralPageCategory extends Component {
 
   render() {
     const { id, elem } = this.props;
+    const { isOpen } = this.state;
     return (
-      <>
+      <div
+        className={stylish.wrapperCategory}
+        onMouseLeave={this.handleOnModalFalse}
+      >
         <div
           className={stylish.cellCatagory}
           id={id}
-          onClick={this.handleOnModalTrue}
+          onMouseEnter={this.handleOnModalTrue}
+          // onMouseLeave={this.handleOnModalFalse}
         >
           <span> {elem.name1}</span>
         </div>
-        {this.state.isOpen && (
+        {isOpen && (
           <ModalLicategory id={id}>
             <div
               className={stylish.boxName}
-              onMouseEnter={this.handleOnModalTrue}
               onMouseLeave={this.handleOnModalFalse}
+              onMouseEnter={this.handleOnModalTrue}
             >
-              <div className={stylish.boxCell}>{elem.name1}</div>
-              <div className={stylish.boxCell}>{elem.name2}</div>
-              <div className={stylish.boxCell}>{elem.name3}</div>
-              <div className={stylish.boxCell}>{elem.name4}</div>
-              <div className={stylish.boxCell}>{elem.name5}</div>
-              <div className={stylish.boxCell}>{elem.name6}</div>
-              <div className={stylish.boxCell}>{elem.name7}</div>
-              <div className={stylish.boxCell}>{elem.name8}</div>
-              <div className={stylish.boxCell}>{elem.name9}</div>
-              <div className={stylish.boxCell}>{elem.name10}</div>
+              <div className={stylish.boxCell}>
+                <div className={stylish.fontName}>{elem.name1}</div>
+              </div>
+              <div className={stylish.boxCell}>
+                <div className={stylish.fontName}>{elem.name2}</div>
+              </div>
+              <div className={stylish.boxCell}>
+                <div className={stylish.fontName}>{elem.name3}</div>
+              </div>
+              <div className={stylish.boxCell}>
+                <div className={stylish.fontName}>{elem.name4}</div>
+              </div>
+              <div className={stylish.boxCell}>
+                <div className={stylish.fontName}>{elem.name5}</div>
+              </div>
+              <div className={stylish.boxCell}>
+                <div className={stylish.fontName}>{elem.name6}</div>
+              </div>
+              <div className={stylish.boxCell}>
+                <div className={stylish.fontName}>{elem.name7}</div>
+              </div>
+              <div className={stylish.boxCell}>
+                <div className={stylish.fontName}>{elem.name8}</div>
+              </div>
+              <div className={stylish.boxCell}>
+                <div className={stylish.fontName}>{elem.name9}</div>
+              </div>
+              <div className={stylish.boxCell}>
+                <div className={stylish.fontName}>{elem.name10}</div>
+              </div>
             </div>
           </ModalLicategory>
         )}
-      </>
+      </div>
     );
   }
 }

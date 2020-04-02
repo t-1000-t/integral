@@ -37,28 +37,32 @@
 
 .ulList {
   position: absolute;
+  display: flex;
+  flex-direction: column;
+  width: 255px;
   top: 42px;
   left: 0;
-  background-color: yellow;
-  cursor: pointer;
 }
 .liList {
-  width: 250px;
+  width: 248px;
+
   text-align: center;
-  padding: 3px;
-  border-bottom: 1px solid #faf692;
-  color: rgb(44, 39, 212);
+  margin-top: 10px;
+  border-bottom: 2px solid #a0a0a0;
+  cursor: pointer;
+  color: rgb(148, 51, 116);
 }
 
 .liNameCategory {
-  /* position: relative; */
   cursor: pointer;
+}
+.detector {
+  width: 248px;
+  height: 10px;
+  background: #000;
 }
 
 @media (min-width: 376px) and (max-width: 940px) {
-  /* .container {
-    width: 50%;
-  } */
 }
 
 @media (min-width: 940px) {

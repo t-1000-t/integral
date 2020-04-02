@@ -41,7 +41,8 @@ class ModalLicategory extends Component {
         onClick={this.handleBackdropClick}
         role="presentation"
       >
-        <div className={stylish.modal}>{children}</div>
+        {children}
+        {/* <div className={stylish.modal}>{children}</div> */}
       </div>,
       MODAL_LICATEGORY
     );
