@@ -1,0 +1,49 @@
+.wrapperPage {
+  display: flex;
+  flex-direction: column;
+}
+.wrapperTitle {
+  display: flex;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+  background-color: cornflowerblue;
+}
+.title {
+  text-align: center;
+  background-color: chartreuse;
+}
+
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.wrapper {
+  width: 1180px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.card {
+  display: flex;
+  padding: 5px;
+  border: solid 1px;
+  border-color: #008a77;
+  margin: 5px;
+  width: 270px;
+  height: 350px;
+}
+.NavLinkProd {
+  text-decoration: none;
+}
+.fontPriceRetail {
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-size: 14px;
+}
+.fontProdCode {
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+}

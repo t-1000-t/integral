@@ -2,7 +2,7 @@ import React, { Component, createRef } from "react";
 
 // import ModalLicategory from "../../Modals/ModalLicategory/ModalLicategory";
 // import IntegralPageCategorySub from "./IntegralPageCategorySub/IntegralPageCategorySub";
-import IntegralPageCategory from "./IntegralPageCategory/IntegralPageCategory";
+import IntegralPageCategory from "../IntegralPageCategory/IntegralPageCategory";
 
 import stylish from "./IntegralPage.module.css";
 
@@ -30,7 +30,7 @@ class IntegralPage extends Component {
         name9: "Модули памяти к ноутбукам",
         category9: "1237",
         name10: "Ноутбуки, планшеты",
-        category10: "1181"
+        category10: "1181",
       },
       {
         id: "002",
@@ -53,7 +53,7 @@ class IntegralPage extends Component {
         name9: "",
         category9: "",
         name10: "",
-        category10: ""
+        category10: "",
       },
       {
         id: "003",
@@ -76,7 +76,7 @@ class IntegralPage extends Component {
         name9: "",
         category9: "",
         name10: "",
-        category10: ""
+        category10: "",
       },
       { id: "004", name1: "Комплектующие" },
       { id: "005", name1: "Смартфоны" },
@@ -84,10 +84,10 @@ class IntegralPage extends Component {
       { id: "007", name1: "Сетевое оборудование" },
       { id: "008", name1: "Телевизоры и проекторы" },
       { id: "009", name1: "Наушники" },
-      { id: "010", name1: "Бытовая техника" }
+      { id: "010", name1: "Бытовая техника" },
     ],
     isOpenArrCategory: false,
-    isOpenNameCategory: null
+    isOpenNameCategory: null,
   };
 
   toggleTrue = () => {
@@ -98,17 +98,17 @@ class IntegralPage extends Component {
     this.setState({ isOpenArrCategory: false });
   };
 
-  liHandlerCategoryTrue = e => {
+  liHandlerCategoryTrue = (e) => {
     e.preventDefault();
     this.setState({
       isOpenModalLiCategory: true,
-      selected: e.target.id
+      selected: e.target.id,
     });
   };
 
   liHandlerCategoryFalse = () => {
     this.setState({
-      isOpenModalLiCategory: false
+      isOpenModalLiCategory: false,
     });
   };
 
@@ -124,7 +124,7 @@ class IntegralPage extends Component {
     window.removeEventListener("keydown", this.handleKeyPress);
   }
 
-  handleKeyPress = e => {
+  handleKeyPress = (e) => {
     console.log(e);
 
     if (e.code !== "Escape") {
@@ -134,9 +134,7 @@ class IntegralPage extends Component {
     this.toggleFalse();
   };
 
-  handleBackdropClick = e => {
-    // console.log(this.btnRef.current);
-    // console.log(e.target);
+  handleBackdropClick = (e) => {
     if (this.btnRef.current && e.target !== this.btnRef.current) {
       return;
     }
@@ -145,7 +143,7 @@ class IntegralPage extends Component {
   };
 
   render() {
-    const { arrCategory, isOpenArrCategory, isOpen } = this.state;
+    const { arrCategory, isOpenArrCategory } = this.state;
     return (
       <div className={stylish.wrapper}>
         <div className={stylish.container}>
@@ -162,14 +160,14 @@ class IntegralPage extends Component {
                 className={stylish.boxTest}
                 ref={this.btnRef}
                 onClick={this.handleBackdropClick}
-                onMouseLeave={this.toggleFalse}
+                onMouseLeave={this.toggleFalse} // open
               >
                 {isOpenArrCategory && (
                   <ul
                     className={stylish.ulList}
                     onClick={this.handleBackdropClick}
                   >
-                    {arrCategory.map(el => (
+                    {arrCategory.map((el) => (
                       <li className={stylish.liList} key={el.id}>
                         <IntegralPageCategory
                           id={el.id}

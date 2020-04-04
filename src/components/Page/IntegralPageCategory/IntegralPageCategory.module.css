@@ -1,0 +1,42 @@
+/* .wrapperCategory { */
+/* margin-top: 3px; */
+/* height: 45px; */
+/* display: inline-block; */
+/* background-color: rgb(188, 20, 255); */
+/* } */
+.cellCatagory {
+  background-color: rgb(97, 190, 39);
+  width: 248px;
+  height: 35px;
+  padding-top: 7px;
+  padding-bottom: 5px;
+}
+
+.boxName {
+  position: fixed;
+  top: 125px;
+  left: 615px;
+  width: 48%;
+  height: 660px;
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 4%;
+  padding-top: 2%;
+  background-color: rgb(189, 126, 45);
+}
+.boxCell {
+  display: flex;
+  align-items: center;
+  margin: 10px;
+  width: 250px;
+  height: 50px;
+  cursor: pointer;
+  background-color: cornflowerblue;
+}
+.fontName {
+  font-family: "Boogaloo", sans-serif;
+  font-size: 14px;
+  padding-left: 25px;
+  padding-right: 25px;
+  background-color: darkslategrey;
+}
