@@ -8,35 +8,35 @@ class NavigationPage extends Component {
     return (
       <div>
         <ul className={stylish.wrapper}>
-          <li className={stylish.integral}>
+          <li className={stylish.integral}>Integral</li>
+          <li className={stylish.middleNavigation}>
             <NavLink
               exact
               style={{ color: "#212121" }}
               activeStyle={{ color: "palevioletred" }}
               to={routes.HOME}
             >
-              integral
+              <button className={stylish.home}>home</button>
             </NavLink>
-          </li>
-          <li className={stylish.main}>
             <NavLink
               exact
               style={{ color: "#212121" }}
               activeStyle={{ color: "palevioletred" }}
               to={routes.MAIN}
             >
-              main
+              <button className={stylish.main}>main</button>
             </NavLink>
-          </li>
-          <li className={stylish.about}>
             <NavLink
               exact
               style={{ color: "#212121" }}
               activeStyle={{ color: "palevioletred" }}
               to={routes.ABOUT}
             >
-              about
+              <button className={stylish.about}>about</button>
             </NavLink>
+          </li>
+          <li className={stylish.support}>
+            Support (+38 066) 9110347 <br /> Email: info@integral.com
           </li>
         </ul>
       </div>

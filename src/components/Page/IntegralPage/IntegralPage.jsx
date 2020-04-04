@@ -150,9 +150,9 @@ class IntegralPage extends Component {
           <div className={stylish.boxNavMenu}>
             <div className={stylish.btnList}>
               <button
+                className={stylish.btnListCategory}
                 onClick={this.toggleTrue}
                 onMouseEnter={this.toggleTrue}
-                className={stylish.btnTest}
               >
                 Shop By Catalog
               </button>
@@ -182,9 +182,10 @@ class IntegralPage extends Component {
                 )}
               </div>
             </div>
-            <input />
-            <div>Phone namber</div>
-            <div>about</div>
+            <input
+              placeholder="введите значение"
+              className={stylish.inputIntegral}
+            />
           </div>
         </div>
       </div>
