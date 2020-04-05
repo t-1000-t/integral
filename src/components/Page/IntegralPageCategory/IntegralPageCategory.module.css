@@ -5,13 +5,39 @@
 /* background-color: rgb(188, 20, 255); */
 /* } */
 .cellCatagory {
+  display: flex;
+  justify-content: left;
+  align-items: center;
   background-color: rgb(97, 190, 39);
   width: 248px;
   height: 35px;
-  padding-top: 7px;
-  padding-bottom: 5px;
+  border-radius: 8px;
 }
 
+.cellCatagoryIcon {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  background-color: rgb(97, 190, 39);
+  width: 248px;
+  height: 40px;
+  border-radius: 8px;
+  vertical-align: -0.125em;
+}
+
+.cellCatagoryIcon:hover,
+:focus {
+  box-shadow: 0px 0px 10px rgb(25, 18, 168);
+}
+.iconCategoryIcon {
+  margin-left: 5px;
+  color: #fed700;
+}
+.categoryName {
+  font-family: "Roboto", sans-serif;
+  font-size: 15px;
+  padding-left: 25px;
+}
 .boxName {
   position: absolute;
   top: 0;

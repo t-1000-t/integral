@@ -17,9 +17,40 @@
   text-align: center;
   width: 20%;
 }
+.logo {
+  display: inline-block;
+  font-family: "Boogaloo", cursive;
+  font-size: 42px;
+
+  color: rgb(25, 18, 168);
+}
+.basta {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #fed700;
+}
 .support {
   text-align: center;
   width: 20%;
+}
+.iconCall {
+  width: 20px;
+  height: 20px;
+  color: rgb(25, 18, 168);
+}
+.iconHeadset {
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+  color: rgb(25, 18, 168);
+}
+.iconMail {
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+  color: rgb(25, 18, 168);
 }
 
 .home {
@@ -27,28 +58,34 @@
   border-radius: 8px;
   width: 100px;
   height: 30px;
+  font-family: "Monserat", sans-serif;
+  font-size: 14px;
 }
 .home:hover {
-  box-shadow: 0px 0px 10px #faf692;
+  box-shadow: 0px 0px 10px #fed700;
 }
 .main {
   text-align: center;
   border-radius: 8px;
   width: 100px;
   height: 30px;
+  font-family: "Monserat", sans-serif;
+  font-size: 14px;
 }
 .main:hover {
-  box-shadow: 0px 0px 10px #faf692;
+  box-shadow: 0px 0px 10px #fed700;
 }
 .about {
   text-align: center;
   border-radius: 8px;
   width: 100px;
   height: 30px;
+  font-family: "Monserat", sans-serif;
+  font-size: 14px;
 }
 
 .about:hover {
-  box-shadow: 0px 0px 10px #faf692;
+  box-shadow: 0px 0px 10px #fed700;
 }
 
 @media (min-width: 376px) and (max-width: 940px) {

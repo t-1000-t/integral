@@ -3,6 +3,9 @@ import { NavLink } from "react-router-dom";
 import ModalLicategory from "../../Modals/ModalLicategory/ModalLicategory";
 import routes from "../../../routes/routes";
 import stylish from "./IntegralPageCategory.module.css";
+// npm install --save-dev @iconify/react @iconify/icons-ion
+import { Icon } from "@iconify/react";
+import chevronForward from "@iconify/icons-ion/chevron-forward";
 
 class IntegralPageCategory extends Component {
   state = {
@@ -60,13 +63,16 @@ class IntegralPageCategory extends Component {
         onMouseLeave={this.handleOnModalFalse}
       >
         <div
-          className={stylish.cellCatagory}
+          className={isOpen ? stylish.cellCatagoryIcon : stylish.cellCatagory}
           id={id}
           onMouseEnter={this.handleOnModalTrue}
           onMouseLeave={this.handleOnModalFalse}
           // onClick={this.handleOnModalTrue}
         >
-          <span> {elem.name1}</span>
+          <div className={stylish.categoryName}>{elem.name1}</div>
+          {isOpen ? (
+            <Icon className={stylish.iconCategoryIcon} icon={chevronForward} />
+          ) : null}
         </div>
         {isOpen && (
           <ModalLicategory id={id}>

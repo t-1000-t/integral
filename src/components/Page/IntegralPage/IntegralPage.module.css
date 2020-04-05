@@ -1,16 +1,16 @@
 .wrapper {
-  display: flex;
-  justify-content: center;
   width: 100%;
   height: 750px;
-  background-color: rgb(224, 216, 137);
+  background-color: #e8e8fd;
 }
 
 .container {
   /* width: 1180px; */
-  width: 60%;
+  display: flex;
+  justify-content: center;
+  width: 100%;
   height: 50px;
-  background-color: rgb(73, 132, 187);
+  background-color: #fed700;
 }
 
 .boxNavMenu {
@@ -18,6 +18,7 @@
   display: flex;
   justify-content: left;
   align-items: center;
+  width: 60%;
   height: 50px;
 }
 
@@ -33,10 +34,13 @@
   height: 35px;
   border-radius: 8px;
   cursor: pointer;
+  font-family: "Boogaloo", cursive;
+  font-size: 19px;
+  color: rgb(25, 18, 168);
 }
 
 .btnListCategory:hover {
-  box-shadow: 0px 0px 10px #faf692;
+  box-shadow: 0px 0px 10px rgb(25, 18, 168);
 }
 
 .inputIntegral {
@@ -69,11 +73,8 @@
 }
 .liList {
   width: 248px;
-
   text-align: center;
-  border-bottom: 2px solid #a0a0a0;
   cursor: pointer;
-  color: rgb(148, 51, 116);
 }
 
 .liNameCategory {
@@ -82,7 +83,6 @@
 .detector {
   width: 248px;
   height: 10px;
-  background: #000;
 }
 
 @media (min-width: 376px) and (max-width: 940px) {
