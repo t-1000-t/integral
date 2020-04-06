@@ -1,0 +1,13 @@
+.card {
+  display: flex;
+  height: 808px;
+}
+.leftColumn {
+  width: 20%;
+}
+.leftMiddle {
+  width: 60%;
+}
+.lefRight {
+  width: 20%;
+}

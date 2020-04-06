@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import fetchProductDetails from "../../services/fetchProductDetails";
 
+import stylish from "./IntegralProductDetails.module.css";
+
 class IntegralProductDetails extends Component {
   state = {
     prodDetails: null,
@@ -41,27 +43,31 @@ class IntegralProductDetails extends Component {
     return (
       <>
         {prodDetails && (
-          <div>
-            <h3>{prodDetails.name}</h3>
-            <div>{prodDetails.product_code}</div>
-            <img src={prodDetails.large_image} alt="foto_small" />
-            <p>{prodDetails.brief_description}</p>
+          <div className={stylish.card}>
+            <div className={stylish.leftColumn}></div>
+            <div className={stylish.leftMiddle}>
+              <h3>{prodDetails.name}</h3>
+              <div>{prodDetails.product_code}</div>
+              <img src={prodDetails.large_image} alt="foto_small" />
+              <p>{prodDetails.brief_description}</p>
 
-            <p>{prodDetails.retail_price_uah}</p>
-            <div>
-              <button onClick={this.toggleInform}>
-                Доп. Информация об продукте
-              </button>
+              <p>{prodDetails.retail_price_uah}</p>
+              <div>
+                <button onClick={this.toggleInform}>
+                  Доп. Информация об продукте
+                </button>
 
-              <ul>
-                {isOpen &&
-                  prodDetails.options.map((elem) => (
-                    <li>
-                      {elem.name}: {elem.value}
-                    </li>
-                  ))}
-              </ul>
+                <ul>
+                  {isOpen &&
+                    prodDetails.options.map((elem) => (
+                      <li>
+                        {elem.name}: {elem.value}
+                      </li>
+                    ))}
+                </ul>
+              </div>
             </div>
+            <div className={stylish.lefRight}></div>
           </div>
         )}
       </>

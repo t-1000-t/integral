@@ -1,9 +1,10 @@
 import React, { Component, createRef } from "react";
-
+import routes from "../../../routes/routes";
 // import ModalLicategory from "../../Modals/ModalLicategory/ModalLicategory";
 // import IntegralPageCategorySub from "./IntegralPageCategorySub/IntegralPageCategorySub";
 import IntegralPageCategory from "../IntegralPageCategory/IntegralPageCategory";
 import Loader from "react-loader-spinner";
+import { NavLink } from "react-router-dom";
 
 import stylish from "./IntegralPage.module.css";
 
@@ -152,11 +153,16 @@ class IntegralPage extends Component {
       return fetch("https://shop-integral.herokuapp.com/api/main")
         .then((res) => res.json())
         .then((data) => data.main)
-        .then((arr) =>
+        .then((arr) => {
+          if (!arr) {
+            this.setState({
+              arrMain: [{ name: "Пожалуйста обновите старницу" }],
+            });
+          }
           this.setState({
             arrMain: arr,
-          })
-        )
+          });
+        })
         .catch((error) => {
           this.setState({ error });
         })
@@ -178,7 +184,7 @@ class IntegralPage extends Component {
               <button
                 className={stylish.btnListCategory}
                 onClick={this.toggleTrue}
-                onMouseEnter={this.toggleTrue}
+                // onMouseEnter={this.toggleTrue}
               >
                 Shop By Catalog
               </button>
@@ -209,7 +215,18 @@ class IntegralPage extends Component {
                       className={stylish.nameProductMain}
                     >
                       <div className={stylish.fontProductMain}>{elem.name}</div>
-                      <img src={elem.small_image} alt={elem.product_code} />
+                      <NavLink
+                        className={stylish.NavLinkProd}
+                        to={`${routes.PRODUCT}/${elem.productID}`}
+                      >
+                        <div>
+                          <img
+                            className={stylish.imgMain}
+                            src={elem.small_image}
+                            alt={elem.product_code}
+                          />
+                        </div>
+                      </NavLink>
                       <div className={stylish.fontPayProductMain}>
                         {elem.retail_price_uah} грн.
                       </div>

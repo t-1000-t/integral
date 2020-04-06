@@ -67,6 +67,19 @@
   border-radius: 16px;
   background: #fde86e;
 }
+.boxCell:hover {
+  display: flex;
+  align-items: center;
+  margin: 10px;
+  width: 250px;
+  height: 50px;
+  cursor: pointer;
+  box-shadow: 5px 5px 15px rgb(150, 150, 168);
+  border: 2px solid;
+  border-color: #6495ed;
+  border-radius: 16px;
+  background: #fde86e;
+}
 .boxCell:focus {
   text-decoration: none;
   border: 0;

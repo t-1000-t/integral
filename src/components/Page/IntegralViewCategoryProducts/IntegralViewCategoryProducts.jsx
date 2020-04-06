@@ -72,7 +72,7 @@ class IntegralViewNotebooks extends Component {
                       </div>
                       <NavLink
                         className={stylish.NavLinkProd}
-                        to={`${routes.PRODUCT}/${item.productID}`}
+                        to={`${routes.PRODUCT}/${item.productID}`} 
                       >
                         <div>
                           <img src={item.medium_image} alt={item.articul} />

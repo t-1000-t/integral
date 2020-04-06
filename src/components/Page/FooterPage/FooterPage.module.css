@@ -1,0 +1,43 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  height: 30px;
+}
+
+.middleNavigation {
+  display: flex;
+  justify-content: left;
+  align-items: baseline;
+  width: 60%;
+  font-family: "Boogaloo", normal;
+  font-size: 19px;
+  color: rgb(25, 18, 168);
+  /* background-color: darkcyan; */
+}
+
+.integral {
+  text-align: center;
+  width: 20%;
+}
+
+.basta {
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: #fed700;
+}
+
+.support {
+  display: flex;
+  flex-direction: column;
+  width: 20%;
+  font-family: "Monserat", sans-serif;
+  font-size: 16px;
+}
+
+@media (min-width: 376px) and (max-width: 940px) {
+}
+
+@media (min-width: 940px) {
+}
