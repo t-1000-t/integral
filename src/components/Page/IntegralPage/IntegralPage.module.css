@@ -57,20 +57,34 @@
   top: 50px;
   left: 0;
   display: flex;
-  /* width: 1180px; */
+  flex-wrap: wrap;
   width: 100%;
   height: 700px;
-  background-color: yellowgreen;
+  overflow: hidden;
+  /* background-color: yellowgreen; */
 }
-
-.ulList {
+.boxTest:hover {
   position: absolute;
+  top: 50px;
+  left: 0;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  height: 700px;
+  overflow-y: auto;
+}
+.ulList {
+  /* position: absolute; */
+  /* top: 20px;
+  left: 0; */
+  position: fixed;
+  top: 165px;
+  left: 20%;
   display: flex;
   flex-direction: column;
   width: 255px;
-  top: 20px;
-  left: 0;
 }
+
 .liList {
   width: 248px;
   text-align: center;
@@ -83,6 +97,32 @@
 .detector {
   width: 248px;
   height: 10px;
+}
+.loadPosition {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 10%;
+}
+.boxUlMain {
+  display: flex;
+}
+.nameProductMain {
+  width: 210px;
+  text-align: center;
+  margin: 20px;
+  padding: 10px;
+  border: 1px solid;
+  border-color: gray;
+  border-radius: 8px;
+}
+.fontProductMain {
+  font-family: "Roboto", sans-serif;
+  font-size: 10px;
+}
+.fontPayProductMain {
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
 }
 
 @media (min-width: 376px) and (max-width: 940px) {

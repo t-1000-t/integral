@@ -3,6 +3,7 @@ import React, { Component, createRef } from "react";
 // import ModalLicategory from "../../Modals/ModalLicategory/ModalLicategory";
 // import IntegralPageCategorySub from "./IntegralPageCategorySub/IntegralPageCategorySub";
 import IntegralPageCategory from "../IntegralPageCategory/IntegralPageCategory";
+import Loader from "react-loader-spinner";
 
 import stylish from "./IntegralPage.module.css";
 
@@ -88,6 +89,8 @@ class IntegralPage extends Component {
     ],
     isOpenArrCategory: false,
     isOpenNameCategory: null,
+    isLoading: false,
+    arrMain: [],
   };
 
   toggleTrue = () => {
@@ -118,6 +121,7 @@ class IntegralPage extends Component {
 
   componentDidMount() {
     window.addEventListener("keydown", this.handleKeyPress);
+    this.fetchHomeProducts();
   }
 
   componentWillUnmount() {
@@ -142,8 +146,30 @@ class IntegralPage extends Component {
     this.toggleFalse();
   };
 
+  fetchHomeProducts() {
+    this.setState({ isLoading: true });
+    try {
+      return fetch("https://shop-integral.herokuapp.com/api/main")
+        .then((res) => res.json())
+        .then((data) => data.main)
+        .then((arr) =>
+          this.setState({
+            arrMain: arr,
+          })
+        )
+        .catch((error) => {
+          this.setState({ error });
+        })
+        .finally(() => {
+          this.setState({ isLoading: false });
+        });
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
   render() {
-    const { arrCategory, isOpenArrCategory } = this.state;
+    const { arrCategory, isOpenArrCategory, arrMain, isLoading } = this.state;
     return (
       <div className={stylish.wrapper}>
         <div className={stylish.container}>
@@ -162,6 +188,37 @@ class IntegralPage extends Component {
                 onClick={this.handleBackdropClick}
                 onMouseLeave={this.toggleFalse} // open
               >
+                {isLoading && (
+                  <div className={stylish.loadPosition}>
+                    <Loader
+                      type="BallTriangle"
+                      color="rgb(117, 111, 228)"
+                      height={80}
+                      width={80}
+                      // timeout={3000} //3 secs
+                    />
+                  </div>
+                )}
+
+                {/* <ul className={stylish.boxUlMain}> */}
+
+                {arrMain &&
+                  arrMain.map((elem) => (
+                    <div
+                      key={elem.productID}
+                      className={stylish.nameProductMain}
+                    >
+                      <div className={stylish.fontProductMain}>{elem.name}</div>
+                      <img src={elem.small_image} alt={elem.product_code} />
+                      <div className={stylish.fontPayProductMain}>
+                        {elem.retail_price_uah} грн.
+                      </div>
+                      <div className={stylish.fontProductMain}>
+                        {elem.country}
+                      </div>
+                    </div>
+                  ))}
+
                 {isOpenArrCategory && (
                   <ul
                     className={stylish.ulList}

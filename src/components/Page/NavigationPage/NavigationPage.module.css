@@ -32,9 +32,22 @@
   background-color: #fed700;
 }
 .support {
-  text-align: center;
+  display: flex;
+  flex-direction: column;
   width: 20%;
+  font-family: "Monserat", sans-serif;
+  font-size: 16px;
 }
+
+.boxSupport1 {
+  display: flex;
+  justify-content: center;
+}
+.boxSupport2 {
+  display: flex;
+  justify-content: center;
+}
+
 .iconCall {
   width: 20px;
   height: 20px;
@@ -52,7 +65,22 @@
   margin-right: 5px;
   color: rgb(25, 18, 168);
 }
-
+.linkMail {
+  text-decoration: none;
+  color: black;
+}
+.linkMail:hover {
+  color: rgb(25, 18, 168);
+}
+.linkMail:focus {
+  border: none;
+}
+.iconViber {
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+  color: rgb(25, 18, 168);
+}
 .home {
   text-align: center;
   border-radius: 8px;
@@ -64,6 +92,10 @@
 .home:hover {
   box-shadow: 0px 0px 10px #fed700;
 }
+.home:focus {
+  border: none;
+}
+
 .main {
   text-align: center;
   border-radius: 8px;
@@ -75,6 +107,9 @@
 .main:hover {
   box-shadow: 0px 0px 10px #fed700;
 }
+.main:focus {
+  border: none;
+}
 .about {
   text-align: center;
   border-radius: 8px;
@@ -83,9 +118,11 @@
   font-family: "Monserat", sans-serif;
   font-size: 14px;
 }
-
 .about:hover {
   box-shadow: 0px 0px 10px #fed700;
+}
+.about:focus {
+  border: none;
 }
 
 @media (min-width: 376px) and (max-width: 940px) {

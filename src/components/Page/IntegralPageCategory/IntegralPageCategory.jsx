@@ -83,116 +83,125 @@ class IntegralPageCategory extends Component {
               onMouseEnter={this.handleOnModalTrue}
               // onClick={this.handleOnModalTrue}
             >
-              <div className={stylish.boxCell}>
-                <NavLink
-                  className={stylish.fontName}
-                  to={{
-                    pathname: routes.PRODUCTS,
-                    search: `?category=${elem.category1}`,
-                  }}
-                >
-                  {elem.name1}
-                </NavLink>
-              </div>
-              <div className={stylish.boxCell}>
-                <NavLink
-                  className={stylish.fontName}
-                  to={{
-                    pathname: routes.PRODUCTS,
-                    search: `?category=${elem.category2}`,
-                  }}
-                >
-                  {elem.name2}
-                </NavLink>
-              </div>
-              <div className={stylish.boxCell}>
-                <NavLink
-                  className={stylish.fontName}
-                  to={{
-                    pathname: routes.PRODUCTS,
-                    search: `?category=${elem.category3}`,
-                  }}
-                >
-                  {elem.name3}
-                </NavLink>
-              </div>
-              <div className={stylish.boxCell}>
-                <NavLink
-                  className={stylish.fontName}
-                  to={{
-                    pathname: routes.PRODUCTS,
-                    search: `?category=${elem.category4}`,
-                  }}
-                >
-                  {elem.name4}
-                </NavLink>
-              </div>
-              <div className={stylish.boxCell}>
-                <NavLink
-                  className={stylish.fontName}
-                  to={{
-                    pathname: routes.PRODUCTS,
-                    search: `?category=${elem.category5}`,
-                  }}
-                >
-                  {elem.name5}
-                </NavLink>
-              </div>
-              <div className={stylish.boxCell}>
-                <NavLink
-                  className={stylish.fontName}
-                  to={{
-                    pathname: routes.PRODUCTS,
-                    search: `?category=${elem.category6}`,
-                  }}
-                >
-                  {elem.name6}
-                </NavLink>
-              </div>
-              <div className={stylish.boxCell}>
-                <NavLink
-                  className={stylish.fontName}
-                  to={{
-                    pathname: routes.PRODUCTS,
-                    search: `?category=${elem.category7}`,
-                  }}
-                >
-                  {elem.name7}
-                </NavLink>
-              </div>
-              <div className={stylish.boxCell}>
-                <NavLink
-                  className={stylish.fontName}
-                  to={{
-                    pathname: routes.PRODUCTS,
-                    search: `?category=${elem.category8}`,
-                  }}
-                >
-                  {elem.name8}
-                </NavLink>
-              </div>
-              <div className={stylish.boxCell}>
-                <NavLink
-                  className={stylish.fontName}
-                  to={{
-                    pathname: routes.PRODUCTS,
-                    search: `?category=${elem.category9}`,
-                  }}
-                >
-                  {elem.name9}
-                </NavLink>
-              </div>
-              <div className={stylish.boxCell}>
-                <NavLink
-                  className={stylish.fontName}
-                  to={{
-                    pathname: routes.PRODUCTS,
-                    search: `?category=${elem.category10}`,
-                  }}
-                >
-                  {elem.name10}
-                </NavLink>
-              </div>
+              <NavLink
+                className={stylish.boxCellNavLink}
+                to={{
+                  pathname: routes.PRODUCTS,
+                  search: `?category=${elem.category1}`,
+                }}
+              >
+                <button className={stylish.boxCell}>
+                  <div className={stylish.fontName}>{elem.name1}</div>
+                </button>
+              </NavLink>
+
+              <NavLink
+                className={stylish.boxCellNavLink}
+                to={{
+                  pathname: routes.PRODUCTS,
+                  search: `?category=${elem.category2}`,
+                }}
+              >
+                <button className={stylish.boxCell}>
+                  <div className={stylish.fontName}>{elem.name2}</div>
+                </button>
+              </NavLink>
+
+              <NavLink
+                className={stylish.boxCellNavLink}
+                to={{
+                  pathname: routes.PRODUCTS,
+                  search: `?category=${elem.category3}`,
+                }}
+              >
+                <button className={stylish.boxCell}>
+                  <div className={stylish.fontName}>{elem.name3}</div>
+                </button>
+              </NavLink>
+
+              <NavLink
+                className={stylish.boxCellNavLink}
+                to={{
+                  pathname: routes.PRODUCTS,
+                  search: `?category=${elem.category4}`,
+                }}
+              >
+                <button className={stylish.boxCell}>
+                  <div className={stylish.fontName}>{elem.name4}</div>
+                </button>
+              </NavLink>
+
+              <NavLink
+                className={stylish.boxCellNavLink}
+                to={{
+                  pathname: routes.PRODUCTS,
+                  search: `?category=${elem.category5}`,
+                }}
+              >
+                <button className={stylish.boxCell}>
+                  <div className={stylish.fontName}>{elem.name5}</div>
+                </button>
+              </NavLink>
+
+              <NavLink
+                className={stylish.boxCellNavLink}
+                to={{
+                  pathname: routes.PRODUCTS,
+                  search: `?category=${elem.category6}`,
+                }}
+              >
+                <button className={stylish.boxCell}>
+                  <div className={stylish.fontName}>{elem.name6}</div>
+                </button>
+              </NavLink>
+
+              <NavLink
+                className={stylish.boxCellNavLink}
+                to={{
+                  pathname: routes.PRODUCTS,
+                  search: `?category=${elem.category7}`,
+                }}
+              >
+                <button className={stylish.boxCell}>
+                  <div className={stylish.fontName}>{elem.name7}</div>
+                </button>
+              </NavLink>
+
+              <NavLink
+                className={stylish.boxCellNavLink}
+                to={{
+                  pathname: routes.PRODUCTS,
+                  search: `?category=${elem.category8}`,
+                }}
+              >
+                <button className={stylish.boxCell}>
+                  <div className={stylish.fontName}>{elem.name8}</div>
+                </button>
+              </NavLink>
+
+              <NavLink
+                className={stylish.boxCellNavLink}
+                to={{
+                  pathname: routes.PRODUCTS,
+                  search: `?category=${elem.category9}`,
+                }}
+              >
+                <button className={stylish.boxCell}>
+                  <div className={stylish.fontName}>{elem.name9}</div>
+                </button>
+              </NavLink>
+
+              <NavLink
+                className={stylish.boxCellNavLink}
+                to={{
+                  pathname: routes.PRODUCTS,
+                  search: `?category=${elem.category10}`,
+                }}
+              >
+                <button className={stylish.boxCell}>
+                  <div className={stylish.fontName}>{elem.name10}</div>
+                </button>
+              </NavLink>
             </div>
           </ModalLicategory>
         )}

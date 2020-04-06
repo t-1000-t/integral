@@ -8,30 +8,32 @@
   display: flex;
   justify-content: left;
   align-items: center;
-  background-color: rgb(97, 190, 39);
+  /* background-color: rgb(97, 190, 39); */
   width: 248px;
   height: 35px;
   border-radius: 8px;
+  background-color: #fde86e;
+  box-shadow: 5px 5px 10px gray;
 }
 
 .cellCatagoryIcon {
   display: flex;
   justify-content: left;
   align-items: center;
-  background-color: rgb(97, 190, 39);
+  background-color: #fde86e;
   width: 248px;
   height: 40px;
   border-radius: 8px;
   vertical-align: -0.125em;
 }
 
-.cellCatagoryIcon:hover,
-:focus {
-  box-shadow: 0px 0px 10px rgb(25, 18, 168);
-}
+/* .cellCatagoryIcon:hover {
+  box-shadow: 0px 0px 5px rgb(25, 18, 168);
+} */
+
 .iconCategoryIcon {
   margin-left: 5px;
-  color: #fed700;
+  color: rgb(25, 18, 168);
 }
 .categoryName {
   font-family: "Roboto", sans-serif;
@@ -46,9 +48,13 @@
   height: 660px;
   display: flex;
   flex-wrap: wrap;
+  align-content: flex-start;
   padding-left: 4%;
   padding-top: 2%;
-  background-color: rgb(189, 126, 45);
+  /* background-color: rgb(189, 126, 45); */
+}
+.boxCellNavLink {
+  text-decoration: none;
 }
 .boxCell {
   display: flex;
@@ -57,12 +63,22 @@
   width: 250px;
   height: 50px;
   cursor: pointer;
-  background-color: cornflowerblue;
+  box-shadow: 5px 5px 15px rgb(150, 150, 168);
+  border-radius: 16px;
+  background: #fde86e;
 }
+.boxCell:focus {
+  text-decoration: none;
+  border: 0;
+}
+
 .fontName {
   font-family: "Boogaloo", sans-serif;
   font-size: 14px;
   padding-left: 25px;
   padding-right: 25px;
-  background-color: darkslategrey;
+
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  /* background-color: darkslategrey; */
 }
