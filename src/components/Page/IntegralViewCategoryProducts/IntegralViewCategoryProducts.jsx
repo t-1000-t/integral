@@ -67,6 +67,9 @@ class IntegralViewNotebooks extends Component {
                   <div className={stylish.card}>
                     <div>
                       <div className={stylish.nameItem}>{item.name}</div>
+                      <div className={stylish.fontProdCode}>
+                        Код Товара: {item.product_code}
+                      </div>
                       <NavLink
                         className={stylish.NavLinkProd}
                         to={`${routes.PRODUCT}/${item.productID}`}
@@ -76,9 +79,6 @@ class IntegralViewNotebooks extends Component {
                         </div>
                       </NavLink>
                       <div className={stylish.priceInfo}>
-                        <div className={stylish.fontProdCode}>
-                          {item.product_code}
-                        </div>
                         <div className={stylish.fontPriceRetail}>
                           {item.retail_price_uah} грн.
                         </div>

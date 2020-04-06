@@ -42,12 +42,14 @@
   margin: 10px;
   padding: 15px;
   width: 240px;
-  height: 350px;
+  height: 380px;
 }
 .NavLinkProd {
   text-decoration: none;
 }
 .nameItem {
+  width: 210px;
+  height: 50px;
   margin-bottom: 10px;
   font-family: "Roboto", sans-serif;
   font-style: normal;
@@ -56,25 +58,29 @@
 
 .priceInfo {
   width: 240px;
+  height: 40px;
+  margin-top: 10px;
   display: flex;
   justify-content: left;
   flex-direction: column;
 }
 .fontPriceRetail {
   width: 100px;
-  margin-left: 20px;
+  margin-left: 25px;
   font-family: "Roboto", sans-serif;
   font-style: normal;
   font-size: 14px;
 }
 .fontProdCode {
   margin-left: 10px;
-  width: 100px;
+  width: 180px;
   font-family: "Montserrat", sans-serif;
   font-size: 14px;
 }
 .fontCountry {
   width: 100px;
+  padding-top: 5px;
+  padding-bottom: 5px;
   font-family: "Roboto", sans-serif;
   font-style: normal;
   font-size: 14px;
