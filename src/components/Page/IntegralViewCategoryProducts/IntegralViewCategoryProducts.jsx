@@ -45,7 +45,9 @@ class IntegralViewNotebooks extends Component {
       <>
         <div className={stylish.wrapperPage}>
           <div className={stylish.wrapperTitle}>
-            <div className={stylish.title}>Продукты категории</div>
+            <div className={stylish.boxTitle}>
+              <div className={stylish.title}>Продукты категории</div>
+            </div>
           </div>
           {isLoading && (
             <div className={stylish.loadPosition}>
@@ -63,24 +65,29 @@ class IntegralViewNotebooks extends Component {
               {this.state.arrProducts.map((item) => (
                 <li key={item.productID}>
                   <div className={stylish.card}>
-                    <NavLink
-                      className={stylish.NavLinkProd}
-                      to={`${routes.PRODUCT}/${item.productID}`}
-                    >
-                      <p>{item.name}</p>
-                      <div>
-                        <img src={item.medium_image} alt={item.articul} />
+                    <div>
+                      <div className={stylish.nameItem}>{item.name}</div>
+                      <NavLink
+                        className={stylish.NavLinkProd}
+                        to={`${routes.PRODUCT}/${item.productID}`}
+                      >
+                        <div>
+                          <img src={item.medium_image} alt={item.articul} />
+                        </div>
+                      </NavLink>
+                      <div className={stylish.priceInfo}>
+                        <div className={stylish.fontProdCode}>
+                          {item.product_code}
+                        </div>
+                        <div className={stylish.fontPriceRetail}>
+                          {item.retail_price_uah} грн.
+                        </div>
+                        <div className={stylish.fontCountry}>
+                          {item.country}
+                        </div>
                       </div>
-                      <div className={stylish.fontProdCode}>
-                        {item.product_code}
-                      </div>
-                      <div className={stylish.fontPriceRetail}>
-                        {item.retail_price_uah} грн.
-                      </div>
-
-                      <div>{item.country}</div>
-                      <button>Купить</button>
-                    </NavLink>
+                      <button className={stylish.btnCard}>Купить</button>
+                    </div>
                   </div>
                 </li>
               ))}
