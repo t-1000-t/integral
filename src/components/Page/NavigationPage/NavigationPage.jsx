@@ -22,9 +22,9 @@ class NavigationPage extends Component {
             <NavLink exact to={routes.HOME}>
               <button className={stylish.home}>home</button>
             </NavLink>
-            <NavLink exact to={routes.MAIN}>
+            {/* <NavLink exact to={routes.MAIN}>
               <button className={stylish.main}>main</button>
-            </NavLink>
+            </NavLink> */}
             <NavLink exact to={routes.ABOUT}>
               <button className={stylish.about}>about</button>
             </NavLink>

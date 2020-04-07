@@ -3,15 +3,15 @@ import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import "./App.css";
 import widthResize from "../services/widthResize";
 import NavigationPage from "../Page/NavigationPage/NavigationPage";
+import AboutPage from "../Page/AboutPage/AboutPage";
 import FooterPage from "../Page/FooterPage/FooterPage";
 import IntegralPage from "../Page/IntegralPage/IntegralPage";
-import Test from "../Page/Test/Test";
 import IntegralViewCategoryProducts from "../Page/IntegralViewCategoryProducts/IntegralViewCategoryProducts";
 import IntegralProductDetails from "../Page/IntegralProductDetails/IntegralProductDetails";
 
 class App extends Component {
   componentDidMount() {
-    // widthResize();
+    widthResize();
   }
   render() {
     return (
@@ -21,6 +21,7 @@ class App extends Component {
         <div className="App">
           <Switch>
             <Route exact path="/" component={IntegralPage} />
+            <Route exact path="/about" component={AboutPage} />
             <Route path="/products" component={IntegralViewCategoryProducts} />
             <Route
               path="/product/:someIDproduct"

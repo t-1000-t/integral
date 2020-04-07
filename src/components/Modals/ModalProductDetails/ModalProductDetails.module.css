@@ -1,0 +1,33 @@
+::-webkit-scrollbar {
+  /* chrome based */
+  width: 0px; /* ширина scrollbar'a */
+  background: transparent; /* опционально */
+}
+
+.backdrop {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  top: 160px;
+  left: 50%;
+  overflow-y: scroll;
+
+  padding: 10px;
+  width: 20%;
+  height: 50%;
+
+  /* background-color: rgba(112, 111, 111, 0.7); */
+}
+
+/* .modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+    padding: 16px;
+    max-width: 100%;
+    width: 99%;
+    height: 100%;
+  
+    background-color: rgb(207, 159, 159);
+  } */

@@ -154,11 +154,6 @@ class IntegralPage extends Component {
         .then((res) => res.json())
         .then((data) => data.main)
         .then((arr) => {
-          if (!arr) {
-            this.setState({
-              arrMain: [{ name: "Пожалуйста обновите старницу" }],
-            });
-          }
           this.setState({
             arrMain: arr,
           });
@@ -176,6 +171,7 @@ class IntegralPage extends Component {
 
   render() {
     const { arrCategory, isOpenArrCategory, arrMain, isLoading } = this.state;
+
     return (
       <div className={stylish.wrapper}>
         <div className={stylish.container}>
