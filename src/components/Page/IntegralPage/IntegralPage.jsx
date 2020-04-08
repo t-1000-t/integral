@@ -259,7 +259,7 @@ class IntegralPage extends Component {
                     ))}
                   </ul>
                 )}
-                <div className={stylish.btnWrap}>
+                {/* <div className={stylish.btnWrap}>
                   {arrMain.length > 0 && (
                     <button
                       className={stylish.buttonMain}
@@ -269,7 +269,7 @@ class IntegralPage extends Component {
                       Load more articles
                     </button>
                   )}
-                </div>
+                </div> */}
               </div>
             </div>
             <input
