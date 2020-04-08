@@ -8,10 +8,10 @@
   display: flex;
   height: 808px;
 }
-.footerLeft {
+.mainLeft {
   width: 20%;
 }
-.footerMiddle {
+.mainMiddle {
   display: flex;
   flex-direction: column;
   width: 60%;
@@ -60,19 +60,50 @@
 .middleRight {
   width: 50%;
 }
-.ulRight {
-  width: 100%;
-}
 
 .middleLeft {
   width: 50%;
   padding: 15px;
+  margin-top: 15px;
+  margin-right: 25px;
   border-radius: 16px;
   background-color: white;
 }
 
-.footerRight {
+.mainRight {
   width: 20%;
+  position: relative;
+  /* display: flex;
+  justify-content: center; */
+}
+.ulRight {
+  width: 100%;
+  position: absolute;
+
+  overflow-y: scroll;
+
+  padding: 10px;
+  width: 29%;
+  height: 50%;
+}
+.boxMoreFoto {
+  position: absolute;
+  top: 74%;
+  overflow: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 60%;
+  height: 200px;
+
+  /* background-color: violet; */
+}
+
+.listFoto {
+  background-color: white;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 4px;
 }
 
 .btnMiddleRight {

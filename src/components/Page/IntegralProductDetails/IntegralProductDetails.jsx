@@ -4,10 +4,12 @@ import fetchCommetsProduct from "../../services/fetchCommetsProduct";
 import fetchPicturesProduct from "../../services/fetchPicturesProduct";
 import Loader from "react-loader-spinner";
 import stylish from "./IntegralProductDetails.module.css";
+import PhotoCard from "./PhotoCard/PhotoCard";
 import ModalProductDetails from "../../Modals/ModalProductDetails/ModalProductDetails";
 
 class IntegralProductDetails extends Component {
   state = {
+    isOpen: false,
     prodDetails: null,
     isLoading: false,
     pictures: null,
@@ -77,8 +79,15 @@ class IntegralProductDetails extends Component {
     }
   }
 
+  handleOnModal = () => {
+    const { isOpen } = this.state;
+    this.setState({
+      isOpen: !isOpen,
+    });
+  };
+
   render() {
-    const { prodDetails, isLoading } = this.state;
+    const { prodDetails, isLoading, pictures } = this.state;
     console.log(prodDetails);
     return (
       <>
@@ -95,8 +104,8 @@ class IntegralProductDetails extends Component {
         )}
         {prodDetails && (
           <div className={stylish.card}>
-            <div className={stylish.footerLeft}></div>
-            <div className={stylish.footerMiddle}>
+            <div className={stylish.mainLeft}></div>
+            <div className={stylish.mainMiddle}>
               <div className={stylish.wrapperMiddle}>
                 <div className={stylish.middleLeft}>
                   <div className={stylish.boxNameCode}>
@@ -116,18 +125,18 @@ class IntegralProductDetails extends Component {
                 </div>
                 <div className={stylish.middleRight}>
                   <button className={stylish.btnMiddleRight}>
-                    Больше Фото продукта
+                    Кнопка без назначения
                   </button>
 
-                  <ModalProductDetails>
-                    <ul className={stylish.ulRight}>
-                      {prodDetails.options.map((elem) => (
-                        <li className={stylish.liRight}>
-                          {elem.name}: {elem.value}
-                        </li>
-                      ))}
-                    </ul>
-                  </ModalProductDetails>
+                  {/* <ModalProductDetails> */}
+                  <ul className={stylish.ulRight}>
+                    {prodDetails.options.map((elem) => (
+                      <li className={stylish.liRight}>
+                        {elem.name}: {elem.value}
+                      </li>
+                    ))}
+                  </ul>
+                  {/* </ModalProductDetails> */}
                 </div>
               </div>
               <div className={stylish.priceProductDetails}>
@@ -136,9 +145,17 @@ class IntegralProductDetails extends Component {
               <button className={stylish.btnProductDetails}>
                 <div className={stylish.fontProductDetails}>Купить</div>
               </button>
+              <div className={stylish.boxMoreFoto}>
+                {pictures &&
+                  pictures.map((elem) => (
+                    <div className={stylish.listFoto}>
+                      <PhotoCard elem={elem} />
+                    </div>
+                  ))}
+              </div>
             </div>
 
-            <div className={stylish.footerRight}></div>
+            <div className={stylish.mainRight}></div>
           </div>
         )}
       </>

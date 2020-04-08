@@ -21,7 +21,7 @@ class ModalPicturesPage extends Component {
       return;
     }
 
-    this.props.liHandlerCategoryFalse();
+    this.props.onClose();
   };
 
   handleBackdropClick = (e) => {
@@ -29,7 +29,7 @@ class ModalPicturesPage extends Component {
       return;
     }
 
-    this.props.liHandlerCategoryFalse();
+    this.props.onClose();
   };
 
   render() {
