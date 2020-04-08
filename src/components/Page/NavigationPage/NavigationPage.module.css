@@ -21,8 +21,15 @@
   display: inline-block;
   font-family: "Boogaloo", cursive;
   font-size: 42px;
+  cursor: pointer;
 
   color: rgb(25, 18, 168);
+}
+
+.logoNavLink:active,
+.logoNavLink:focus {
+  border: none;
+  outline: none;
 }
 .basta {
   display: inline-block;

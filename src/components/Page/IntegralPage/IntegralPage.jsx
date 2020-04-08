@@ -92,6 +92,7 @@ class IntegralPage extends Component {
     isOpenNameCategory: null,
     isLoading: false,
     arrMain: [],
+    pageNum: 1,
   };
 
   toggleTrue = () => {
@@ -154,9 +155,10 @@ class IntegralPage extends Component {
         .then((res) => res.json())
         .then((data) => data.main)
         .then((arr) => {
-          this.setState({
-            arrMain: arr,
-          });
+          this.setState((state) => ({
+            arrMain: [...state.arrMain, ...arr],
+            pageNum: state.pageNum + 1,
+          }));
         })
         .catch((error) => {
           this.setState({ error });
@@ -167,6 +169,13 @@ class IntegralPage extends Component {
     } catch (err) {
       console.error(err);
     }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    // const { pageNum } = this.state;
+    // if (prevState.pageNum !== pageNum) {
+    //   this.fetchArticles();
+    // }
   }
 
   render() {
@@ -250,6 +259,17 @@ class IntegralPage extends Component {
                     ))}
                   </ul>
                 )}
+                <div className={stylish.btnWrap}>
+                  {arrMain.length > 0 && (
+                    <button
+                      className={stylish.buttonMain}
+                      type="button"
+                      onClick={this.fetchArticles}
+                    >
+                      Load more articles
+                    </button>
+                  )}
+                </div>
               </div>
             </div>
             <input

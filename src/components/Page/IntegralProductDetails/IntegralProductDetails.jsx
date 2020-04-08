@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import fetchProductDetails from "../../services/fetchProductDetails";
+import fetchCommetsProduct from "../../services/fetchCommetsProduct";
+import fetchPicturesProduct from "../../services/fetchPicturesProduct";
 import Loader from "react-loader-spinner";
 import stylish from "./IntegralProductDetails.module.css";
 import ModalProductDetails from "../../Modals/ModalProductDetails/ModalProductDetails";
@@ -8,6 +10,8 @@ class IntegralProductDetails extends Component {
   state = {
     prodDetails: null,
     isLoading: false,
+    pictures: null,
+    comments: null,
   };
 
   fetchViewDetails = async () => {
@@ -28,8 +32,40 @@ class IntegralProductDetails extends Component {
       });
   };
 
+  getPictures = async () => {
+    const prodID = this.props.match.params.someIDproduct;
+    await fetchPicturesProduct
+      .fetchProducts(prodID)
+      .then((data) => {
+        this.setState({
+          pictures: data,
+        });
+      })
+      .catch((error) => {
+        this.setState({ error });
+      })
+      .finally();
+  };
+
+  getComments = async () => {
+    const prodID = this.props.match.params.someIDproduct;
+    await fetchCommetsProduct
+      .fetchCommets(prodID)
+      .then((data) => {
+        this.setState({
+          comments: data,
+        });
+      })
+      .catch((error) => {
+        this.setState({ error });
+      })
+      .finally();
+  };
+
   componentDidMount() {
     this.fetchViewDetails();
+    this.getPictures();
+    // this.getComments();
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -72,7 +108,7 @@ class IntegralProductDetails extends Component {
                   <div className={stylish.imgDescription}>
                     <img
                       className={stylish.img}
-                      src={prodDetails.large_image}
+                      src={prodDetails.medium_image}
                       alt="foto_small"
                     />
                     <p>{prodDetails.brief_description}</p>
@@ -80,7 +116,7 @@ class IntegralProductDetails extends Component {
                 </div>
                 <div className={stylish.middleRight}>
                   <button className={stylish.btnMiddleRight}>
-                    Доп. Инф. об продукте
+                    Больше Фото продукта
                   </button>
 
                   <ModalProductDetails>

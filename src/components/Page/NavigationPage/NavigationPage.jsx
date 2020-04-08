@@ -15,8 +15,10 @@ class NavigationPage extends Component {
       <div>
         <ul className={stylish.wrapper}>
           <li className={stylish.integral}>
-            <p className={stylish.logo}>Integral</p>
-            <div className={stylish.basta}></div>
+            <NavLink className={stylish.logoNavLink} exact to={routes.HOME}>
+              <p className={stylish.logo}>Integral</p>
+              <div className={stylish.basta}></div>
+            </NavLink>
           </li>
           <li className={stylish.middleNavigation}>
             <NavLink exact to={routes.HOME}>

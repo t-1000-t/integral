@@ -66,6 +66,9 @@
 
 .middleLeft {
   width: 50%;
+  padding: 15px;
+  border-radius: 16px;
+  background-color: white;
 }
 
 .footerRight {
