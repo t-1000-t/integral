@@ -1,28 +1,29 @@
 import React, { Component } from "react";
-import fetchProductDetails from "../../services/fetchProductDetails";
+import fetchProductCodeDetails from "../../services/fetchProductCodeDetails";
 import fetchCommetsProduct from "../../services/fetchCommetsProduct";
 import fetchPicturesProduct from "../../services/fetchPicturesProduct";
 import Loader from "react-loader-spinner";
-import stylish from "./IntegralProductDetails.module.css";
+import stylish from "./IntegralProduct_CodeDetails.module.css";
 import PhotoCard from "./PhotoCard/PhotoCard";
 
-class IntegralProductDetails extends Component {
+class IntegralProduct_CodeDetails extends Component {
   state = {
     isOpen: false,
-    prodDetails: null,
+    prodCodeDetails: null,
     isLoading: false,
     pictures: null,
-    // comments: null,
+    comments: null,
   };
 
   fetchViewDetails = async () => {
     this.setState({ isLoading: true });
     const prodID = this.props.match.params.someIDproduct;
-    await fetchProductDetails
-      .fetchDetails(prodID)
+    console.log(prodID);
+    await fetchProductCodeDetails
+      .fetchCodeDetails(prodID)
       .then((data) => {
         this.setState({
-          prodDetails: data,
+          prodCodeDetails: data,
         });
       })
       .catch((error) => {
@@ -66,7 +67,7 @@ class IntegralProductDetails extends Component {
   componentDidMount() {
     this.fetchViewDetails();
     this.getPictures();
-    // this.getComments();
+    this.getComments();
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -86,8 +87,8 @@ class IntegralProductDetails extends Component {
   };
 
   render() {
-    const { prodDetails, isLoading, pictures } = this.state;
-    console.log(prodDetails);
+    const { prodCodeDetails, isLoading, pictures } = this.state;
+    console.log(prodCodeDetails);
     return (
       <>
         {isLoading && (
@@ -101,25 +102,27 @@ class IntegralProductDetails extends Component {
             />
           </div>
         )}
-        {prodDetails && (
+        {prodCodeDetails && (
           <div className={stylish.card}>
             <div className={stylish.mainLeft}></div>
             <div className={stylish.mainMiddle}>
               <div className={stylish.wrapperMiddle}>
                 <div className={stylish.middleLeft}>
                   <div className={stylish.boxNameCode}>
-                    <h3 className={stylish.productName}>{prodDetails.name}</h3>
+                    <h3 className={stylish.productName}>
+                      {prodCodeDetails.name}
+                    </h3>
                     <div className={stylish.prodCode}>
-                      Код продукта: {prodDetails.product_code}
+                      Код продукта: {prodCodeDetails.product_code}
                     </div>
                   </div>
                   <div className={stylish.imgDescription}>
                     <img
                       className={stylish.img}
-                      src={prodDetails.medium_image}
+                      src={prodCodeDetails.medium_image}
                       alt="foto_small"
                     />
-                    <p>{prodDetails.brief_description}</p>
+                    <p>{prodCodeDetails.brief_description}</p>
                   </div>
                 </div>
                 <div className={stylish.middleRight}>
@@ -129,7 +132,7 @@ class IntegralProductDetails extends Component {
 
                   {/* <ModalProductDetails> */}
                   <ul className={stylish.ulRight}>
-                    {prodDetails.options.map((elem) => (
+                    {prodCodeDetails.options.map((elem) => (
                       <li className={stylish.liRight}>
                         {elem.name}: {elem.value}
                       </li>
@@ -139,7 +142,7 @@ class IntegralProductDetails extends Component {
                 </div>
               </div>
               <div className={stylish.priceProductDetails}>
-                {prodDetails.retail_price_uah} грн.
+                {prodCodeDetails.retail_price_uah} грн.
               </div>
               <button className={stylish.btnProductDetails}>
                 <div className={stylish.fontProductDetails}>Купить</div>
@@ -162,4 +165,4 @@ class IntegralProductDetails extends Component {
   }
 }
 
-export default IntegralProductDetails;
+export default IntegralProduct_CodeDetails;

@@ -43,12 +43,20 @@
 }
 
 .inputIntegral {
-  width: 180px;
+  width: 160px;
   height: 31px;
   padding-left: 10px;
   padding-right: 10px;
   border-radius: 8px;
-  margin-left: 150px;
+  margin-left: 60px;
+}
+
+.btnSearch {
+  width: 50px;
+  height: 30px;
+  border-radius: 8px;
+  font-family: "Roboto", sans-serif;
+  font-size: 12px;
 }
 
 .boxTest {
@@ -110,7 +118,7 @@
   outline: none;
 }
 .nameProductMain {
-  width: 210px;
+  width: 230px;
   text-align: center;
   margin: 20px;
   padding: 10px;
@@ -175,36 +183,18 @@
   margin-top: 10%;
 }
 
-/* .loader {
-  opacity: 0;
-  display: flex;
-  position: fixed;
-  bottom: 50px;
-  transition: opacity 0.3s ease-in;
+/* pattern */
+
+input:focus:valid {
+  border-color: green;
+  color: green;
+  box-shadow: none;
 }
-
-.loader.show {
-  opacity: 1;
+input:focus:invalid {
+  border-color: red;
+  color: red;
+  box-shadow: none;
 }
-
-.circle {
-  background-color: #fff;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  margin: 5px;
-  animation: bounce 0.5s ease-in infinite;
-}
-
-.circle:nth-of-type(2) {
-  animation-delay: 0.1s;
-}
-
-.circle:nth-of-type(3) {
-  animation-delay: 0.2s;
-} */
-
-/* finish Loaders */
 
 @media (min-width: 376px) and (max-width: 940px) {
 }

@@ -1,10 +1,8 @@
 import React, { Component, createRef } from "react";
 import routes from "../../../routes/routes";
-// import ModalLicategory from "../../Modals/ModalLicategory/ModalLicategory";
-// import IntegralPageCategorySub from "./IntegralPageCategorySub/IntegralPageCategorySub";
+import { NavLink } from "react-router-dom";
 import IntegralPageCategory from "../IntegralPageCategory/IntegralPageCategory";
 import Loader from "react-loader-spinner";
-import { NavLink } from "react-router-dom";
 
 import stylish from "./IntegralPage.module.css";
 
@@ -93,6 +91,7 @@ class IntegralPage extends Component {
     isLoading: false,
     arrMain: [],
     pageNum: 1,
+    inputValue: "",
   };
 
   toggleTrue = () => {
@@ -178,8 +177,20 @@ class IntegralPage extends Component {
     // }
   }
 
+  heandleChange = (e) => {
+    this.setState({ inputValue: e.currentTarget.value });
+  };
+
   render() {
-    const { arrCategory, isOpenArrCategory, arrMain, isLoading } = this.state;
+    const {
+      arrCategory,
+      isOpenArrCategory,
+      arrMain,
+      isLoading,
+      inputValue,
+    } = this.state;
+
+    inputValue.replace();
 
     return (
       <div className={stylish.wrapper}>
@@ -214,32 +225,38 @@ class IntegralPage extends Component {
                 {/* <ul className={stylish.boxUlMain}> */}
 
                 {arrMain &&
-                  arrMain.map((elem) => (
-                    <div
-                      key={elem.productID}
-                      className={stylish.nameProductMain}
-                    >
-                      <div className={stylish.fontProductMain}>{elem.name}</div>
-                      <NavLink
-                        className={stylish.NavLinkProd}
-                        to={`${routes.PRODUCT}/${elem.productID}`}
+                  arrMain.map((elem) =>
+                    elem.productID === null ? (
+                      this.fetchHomeProducts()
+                    ) : (
+                      <div
+                        key={elem.productID}
+                        className={stylish.nameProductMain}
                       >
-                        <div>
-                          <img
-                            className={stylish.imgMain}
-                            src={elem.small_image}
-                            alt={elem.product_code}
-                          />
+                        <div className={stylish.fontProductMain}>
+                          {elem.name}
                         </div>
-                      </NavLink>
-                      <div className={stylish.fontPayProductMain}>
-                        {elem.retail_price_uah} грн.
+                        <NavLink
+                          className={stylish.NavLinkProd}
+                          to={`${routes.PRODUCT}/${elem.productID}`}
+                        >
+                          <div>
+                            <img
+                              className={stylish.imgMain}
+                              src={elem.small_image}
+                              alt={elem.product_code}
+                            />
+                          </div>
+                        </NavLink>
+                        <div className={stylish.fontPayProductMain}>
+                          {elem.retail_price_uah} грн.
+                        </div>
+                        <div className={stylish.fontProductMain}>
+                          {elem.country}
+                        </div>
                       </div>
-                      <div className={stylish.fontProductMain}>
-                        {elem.country}
-                      </div>
-                    </div>
-                  ))}
+                    )
+                  )}
 
                 {isOpenArrCategory && (
                   <ul
@@ -272,10 +289,28 @@ class IntegralPage extends Component {
                 </div> */}
               </div>
             </div>
+
             <input
-              placeholder="введите значение"
+              id="input-btn-search"
+              placeholder="КОД продутка..."
+              title="Используйте формат ввода: A1234567"
+              type="text"
+              pattern="[A-Z][0-9]{7}"
               className={stylish.inputIntegral}
+              value={inputValue}
+              onChange={this.heandleChange}
             />
+            <NavLink
+              className={stylish.NavLinkProd}
+              to={`${routes.PRODUCT_CODE}/${inputValue}`}
+            >
+              <button
+                className={stylish.btnSearch}
+                disabled={this.state.inputValue.trim().length === 0}
+              >
+                search
+              </button>
+            </NavLink>
           </div>
         </div>
       </div>

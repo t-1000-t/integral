@@ -8,6 +8,7 @@ import FooterPage from "../Page/FooterPage/FooterPage";
 import IntegralPage from "../Page/IntegralPage/IntegralPage";
 import IntegralViewCategoryProducts from "../Page/IntegralViewCategoryProducts/IntegralViewCategoryProducts";
 import IntegralProductDetails from "../Page/IntegralProductDetails/IntegralProductDetails";
+import IntegralProduct_CodeDetails from "../Page/IntegralProduct_CodeDetails/IntegralProduct_CodeDetails";
 
 class App extends Component {
   componentDidMount() {
@@ -23,6 +24,10 @@ class App extends Component {
             <Route exact path="/" component={IntegralPage} />
             <Route exact path="/about" component={AboutPage} />
             <Route path="/products" component={IntegralViewCategoryProducts} />
+            <Route
+              path="/product/product_code/:someIDproduct"
+              component={IntegralProduct_CodeDetails}
+            />
             <Route
               path="/product/:someIDproduct"
               component={IntegralProductDetails}
