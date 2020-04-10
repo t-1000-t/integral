@@ -210,17 +210,19 @@ class IntegralPage extends Component {
                 onClick={this.handleBackdropClick}
                 onMouseLeave={this.toggleFalse} // open
               >
-                {isLoading && (
-                  <div className={stylish.loadPosition}>
-                    <Loader
-                      type="BallTriangle"
-                      color="rgb(117, 111, 228)"
-                      height={80}
-                      width={80}
-                      // timeout={3000} //3 secs
-                    />
-                  </div>
-                )}
+                {isLoading === null
+                  ? this.fetchHomeProducts()
+                  : isLoading && (
+                      <div className={stylish.loadPosition}>
+                        <Loader
+                          type="BallTriangle"
+                          color="rgb(117, 111, 228)"
+                          height={80}
+                          width={80}
+                          // timeout={3000} //3 secs
+                        />
+                      </div>
+                    )}
 
                 {/* <ul className={stylish.boxUlMain}> */}
 

@@ -12,5 +12,7 @@
 
 .modal {
   height: 40vh;
+
   object-fit: cover;
+  overflow-y: scroll;
 }

@@ -55,6 +55,8 @@
   width: 50px;
   height: 30px;
   border-radius: 8px;
+  border-color: #fed700;
+  color: rgb(25, 18, 168);
   font-family: "Roboto", sans-serif;
   font-size: 12px;
 }

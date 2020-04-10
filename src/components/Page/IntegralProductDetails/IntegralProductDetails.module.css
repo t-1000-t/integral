@@ -25,10 +25,7 @@
 .wrapperMiddle {
   display: flex;
 }
-.middleLeft {
-  width: 600px;
-  text-align: center;
-}
+
 .boxNameCode {
   width: 100%;
   text-align: left;
@@ -63,8 +60,9 @@
 
 .middleLeft {
   width: 50%;
+  text-align: center;
   padding: 15px;
-  margin-top: 15px;
+  /* margin-top: 15px; */
   margin-right: 25px;
   border-radius: 16px;
   background-color: white;
@@ -88,13 +86,13 @@
 }
 .boxMoreFoto {
   position: absolute;
-  top: 74%;
+  top: 77%;
   overflow: auto;
   display: flex;
   flex-direction: row;
   align-items: center;
   width: 60%;
-  height: 200px;
+  height: 180px;
 
   /* background-color: violet; */
 }
@@ -107,7 +105,7 @@
 }
 
 .btnMiddleRight {
-  margin-top: 10px;
+  /* margin-top: 10px; */
   width: 200px;
   height: 40px;
   border-radius: 16px;
@@ -118,7 +116,6 @@
   border-bottom: 1px solid;
 }
 .btnProductDetails {
-  margin: 10px;
   width: 250px;
   height: 50px;
   cursor: pointer;
