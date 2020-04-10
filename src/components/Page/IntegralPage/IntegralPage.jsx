@@ -150,7 +150,7 @@ class IntegralPage extends Component {
   fetchHomeProducts() {
     this.setState({ isLoading: true });
     try {
-      return fetch("https://shop-integral.herokuapp.com/api/main")
+      return fetch(`https://shop-integral.herokuapp.com/api/main`)
         .then((res) => res.json())
         .then((data) => data.main)
         .then((arr) => {
@@ -170,12 +170,7 @@ class IntegralPage extends Component {
     }
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    // const { pageNum } = this.state;
-    // if (prevState.pageNum !== pageNum) {
-    //   this.fetchArticles();
-    // }
-  }
+  componentDidUpdate(prevProps, prevState) {}
 
   heandleChange = (e) => {
     this.setState({ inputValue: e.currentTarget.value });
@@ -210,55 +205,54 @@ class IntegralPage extends Component {
                 onClick={this.handleBackdropClick}
                 onMouseLeave={this.toggleFalse} // open
               >
-                {isLoading === null
-                  ? this.fetchHomeProducts()
-                  : isLoading && (
-                      <div className={stylish.loadPosition}>
-                        <Loader
-                          type="BallTriangle"
-                          color="rgb(117, 111, 228)"
-                          height={80}
-                          width={80}
-                          // timeout={3000} //3 secs
-                        />
-                      </div>
-                    )}
+                {isLoading && (
+                  <div className={stylish.loadPosition}>
+                    <Loader
+                      type="BallTriangle"
+                      color="rgb(117, 111, 228)"
+                      height={80}
+                      width={80}
+                      // timeout={3000} //3 secs
+                    />
+                  </div>
+                )}
 
                 {/* <ul className={stylish.boxUlMain}> */}
 
-                {arrMain &&
-                  arrMain.map((elem) =>
-                    elem.productID === null ? (
-                      this.fetchHomeProducts()
-                    ) : (
-                      <div
-                        key={elem.productID}
-                        className={stylish.nameProductMain}
-                      >
-                        <div className={stylish.fontProductMain}>
-                          {elem.name}
-                        </div>
-                        <NavLink
-                          className={stylish.NavLinkProd}
-                          to={`${routes.PRODUCT}/${elem.productID}`}
+                {arrMain === null
+                  ? this.fetchHomeProducts()
+                  : arrMain.map((elem) =>
+                      elem.productID === null ? (
+                        this.fetchHomeProducts()
+                      ) : (
+                        <div
+                          key={elem.productID}
+                          className={stylish.nameProductMain}
                         >
-                          <div>
-                            <img
-                              className={stylish.imgMain}
-                              src={elem.small_image}
-                              alt={elem.product_code}
-                            />
+                          <div className={stylish.fontProductMain}>
+                            {elem.name}
                           </div>
-                        </NavLink>
-                        <div className={stylish.fontPayProductMain}>
-                          {elem.retail_price_uah} грн.
+                          <NavLink
+                            className={stylish.NavLinkProd}
+                            to={`${routes.PRODUCT}/${elem.productID}`}
+                          >
+                            <div>
+                              <img
+                                className={stylish.imgMain}
+                                src={elem.small_image}
+                                alt={elem.product_code}
+                              />
+                            </div>
+                          </NavLink>
+                          <div className={stylish.fontPayProductMain}>
+                            {elem.retail_price_uah} грн.
+                          </div>
+                          <div className={stylish.fontProductMain}>
+                            {elem.country}
+                          </div>
                         </div>
-                        <div className={stylish.fontProductMain}>
-                          {elem.country}
-                        </div>
-                      </div>
-                    )
-                  )}
+                      )
+                    )}
 
                 {isOpenArrCategory && (
                   <ul
@@ -283,7 +277,7 @@ class IntegralPage extends Component {
                     <button
                       className={stylish.buttonMain}
                       type="button"
-                      onClick={this.fetchArticles}
+                      onClick={this.fetchHomeProducts}
                     >
                       Load more articles
                     </button>

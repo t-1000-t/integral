@@ -15,6 +15,12 @@ class IntegralProductDetails extends Component {
     // comments: null,
   };
 
+  setSearchPathName = () => {
+    this.props.history.push({
+      ...this.props.location,
+    });
+  };
+
   fetchViewDetails = async () => {
     this.setState({ isLoading: true });
     const prodID = this.props.match.params.someIDproduct;
@@ -64,8 +70,15 @@ class IntegralProductDetails extends Component {
   };
 
   componentDidMount() {
-    this.fetchViewDetails();
-    this.getPictures();
+    const persistedProdDetail = localStorage.getItem("ProdDetail");
+
+    if (persistedProdDetail) {
+      this.setState({ ProdDetail: JSON.parse(persistedProdDetail) });
+    }
+    if (!persistedProdDetail) {
+      this.fetchViewDetails();
+      this.getPictures();
+    }
     // this.getComments();
   }
 
@@ -75,6 +88,7 @@ class IntegralProductDetails extends Component {
     }
     if (prevProps.location !== this.props.location) {
       this.fetchViewDetails();
+      localStorage.setItem("ProdDetail", JSON.stringify(this.props.location));
     }
   }
 

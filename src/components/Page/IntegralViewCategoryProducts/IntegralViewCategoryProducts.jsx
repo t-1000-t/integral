@@ -8,12 +8,24 @@ import stylish from "./IntegralViewCategoryProducts.module.css";
 class IntegralViewNotebooks extends Component {
   state = {
     arrProducts: [],
+    textSearch: "",
     isLoading: false,
   };
 
-  componentDidMount() {
+  componentDidMount(prevProps, prevState) {
     this.fetchArrProducts();
   }
+
+  nextCategory = new URLSearchParams(this.props.location.search).get(
+    "category"
+  );
+
+  setSearchCategory = (nextCategory) => {
+    this.props.history.push({
+      ...this.props.location,
+      search: `?category=${nextCategory}`,
+    });
+  };
 
   async fetchArrProducts() {
     this.setState({ isLoading: true });
@@ -39,14 +51,35 @@ class IntegralViewNotebooks extends Component {
       console.error(err);
     }
   }
+
+  heandlerSearch = (e) => {
+    this.setState({ textSearch: e.currentTarget.value });
+  };
+
   render() {
-    const { isLoading } = this.state;
+    const { isLoading, arrProducts, textSearch } = this.state;
+
+    const newArrProducts = arrProducts.filter(
+      (elem) =>
+        elem.name.toLowerCase().includes(textSearch.toLowerCase()) ||
+        elem.product_code.toLowerCase().includes(textSearch.toLowerCase()) ||
+        elem.articul.toLowerCase().includes(textSearch.toLowerCase())
+    );
+
     return (
       <>
         <div className={stylish.wrapperPage}>
           <div className={stylish.wrapperTitle}>
             <div className={stylish.boxTitle}>
               <div className={stylish.title}>Продукты категории</div>
+              <input
+                className={stylish.inputSearch}
+                type="text"
+                placeholder="введите имя продукта категории"
+                value={textSearch}
+                title="ввод крилицей или латиницей"
+                onChange={this.heandlerSearch}
+              />
             </div>
           </div>
           {isLoading && (
@@ -62,7 +95,7 @@ class IntegralViewNotebooks extends Component {
           )}
           <div className={stylish.container}>
             <ul className={stylish.wrapper}>
-              {this.state.arrProducts.map((item) => (
+              {newArrProducts.map((item) => (
                 <li key={item.productID}>
                   <div className={stylish.card}>
                     <div>
@@ -72,7 +105,7 @@ class IntegralViewNotebooks extends Component {
                       </div>
                       <NavLink
                         className={stylish.NavLinkProd}
-                        to={`${routes.PRODUCT}/${item.productID}`} 
+                        to={`${routes.PRODUCT}/${item.productID}`}
                       >
                         <div>
                           <img src={item.medium_image} alt={item.articul} />

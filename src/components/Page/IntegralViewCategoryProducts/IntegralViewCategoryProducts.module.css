@@ -12,6 +12,9 @@
 }
 .boxTitle {
   width: 1180px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 .title {
   width: 200px;
@@ -20,7 +23,13 @@
   font-style: normal;
   font-size: 18px;
 }
-
+.inputSearch {
+  width: 250px;
+  height: 30px;
+  padding: 5px;
+  padding-left: 15px;
+  border-radius: 8px;
+}
 .container {
   width: 100%;
   display: flex;
@@ -43,7 +52,7 @@
   margin: 10px;
   padding: 15px;
   width: 270px;
-  height: 420px;
+  height: 460px;
 }
 .NavLinkProd {
   text-decoration: none;
@@ -56,12 +65,13 @@
 
 .nameItem {
   width: 210px;
-  height: 50px;
+  height: 80px;
   padding-left: 15px;
   padding-bottom: 5px;
+  margin-bottom: 5px;
   font-family: "Roboto", sans-serif;
   font-style: normal;
-  font-size: 13px;
+  font-size: 12px;
 }
 
 .priceInfo {
@@ -84,6 +94,7 @@
   padding-top: 10px;
   padding-bottom: 10px;
   padding-left: 15px;
+  margin-top: 10px;
 
   width: 180px;
   font-family: "Montserrat", sans-serif;
