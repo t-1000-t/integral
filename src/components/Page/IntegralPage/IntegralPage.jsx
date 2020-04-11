@@ -106,11 +106,9 @@ class IntegralPage extends Component {
     this.setState({ isOpenArrCategory: !this.state.isOpenArrCategory });
   };
 
-  liHandlerCategoryTrue = (e) => {
-    e.preventDefault();
+  liHandlerCategoryTrue = () => {
     this.setState({
       isOpenModalLiCategory: true,
-      selected: e.target.id,
     });
   };
 
@@ -119,6 +117,12 @@ class IntegralPage extends Component {
       isOpenModalLiCategory: false,
     });
   };
+
+  // liHandlerCategoryChange = () => {
+  //   this.setState({
+  //     isOpenModalLiCategory: false,
+  //   });
+  // };
 
   // toggle for on click
 

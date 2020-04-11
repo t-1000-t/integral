@@ -60,7 +60,7 @@ class IntegralPageCategory extends Component {
     return (
       <div
         className={stylish.wrapperCategory}
-        // onMouseLeave={this.handleOnModalFalse}
+        // onMouseLeave={this.handleOnModalFalse} 
       >
         <div
           className={isOpen ? stylish.cellCatagoryIcon : stylish.cellCatagory}

@@ -94,7 +94,7 @@
   /* background-color: darkslategrey; */
 }
 
-@media (min-width: 320px) and (max-width: 940px) {
+@media (min-width: 320px) and (max-width: 359px) {
   .fontName {
     font-size: 12px;
   }
@@ -103,6 +103,31 @@
   }
   .boxCell {
     width: 190px;
+    height: 40px;
+    margin: 5px;
+  }
+  .boxCell:hover {
+    height: 40px;
+    margin: 5px;
+  }
+  .categoryName {
+    font-size: 12px;
+  }
+  .cellCatagory {
+    width: 200px;
+    height: 30px;
+  }
+}
+
+@media (min-width: 360px) and (max-width: 940px) {
+  .fontName {
+    font-size: 12px;
+  }
+  .boxName {
+    top: 20px;
+  }
+  .boxCell {
+    width: 210px;
     height: 40px;
     margin: 5px;
   }

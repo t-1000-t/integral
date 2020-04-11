@@ -14,7 +14,7 @@ class IntegralViewNotebooks extends Component {
 
   componentDidMount(prevProps, prevState) {
     this.fetchArrProducts();
-  }
+  }  
 
   nextCategory = new URLSearchParams(this.props.location.search).get(
     "category"

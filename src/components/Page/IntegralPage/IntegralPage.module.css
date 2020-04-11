@@ -198,7 +198,7 @@ input:focus:invalid {
   box-shadow: none;
 }
 
-@media (min-width: 320px) and (max-width: 940px) {
+@media (min-width: 320px) and (max-width: 359px) {
   .detector {
     width: 200px;
     height: 20px;
@@ -215,6 +215,34 @@ input:focus:invalid {
   .inputIntegral {
     width: 118px;
     margin-left: 0px;
+  }
+  .ulList {
+    top: 165px;
+    left: 5%;
+  }
+}
+
+@media (min-width: 360px) and (max-width: 939px) {
+  .boxTest {
+    justify-content: center;
+  }
+  .detector {
+    width: 200px;
+    height: 20px;
+  }
+  .boxNavMenu {
+    width: 95%;
+    height: 50px;
+  }
+  .btnListCategory {
+    margin-left: 0px;
+    width: 110px;
+    font-size: 14px;
+  }
+  .inputIntegral {
+    width: 118px;
+    margin-left: 0px;
+    margin-right: 5px;
   }
   .ulList {
     top: 165px;

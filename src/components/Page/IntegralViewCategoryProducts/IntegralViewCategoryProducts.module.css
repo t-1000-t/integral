@@ -123,3 +123,32 @@
   justify-content: center;
   margin-top: 10%;
 }
+
+@media (min-width: 320px) and (max-width: 359px) {
+  .wrapper {
+    width: 100%;
+    justify-content: center;
+  }
+  .inputSearch {
+    padding-left: 10px;
+    width: 165px;
+  }
+  .title {
+    width: 140px;
+    font-size: 12px;
+  }
+}
+
+@media (min-width: 360px) and (max-width: 939px) {
+  .wrapper {
+    width: 100%;
+    justify-content: center;
+  }
+  .inputSearch {
+    width: 195px;
+  }
+  .title {
+    width: 150px;
+    font-size: 14px;
+  }
+}

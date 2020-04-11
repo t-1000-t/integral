@@ -137,6 +137,7 @@
 
 @media (min-width: 320px) and (max-width: 940px) {
   .boxSupport2 {
+    align-items: baseline;
   }
   .about {
     width: 60px;
