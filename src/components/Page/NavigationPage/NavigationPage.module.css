@@ -135,7 +135,46 @@
   border: none;
 }
 
-@media (min-width: 376px) and (max-width: 940px) {
+@media (min-width: 320px) and (max-width: 940px) {
+  .boxSupport2 {
+  }
+  .about {
+    width: 60px;
+    margin-top: 5px;
+  }
+  .home {
+    width: 60px;
+    margin-bottom: 5px;
+  }
+  .suppNomber {
+    width: 100%;
+  }
+  .integral {
+    width: 25%;
+  }
+  .middleNavigation {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 8%;
+
+    /* background-color: darkcyan; */
+  }
+  .support {
+    width: 45%;
+    font-size: 10px;
+    padding-right: 20px;
+  }
+
+  .logo {
+    font-size: 26px;
+  }
+  .basta {
+    width: 6px;
+    height: 6px;
+  }
 }
 
 @media (min-width: 940px) {

@@ -35,7 +35,7 @@ class NavigationPage extends Component {
             <div className={stylish.boxSupport1}>
               <Icon className={stylish.iconCall} icon={callOutline} />
               <Icon className={stylish.iconHeadset} icon={headsetOutline} />
-              <div>
+              <div className={stylish.suppNomber}>
                 <b>Support</b> (+38) 066 <b>911</b> 0347
               </div>
             </div>
@@ -50,15 +50,15 @@ class NavigationPage extends Component {
               </div>
             </div>
             <div className={stylish.boxSupport2}>
-              <Icon
-                className={stylish.iconViber}
-                icon={chatboxEllipsesOutline}
-              />
               <a
                 className={stylish.linkMail}
                 title="Должен быть установлен Viber для ПК"
                 href="viber://chat?number=+380669110347"
               >
+                <Icon
+                  className={stylish.iconViber}
+                  icon={chatboxEllipsesOutline}
+                />
                 Написать в Viber
               </a>
             </div>

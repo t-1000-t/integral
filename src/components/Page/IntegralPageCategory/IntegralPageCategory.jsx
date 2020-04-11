@@ -60,14 +60,14 @@ class IntegralPageCategory extends Component {
     return (
       <div
         className={stylish.wrapperCategory}
-        onMouseLeave={this.handleOnModalFalse}
+        // onMouseLeave={this.handleOnModalFalse}
       >
         <div
           className={isOpen ? stylish.cellCatagoryIcon : stylish.cellCatagory}
           id={id}
-          onMouseEnter={this.handleOnModalTrue}
-          onMouseLeave={this.handleOnModalFalse}
-          // onClick={this.handleOnModalTrue}
+          // onMouseEnter={this.handleOnModalTrue}
+          // onMouseLeave={this.handleOnModalFalse}
+          onClick={this.handleOnModalTrue}
         >
           <div className={stylish.categoryName}>{elem.name1}</div>
           {isOpen ? (
@@ -79,9 +79,9 @@ class IntegralPageCategory extends Component {
             <div
               ref={this.btnBoxRef}
               className={stylish.boxName}
-              onMouseLeave={this.handleOnModalFalse}
-              onMouseEnter={this.handleOnModalTrue}
-              // onClick={this.handleOnModalTrue}
+              // onMouseLeave={this.handleOnModalFalse}
+              // onMouseEnter={this.handleOnModalTrue}
+              onClick={this.handleOnModalTrue}
             >
               <NavLink
                 className={stylish.boxCellNavLink}

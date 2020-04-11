@@ -102,6 +102,10 @@ class IntegralPage extends Component {
     this.setState({ isOpenArrCategory: false });
   };
 
+  toggleChange = () => {
+    this.setState({ isOpenArrCategory: !this.state.isOpenArrCategory });
+  };
+
   liHandlerCategoryTrue = (e) => {
     e.preventDefault();
     this.setState({
@@ -194,7 +198,7 @@ class IntegralPage extends Component {
             <div className={stylish.btnList}>
               <button
                 className={stylish.btnListCategory}
-                onClick={this.toggleTrue}
+                onClick={this.toggleChange}
                 // onMouseEnter={this.toggleTrue}
               >
                 Shop By Catalog
@@ -203,7 +207,7 @@ class IntegralPage extends Component {
                 className={stylish.boxTest}
                 ref={this.btnRef}
                 onClick={this.handleBackdropClick}
-                onMouseLeave={this.toggleFalse} // open
+                // onMouseLeave={this.toggleFalse} // open
               >
                 {isLoading && (
                   <div className={stylish.loadPosition}>
