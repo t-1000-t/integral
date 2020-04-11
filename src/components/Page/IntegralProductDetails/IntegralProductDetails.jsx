@@ -79,7 +79,7 @@ class IntegralProductDetails extends Component {
       this.fetchViewDetails();
       this.getPictures();
     }
-    // this.getComments();
+    // this.getComments(); 
   }
 
   componentDidUpdate(prevProps, prevState) {
