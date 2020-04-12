@@ -58,7 +58,7 @@ class IntegralPageCategory extends Component {
     const { id, elem } = this.props;
     const { isOpen } = this.state;
     return (
-      <div
+      <div 
         className={stylish.wrapperCategory}
         // onMouseLeave={this.handleOnModalFalse} 
       >

@@ -99,15 +99,15 @@
     font-size: 12px;
   }
   .boxName {
-    top: 20px;
+    top: 30px;
   }
   .boxCell {
     width: 190px;
-    height: 40px;
+    height: 30px;
     margin: 5px;
   }
   .boxCell:hover {
-    height: 40px;
+    height: 30px;
     margin: 5px;
   }
   .categoryName {

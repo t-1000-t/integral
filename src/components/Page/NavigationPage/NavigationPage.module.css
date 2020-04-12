@@ -150,13 +150,18 @@
 }
 
 @media (min-width: 320px) and (max-width: 940px) {
+  .wrapper {
+    height: 100px;
+  }
   .boxSupport1 {
     width: 100%;
     padding-left: 20px;
-    align-items: baseline;
+    align-items: center;
   }
   .boxSupport2 {
-    align-items: baseline;
+    width: 100%;
+    padding-left: 20px;
+    align-items: center;
   }
   .about {
     width: 50px;
