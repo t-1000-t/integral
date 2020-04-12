@@ -24,6 +24,10 @@ class IntegralPageCategory extends Component {
     });
   };
 
+  handleOnModalChange = () => {
+    this.setState({ isOpen: !this.state.isOpen });
+  };
+
   // btn toggle BoxCategory
 
   btnBoxRef = createRef();
@@ -54,13 +58,15 @@ class IntegralPageCategory extends Component {
     this.handleOnModalFalse();
   };
 
+  componentDidUpdate(prevProps, prevState) {}
+
   render() {
     const { id, elem } = this.props;
     const { isOpen } = this.state;
     return (
-      <div 
+      <div
         className={stylish.wrapperCategory}
-        // onMouseLeave={this.handleOnModalFalse} 
+        // onMouseLeave={this.handleOnModalFalse}
       >
         <div
           className={isOpen ? stylish.cellCatagoryIcon : stylish.cellCatagory}
@@ -75,13 +81,16 @@ class IntegralPageCategory extends Component {
           ) : null}
         </div>
         {isOpen && (
-          <ModalLicategory id={id}>
+          <ModalLicategory
+            id={id}
+            handleOnModalChange={this.handleOnModalChange}
+          >
             <div
               ref={this.btnBoxRef}
               className={stylish.boxName}
               // onMouseLeave={this.handleOnModalFalse}
               // onMouseEnter={this.handleOnModalTrue}
-              onClick={this.handleOnModalTrue}
+              onClick={this.handleOnModalChange}
             >
               <NavLink
                 className={stylish.boxCellNavLink}

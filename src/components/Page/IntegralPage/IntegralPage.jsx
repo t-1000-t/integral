@@ -6,6 +6,11 @@ import Loader from "react-loader-spinner";
 
 import stylish from "./IntegralPage.module.css";
 
+const Phase = {
+  FALSE: false,
+  TRUE: true,
+};
+
 class IntegralPage extends Component {
   state = {
     arrCategory: [
@@ -92,6 +97,7 @@ class IntegralPage extends Component {
     arrMain: [],
     pageNum: 1,
     inputValue: "",
+    setCategory: "",
   };
 
   toggleTrue = () => {
@@ -117,12 +123,6 @@ class IntegralPage extends Component {
       isOpenModalLiCategory: false,
     });
   };
-
-  // liHandlerCategoryChange = () => {
-  //   this.setState({
-  //     isOpenModalLiCategory: false,
-  //   });
-  // };
 
   // toggle for on click
 
@@ -177,8 +177,6 @@ class IntegralPage extends Component {
       console.error(err);
     }
   }
-
-  componentDidUpdate(prevProps, prevState) {}
 
   heandleChange = (e) => {
     this.setState({ inputValue: e.currentTarget.value });
@@ -268,7 +266,12 @@ class IntegralPage extends Component {
                     onClick={this.handleBackdropClick}
                   >
                     {arrCategory.map((el) => (
-                      <li className={stylish.liList} key={el.id}>
+                      <li
+                        className={stylish.liList}
+                        key={el.id}
+                        id={el.id}
+                        onClick={this.heandleChangeRadio}
+                      >
                         <IntegralPageCategory
                           id={el.id}
                           elem={el}

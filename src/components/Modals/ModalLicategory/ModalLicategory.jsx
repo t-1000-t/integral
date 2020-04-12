@@ -16,20 +16,20 @@ class ModalLicategory extends Component {
     window.removeEventListener("keydown", this.handleKeyPress);
   }
 
-  handleKeyPress = e => {
+  handleKeyPress = (e) => {
     if (e.code !== "Escape") {
       return;
     }
 
-    this.props.liHandlerCategoryFalse();
+    this.props.handleOnModalChange();
   };
 
-  handleBackdropClick = e => {
+  handleBackdropClick = (e) => {
     if (this.backdropRef.current && e.target !== this.backdropRef.current) {
       return;
     }
 
-    this.props.liHandlerCategoryFalse();
+    this.props.handleOnModalChange();
   };
 
   render() {
