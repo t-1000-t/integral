@@ -14,7 +14,7 @@ class IntegralViewNotebooks extends Component {
 
   componentDidMount(prevProps, prevState) {
     this.fetchArrProducts();
-  }  
+  }
 
   nextCategory = new URLSearchParams(this.props.location.search).get(
     "category"
@@ -75,7 +75,7 @@ class IntegralViewNotebooks extends Component {
               <input
                 className={stylish.inputSearch}
                 type="text"
-                placeholder="введите имя продукта категории"
+                placeholder="я ищу.."
                 value={textSearch}
                 title="ввод крилицей или латиницей"
                 onChange={this.heandlerSearch}

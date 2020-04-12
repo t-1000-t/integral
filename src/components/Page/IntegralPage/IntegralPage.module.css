@@ -223,12 +223,9 @@ input:focus:invalid {
 }
 
 @media (min-width: 360px) and (max-width: 939px) {
-  .boxTest {
-    justify-content: center;
-  }
   .detector {
     width: 200px;
-    height: 20px;
+    height: 10px;
   }
   .boxNavMenu {
     width: 95%;
@@ -242,7 +239,6 @@ input:focus:invalid {
   .inputIntegral {
     width: 118px;
     margin-left: 0px;
-    margin-right: 5px;
   }
   .ulList {
     top: 165px;
