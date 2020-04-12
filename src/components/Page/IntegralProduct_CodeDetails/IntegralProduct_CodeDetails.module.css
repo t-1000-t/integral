@@ -18,9 +18,6 @@
   height: 808px;
   overflow-y: hidden;
 }
-/* .footerMiddle:hover {
-  overflow-y: scroll;
-} */
 
 .wrapperMiddle {
   display: flex;
@@ -79,9 +76,7 @@
 .ulRight {
   width: 100%;
   position: absolute;
-
   overflow-y: scroll;
-
   padding: 10px;
   width: 29%;
   height: 50%;
@@ -146,4 +141,74 @@
   width: 100%;
   height: 808px;
   margin-top: 10%;
+}
+
+@media (min-width: 320px) and (max-width: 359px) {
+  .boxMoreFoto {
+    top: 150%;
+  }
+  .fontProductDetails {
+    font-size: 14px;
+  }
+  .btnProductDetails {
+    width: 250px;
+    height: 30px;
+  }
+  .priceProductDetails {
+    margin-top: 230px;
+    padding-left: 10px;
+  }
+  .ulRight {
+    position: absolute;
+    width: 96%;
+    height: 200px;
+    top: 50px;
+    margin-left: 3%;
+    margin-right: 3%;
+    border-radius: 16px;
+    /* background-color: maroon; */
+  }
+  .btnMiddleRight {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    height: 30px;
+  }
+  .middleRight {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    /* background-color: limegreen; */
+  }
+  .middleLeft {
+    width: 94%;
+    height: 550px;
+    margin-top: 5px;
+    margin-left: 3%;
+    margin-right: 3%;
+  }
+  .wrapperMiddle {
+    flex-direction: column;
+
+    /* background-color: lightsalmon; */
+  }
+  .card {
+    flex-direction: column;
+    align-items: center;
+    height: 1000px;
+  }
+  .mainLeft {
+    width: 0;
+  }
+  .mainMiddle {
+    width: 100%;
+    height: 1000px;
+    /* background-color: rgb(97, 97, 141); */
+  }
+  .mainRight {
+    width: 0;
+  }
+}
+
+@media (min-width: 360px) and (max-width: 939px) {
 }

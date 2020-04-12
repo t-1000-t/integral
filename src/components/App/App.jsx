@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import "./App.css";
-import widthResize from "../services/widthResize";
+// import widthResize from "../services/widthResize";
 import NavigationPage from "../Page/NavigationPage/NavigationPage";
 import AboutPage from "../Page/AboutPage/AboutPage";
 import FooterPage from "../Page/FooterPage/FooterPage";
@@ -12,7 +12,7 @@ import IntegralProduct_CodeDetails from "../Page/IntegralProduct_CodeDetails/Int
 
 class App extends Component {
   componentDidMount() {
-    widthResize();
+    // widthResize();
   }
   render() {
     return (
