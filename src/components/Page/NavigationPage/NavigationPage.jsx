@@ -34,16 +34,15 @@ class NavigationPage extends Component {
           <li className={stylish.support}>
             <div className={stylish.boxSupport1}>
               <Icon className={stylish.iconCall} icon={callOutline} />
-              <Icon className={stylish.iconHeadset} icon={headsetOutline} />
+              {/* <Icon className={stylish.iconHeadset} icon={headsetOutline} /> */}
               <div className={stylish.suppNomber}>
-                <b>Support</b> (+38) 066 <b>911</b> 0347
+                (+38) 066 <b>911</b> 0347
               </div>
             </div>
             <br />
             <div className={stylish.boxSupport2}>
               <Icon className={stylish.iconMail} icon={mailOpenOutline} />
               <div>
-                Email:
                 <a className={stylish.linkMail} href="mailto:info@integral.com">
                   info@integral.com
                 </a>

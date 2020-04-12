@@ -201,7 +201,7 @@ input:focus:invalid {
 @media (min-width: 320px) and (max-width: 359px) {
   .detector {
     width: 200px;
-    height: 20px;
+    height: 10px;
   }
   .boxNavMenu {
     width: 95%;
