@@ -38,6 +38,7 @@
 .img {
   padding-top: 20px;
   padding-bottom: 20px;
+  overflow: scroll;
 }
 .imgDescription {
   width: 100%;
@@ -149,13 +150,14 @@
     position: relative;
     flex-direction: column;
     justify-content: center;
+    margin-top: 20px;
     padding-left: 6px;
     height: 50%;
   }
   .boxMoreFoto {
     width: 95%;
     position: absolute;
-    top: 145%;
+    top: 135%;
     height: 180px;
   }
   .liRight {
@@ -167,21 +169,20 @@
     font-size: 10px;
   }
   .priceProductDetails {
+    margin-top: 70px;
     margin-left: 10px;
   }
   .btnProductDetails {
-    margin-top: 50px;
+    margin-top: 0px;
     margin-left: 10px;
   }
-  .mainMiddle {
-    height: 800;
-  }
+
   .card {
     height: 1024px;
   }
   .ulRight {
     width: 100%;
-    top: 580px;
+    top: 640px;
   }
   .middleRight {
     width: 100%;
@@ -203,6 +204,7 @@
   }
   .mainMiddle {
     width: 95%;
+    height: 880px;
   }
   .mainRight {
     width: 0;
@@ -221,7 +223,7 @@
   .boxMoreFoto {
     width: 95%;
     position: absolute;
-    top: 125%;
+    top: 135%;
     height: 180px;
   }
   .liRight {
@@ -233,22 +235,20 @@
     font-size: 10px;
   }
   .priceProductDetails {
-    margin-top: 20px;
+    margin-top: 70px;
     margin-left: 10px;
   }
   .btnProductDetails {
-    margin-top: 50px;
+    margin-top: 0px;
     margin-left: 10px;
   }
-  .mainMiddle {
-    height: 800;
-  }
+
   .card {
     height: 1024px;
   }
   .ulRight {
     width: 100%;
-    top: 580px;
+    top: 640px;
   }
   .middleRight {
     width: 100%;
@@ -270,6 +270,7 @@
   }
   .mainMiddle {
     width: 95%;
+    height: 880px;
   }
   .mainRight {
     width: 0;
