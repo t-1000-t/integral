@@ -46,6 +46,19 @@
   font-size: 16px;
 }
 
+.suppNomber {
+  width: 180px;
+  /* background-color: lightcoral; */
+}
+.suppMail {
+  width: 180px;
+  /* background-color: lightcoral; */
+}
+.suppViber {
+  width: 180px;
+  /* background-color: lightcoral; */
+}
+
 .boxSupport1 {
   display: flex;
   justify-content: center;

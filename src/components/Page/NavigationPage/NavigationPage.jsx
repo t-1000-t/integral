@@ -42,24 +42,26 @@ class NavigationPage extends Component {
             <br />
             <div className={stylish.boxSupport2}>
               <Icon className={stylish.iconMail} icon={mailOpenOutline} />
-              <div>
+              <div className={stylish.suppMail}>
                 <a className={stylish.linkMail} href="mailto:info@integral.com">
                   info@integral.com
                 </a>
               </div>
             </div>
             <div className={stylish.boxSupport2}>
-              <a
-                className={stylish.linkMail}
-                title="Должен быть установлен Viber для ПК"
-                href="viber://chat?number=+380669110347"
-              >
-                <Icon
-                  className={stylish.iconViber}
-                  icon={chatboxEllipsesOutline}
-                />
-                Написать в Viber
-              </a>
+              <Icon
+                className={stylish.iconViber}
+                icon={chatboxEllipsesOutline}
+              />
+              <div className={stylish.suppViber}>
+                <a
+                  className={stylish.linkMail}
+                  title="Должен быть установлен Viber для ПК"
+                  href="viber://chat?number=+380669110347"
+                >
+                  Написать в Viber
+                </a>
+              </div>
             </div>
           </li>
         </ul>
