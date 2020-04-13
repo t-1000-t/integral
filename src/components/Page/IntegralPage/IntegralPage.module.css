@@ -199,6 +199,10 @@ input:focus:invalid {
 }
 
 @media (min-width: 320px) and (max-width: 359px) {
+  .boxTest {
+    justify-content: center;
+    height: 1024px;
+  }
   .detector {
     width: 200px;
     height: 10px;
@@ -223,6 +227,10 @@ input:focus:invalid {
 }
 
 @media (min-width: 360px) and (max-width: 939px) {
+  .boxTest {
+    height: 1024px;
+    justify-content: center;
+  }
   .detector {
     width: 200px;
     height: 10px;
