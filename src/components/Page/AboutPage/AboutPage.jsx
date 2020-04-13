@@ -8,7 +8,7 @@ const AboutPage = () => {
       <div className={stylish.aboutMiddle}>
         <div className={stylish.container}>
           <div className={stylish.fontTextAbout}>Расположение</div>Integral
-          <div className={stylish.fontTextAbout}>на карте</div>
+          <div className={stylish.fontTextAbout}>google map</div>
         </div>
         <iframe
           className={stylish.mapIntegral}

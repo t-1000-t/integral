@@ -42,8 +42,46 @@
   /* tabindex="0" */
 }
 
-@media (min-width: 560px) and (max-width: 940px) {
+@media (min-width: 320px) and (max-width: 359px) {
+  .wrapper {
+    height: 420px;
+  }
+  .mapIntegral {
+    height: 400px;
+  }
+  .fontTextAbout {
+    font-size: 18px;
+  }
+  .aboutLeft {
+    width: 0%;
+  }
+  .aboutMiddle {
+    margin: 4%;
+    width: 96%;
+  }
+  .aboutRight {
+    width: 0%;
+  }
 }
 
-@media (min-width: 940px) {
+@media (min-width: 360px) and (max-width: 940px) {
+  .wrapper {
+    height: 420px;
+  }
+  .mapIntegral {
+    height: 400px;
+  }
+  .fontTextAbout {
+    font-size: 18px;
+  }
+  .aboutLeft {
+    width: 0%;
+  }
+  .aboutMiddle {
+    margin: 4%;
+    width: 96%;
+  }
+  .aboutRight {
+    width: 0%;
+  }
 }
