@@ -79,7 +79,7 @@ class IntegralProductDetails extends Component {
       this.fetchViewDetails();
       this.getPictures();
     }
-    // this.getComments(); 
+    // this.getComments();
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -133,7 +133,9 @@ class IntegralProductDetails extends Component {
                       src={prodDetails.medium_image}
                       alt="foto_small"
                     />
-                    <p>{prodDetails.brief_description}</p>
+                    <p className={stylish.infoProdImg}>
+                      {prodDetails.brief_description}
+                    </p>
                   </div>
                 </div>
                 <div className={stylish.middleRight}>

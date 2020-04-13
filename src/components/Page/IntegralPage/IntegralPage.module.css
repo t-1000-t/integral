@@ -200,8 +200,10 @@ input:focus:invalid {
 
 @media (min-width: 320px) and (max-width: 359px) {
   .boxTest {
+    /* height: 1024px; */
     justify-content: center;
-    height: 1024px;
+    margin-bottom: 10px;
+    overflow-y: scroll;
   }
   .detector {
     width: 200px;
@@ -228,8 +230,9 @@ input:focus:invalid {
 
 @media (min-width: 360px) and (max-width: 939px) {
   .boxTest {
-    height: 1018px;
+    /* height: 1018px; */
     justify-content: center;
+    margin-bottom: 10px;
     overflow-y: scroll;
   }
   .detector {
