@@ -178,6 +178,7 @@
   }
   .priceProductDetails {
     margin-top: 10px;
+    margin-bottom: 10px;
     margin-left: 10px;
   }
   .btnProductDetails {
@@ -185,6 +186,7 @@
     margin-left: 10px;
     margin-bottom: 10px;
     height: 40px;
+    box-shadow: 3px 3px 10px rgb(150, 150, 168);
   }
 
   .card {
@@ -268,6 +270,7 @@
     margin-left: 10px;
     margin-bottom: 10px;
     height: 40px;
+    box-shadow: 3px 3px 10px rgb(150, 150, 168);
   }
 
   .card {
