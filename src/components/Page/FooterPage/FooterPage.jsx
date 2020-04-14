@@ -4,7 +4,7 @@ import stylish from "./FooterPage.module.css";
 
 const FooterPage = () => {
   return (
-    <div className={stylish.container}>
+    <div className={stylish.containerF}>
       <ul className={stylish.wrapper}>
         <li className={stylish.integral}></li>
         <li className={stylish.middleNavigation}>

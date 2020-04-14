@@ -6,11 +6,6 @@ import Loader from "react-loader-spinner";
 
 import stylish from "./IntegralPage.module.css";
 
-const Phase = {
-  FALSE: false,
-  TRUE: true,
-};
-
 class IntegralPage extends Component {
   state = {
     arrCategory: [

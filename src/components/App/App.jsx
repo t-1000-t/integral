@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
-import "./App.css";
+import stylish from "./App.module.css";
 // import widthResize from "../services/widthResize";
 import NavigationPage from "../Page/NavigationPage/NavigationPage";
 import AboutPage from "../Page/AboutPage/AboutPage";
@@ -19,7 +19,7 @@ class App extends Component {
       <BrowserRouter>
         <NavigationPage />
 
-        <div className="App">
+        <div className={stylish.container}>
           <Switch>
             <Route exact path="/" component={IntegralPage} />
             <Route exact path="/about" component={AboutPage} />

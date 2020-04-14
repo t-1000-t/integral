@@ -5,7 +5,7 @@ import routes from "../../../routes/routes";
 // npm install --save-dev @iconify/react @iconify/icons-ion
 import { Icon } from "@iconify/react";
 import callOutline from "@iconify/icons-ion/call-outline";
-import headsetOutline from "@iconify/icons-ion/headset-outline";
+// import headsetOutline from "@iconify/icons-ion/headset-outline";
 import mailOpenOutline from "@iconify/icons-ion/mail-open-outline";
 import chatboxEllipsesOutline from "@iconify/icons-ion/chatbox-ellipses-outline";
 
