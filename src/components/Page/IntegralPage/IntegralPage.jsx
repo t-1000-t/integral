@@ -196,7 +196,7 @@ class IntegralPage extends Component {
               <button
                 className={stylish.btnListCategory}
                 onClick={this.toggleChange}
-                onMouseEnter={this.toggleTrue}
+                // onMouseEnter={this.toggleTrue}
               >
                 Shop By Catalog
               </button>
@@ -204,7 +204,7 @@ class IntegralPage extends Component {
                 className={stylish.boxTest}
                 ref={this.btnRef}
                 onClick={this.handleBackdropClick}
-                onMouseLeave={this.toggleFalse} // open
+                // onMouseLeave={this.toggleFalse} // open
               >
                 {isLoading && (
                   <div className={stylish.loadPosition}>
