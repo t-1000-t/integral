@@ -34,8 +34,8 @@ class App extends Component {
             />
             <Redirect to="/" />
           </Switch>
-          <FooterPage />
         </div>
+        <FooterPage />
       </BrowserRouter>
     );
   }

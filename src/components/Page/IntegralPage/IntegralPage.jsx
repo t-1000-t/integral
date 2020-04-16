@@ -204,7 +204,7 @@ class IntegralPage extends Component {
                 className={stylish.boxTest}
                 ref={this.btnRef}
                 onClick={this.handleBackdropClick}
-                // onMouseLeave={this.toggleFalse} // open
+                onMouseLeave={this.toggleFalse} // open
               >
                 {isLoading && (
                   <div className={stylish.loadPosition}>
@@ -237,7 +237,7 @@ class IntegralPage extends Component {
                             className={stylish.NavLinkProd}
                             to={`${routes.PRODUCT}/${elem.productID}`}
                           >
-                            <div>
+                            <div className={stylish.imgBox}>
                               <img
                                 className={stylish.imgMain}
                                 src={elem.small_image}

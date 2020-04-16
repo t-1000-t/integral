@@ -119,6 +119,10 @@
   border: none;
   outline: none;
 }
+
+.imgBox {
+}
+
 .nameProductMain {
   width: 230px;
   text-align: center;

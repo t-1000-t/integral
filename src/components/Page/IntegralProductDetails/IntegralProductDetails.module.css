@@ -6,7 +6,6 @@
 
 .card {
   display: flex;
-  height: 808px;
 }
 .mainLeft {
   width: 20%;
@@ -15,7 +14,6 @@
   display: flex;
   flex-direction: column;
   width: 60%;
-  height: 808px;
   overflow-y: hidden;
 }
 /* .footerMiddle:hover {
@@ -85,8 +83,8 @@
   height: 350px;
 }
 .boxMoreFoto {
-  position: absolute;
-  top: 77%;
+  /* position: absolute; */
+  /* top: 77%; */
   overflow: auto;
   display: flex;
   flex-direction: row;
@@ -147,169 +145,133 @@
 }
 
 @media (min-width: 320px) and (max-width: 359px) {
-  .infoProdImg {
-    border: solid 1px;
-    padding: 10px;
-    border-radius: 8px;
-    height: 80px;
-    overflow-y: auto;
-    border-color: rgb(212, 212, 248);
-  }
-  .wrapperMiddle {
-    position: relative;
-    flex-direction: column;
-    justify-content: center;
-    margin-top: 20px;
-    padding-left: 6px;
-    margin-bottom: 10px;
-  }
-  .boxMoreFoto {
-    width: 95%;
-    top: 1000px;
-    height: 180px;
-  }
-  .liRight {
-    padding: 4px;
-    padding-left: 10px;
-    border-bottom: 1px solid;
-    font-family: "Roboto", sans-serif;
-    font-style: normal;
-    font-size: 10px;
-  }
-  .priceProductDetails {
-    margin-top: 10px;
-    margin-bottom: 10px;
-    margin-left: 10px;
-  }
-  .btnProductDetails {
-    margin-top: 0px;
-    margin-left: 10px;
-    margin-bottom: 10px;
-    height: 40px;
-    box-shadow: 3px 3px 10px rgb(150, 150, 168);
-  }
-
   .card {
-    /* height: 1024px; */
-    margin-bottom: 10px;
+    flex-direction: column;
   }
-  .ulRight {
-    width: 100%;
-    padding: 20px;
-
-    margin-top: 10px;
-    margin-bottom: 10px;
-    border: 4px solid;
-    border-color: rgb(212, 212, 248);
-    border-radius: 8px;
-    height: 200px;
-  }
-  .middleRight {
-    width: 100%;
-    margin-top: 10px;
-  }
-  .productName {
-    padding-top: 10px;
-    padding-bottom: 10px;
-    font-family: "Roboto", sans-serif;
-    font-style: normal;
-    font-size: 15px;
-  }
-  .middleLeft {
-    width: 100%;
-  }
-
   .mainLeft {
     width: 0;
   }
-  .mainMiddle {
-    width: 95%;
-    height: 880px;
-  }
   .mainRight {
     width: 0;
+  }
+  .mainMiddle {
+    width: 100%;
+  }
+  .wrapperMiddle {
+    flex-direction: column;
+  }
+  .middleLeft {
+    width: 94%;
+    margin: 3%;
+  }
+  .middleRight {
+    width: 94%;
+    height: 40px;
+    margin: 3%;
+  }
+  .ulRight {
+    margin-top: 10px;
+    width: 100%;
+    overflow-y: scroll;
+    padding: 10px;
+    height: 150px;
+  }
+  .liRight {
+    padding: 2px;
+    border-bottom: 1px solid;
+    font-family: "Roboto", sans-serif;
+    font-style: normal;
+    font-size: 12px;
+  }
+  .priceProductDetails {
+    margin-bottom: 20px;
+    margin-left: 20px;
+  }
+  .btnProductDetails {
+    width: 180px;
+    margin-left: 10px;
+    margin-bottom: 20px;
+    box-shadow: 5px 5px 10px rgb(150, 150, 168);
+  }
+  .btnMiddleRight {
+    width: 180px;
+    height: 40px;
+    border-radius: 16px;
+    background-color: rgb(109, 167, 109);
+    box-shadow: 5px 5px 10px rgb(150, 150, 168);
+    cursor: pointer;
+  }
+  .boxMoreFoto {
+    margin-left: 20px;
+    margin-bottom: 20px;
+  }
+  .infoProdImg {
+    border-color: rgb(212, 212, 248);
   }
 }
 
 @media (min-width: 360px) and (max-width: 939px) {
-  .infoProdImg {
-    border: solid 1px;
-    padding: 10px;
-    border-radius: 8px;
-    height: 80px;
-    overflow-y: auto;
-    border-color: rgb(212, 212, 248);
-  }
-  .wrapperMiddle {
-    /* position: relative; */
-    flex-direction: column;
-    justify-content: center;
-    margin-top: 20px;
-    padding-left: 6px;
-    margin-bottom: 10px;
-  }
-  .boxMoreFoto {
-    width: 95%;
-    top: 1000px;
-    height: 180px;
-  }
-  .liRight {
-    padding: 4px;
-    padding-left: 10px;
-    border-bottom: 1px solid;
-    font-family: "Roboto", sans-serif;
-    font-style: normal;
-    font-size: 10px;
-  }
-  .priceProductDetails {
-    margin-top: 10px;
-    margin-left: 10px;
-  }
-  .btnProductDetails {
-    margin-top: 0px;
-    margin-left: 10px;
-    margin-bottom: 10px;
-    height: 40px;
-    box-shadow: 3px 3px 10px rgb(150, 150, 168);
-  }
-
   .card {
-    /* height: 1024px; */
-    margin-bottom: 10px;
+    flex-direction: column;
   }
-  .ulRight {
-    width: 100%;
-    padding: 20px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    border: 4px solid;
-    border-color: rgb(212, 212, 248);
-    border-radius: 8px;
-    height: 200px;
-  }
-  .middleRight {
-    width: 100%;
-    margin-top: 10px;
-  }
-  .productName {
-    padding-top: 10px;
-    padding-bottom: 10px;
-    font-family: "Roboto", sans-serif;
-    font-style: normal;
-    font-size: 15px;
-  }
-  .middleLeft {
-    width: 100%;
-  }
-
   .mainLeft {
     width: 0;
   }
-  .mainMiddle {
-    width: 95%;
-    height: 880px;
-  }
   .mainRight {
     width: 0;
+  }
+  .mainMiddle {
+    width: 100%;
+  }
+  .wrapperMiddle {
+    flex-direction: column;
+  }
+  .middleLeft {
+    width: 94%;
+    margin: 3%;
+  }
+  .middleRight {
+    width: 94%;
+    height: 40px;
+    margin: 3%;
+  }
+  .ulRight {
+    margin-top: 10px;
+    width: 100%;
+    overflow-y: scroll;
+    padding: 10px;
+    height: 150px;
+  }
+  .liRight {
+    padding: 2px;
+    border-bottom: 1px solid;
+    font-family: "Roboto", sans-serif;
+    font-style: normal;
+    font-size: 12px;
+  }
+  .priceProductDetails {
+    margin-bottom: 20px;
+    margin-left: 20px;
+  }
+  .btnProductDetails {
+    width: 180px;
+    margin-left: 10px;
+    margin-bottom: 20px;
+    box-shadow: 5px 5px 10px rgb(150, 150, 168);
+  }
+  .btnMiddleRight {
+    width: 180px;
+    height: 40px;
+    border-radius: 16px;
+    background-color: rgb(109, 167, 109);
+    box-shadow: 5px 5px 10px rgb(150, 150, 168);
+    cursor: pointer;
+  }
+  .boxMoreFoto {
+    margin-left: 20px;
+    margin-bottom: 20px;
+  }
+  .infoProdImg {
+    border-color: rgb(212, 212, 248);
   }
 }

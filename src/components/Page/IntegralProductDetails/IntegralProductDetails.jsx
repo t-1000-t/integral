@@ -9,6 +9,7 @@ import PhotoCard from "./PhotoCard/PhotoCard";
 class IntegralProductDetails extends Component {
   state = {
     isOpen: false,
+    isOpenInfo: false,
     prodDetails: null,
     isLoading: false,
     pictures: null,
@@ -99,8 +100,15 @@ class IntegralProductDetails extends Component {
     });
   };
 
+  toggleBtmInfo = () => {
+    const { isOpenInfo } = this.state;
+    this.setState({
+      isOpenInfo: !isOpenInfo,
+    });
+  };
+
   render() {
-    const { prodDetails, isLoading, pictures } = this.state;
+    const { prodDetails, isLoading, pictures, isOpenInfo } = this.state;
     console.log(prodDetails);
     return (
       <>
@@ -139,11 +147,15 @@ class IntegralProductDetails extends Component {
                   </div>
                 </div>
                 <div className={stylish.middleRight}>
-                  <button className={stylish.btnMiddleRight}>
-                    Кнопка без назначения
+                  <button
+                    className={stylish.btnMiddleRight}
+                    onClick={this.toggleBtmInfo}
+                  >
+                    Больше информации
                   </button>
+                </div>
 
-                  {/* <ModalProductDetails> */}
+                {isOpenInfo && (
                   <ul className={stylish.ulRight}>
                     {prodDetails.options.map((elem) => (
                       <li className={stylish.liRight}>
@@ -151,8 +163,7 @@ class IntegralProductDetails extends Component {
                       </li>
                     ))}
                   </ul>
-                  {/* </ModalProductDetails> */}
-                </div>
+                )}
               </div>
               <div className={stylish.priceProductDetails}>
                 {prodDetails.retail_price_uah} грн.
@@ -160,14 +171,17 @@ class IntegralProductDetails extends Component {
               <button className={stylish.btnProductDetails}>
                 <div className={stylish.fontProductDetails}>Купить</div>
               </button>
-              <div className={stylish.boxMoreFoto}>
-                {pictures &&
-                  pictures.map((elem) => (
-                    <div className={stylish.listFoto}>
-                      <PhotoCard elem={elem} />
-                    </div>
-                  ))}
-              </div>
+
+              {isOpenInfo && (
+                <div className={stylish.boxMoreFoto}>
+                  {pictures &&
+                    pictures.map((elem) => (
+                      <div className={stylish.listFoto}>
+                        <PhotoCard elem={elem} />
+                      </div>
+                    ))}
+                </div>
+              )}
             </div>
 
             <div className={stylish.mainRight}></div>
