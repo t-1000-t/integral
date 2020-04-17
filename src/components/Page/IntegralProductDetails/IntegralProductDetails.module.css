@@ -6,6 +6,7 @@
 
 .card {
   display: flex;
+  min-height: 808px;
 }
 .mainLeft {
   width: 20%;
@@ -273,6 +274,7 @@
   .boxMoreFoto {
     margin-left: 20px;
     margin-bottom: 20px;
+    width: 90%;
   }
   .infoProdImg {
     border-color: rgb(212, 212, 248);
