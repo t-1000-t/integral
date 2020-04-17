@@ -146,24 +146,26 @@ class IntegralProductDetails extends Component {
                     </p>
                   </div>
                 </div>
-                <div className={stylish.middleRight}>
-                  <button
-                    className={stylish.btnMiddleRight}
-                    onClick={this.toggleBtmInfo}
-                  >
-                    Больше информации
-                  </button>
-                </div>
+                <div>
+                  <div className={stylish.middleRight}>
+                    <button
+                      className={stylish.btnMiddleRight}
+                      onClick={this.toggleBtmInfo}
+                    >
+                      Больше информации
+                    </button>
+                  </div>
 
-                {isOpenInfo && (
-                  <ul className={stylish.ulRight}>
-                    {prodDetails.options.map((elem) => (
-                      <li className={stylish.liRight}>
-                        {elem.name}: {elem.value}
-                      </li>
-                    ))}
-                  </ul>
-                )}
+                  {isOpenInfo && (
+                    <ul className={stylish.ulRight}>
+                      {prodDetails.options.map((elem) => (
+                        <li className={stylish.liRight}>
+                          {elem.name}: {elem.value}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
               </div>
               <div className={stylish.priceProductDetails}>
                 {prodDetails.retail_price_uah} грн.

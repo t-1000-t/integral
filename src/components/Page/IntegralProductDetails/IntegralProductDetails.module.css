@@ -71,9 +71,6 @@
 
 .mainRight {
   width: 20%;
-
-  /* display: flex;
-  justify-content: center; */
 }
 .ulRight {
   width: 100%;
@@ -84,13 +81,12 @@
   height: 350px;
 }
 .boxMoreFoto {
-  /* position: absolute; */
-  /* top: 77%; */
+  margin-top: 15px;
   overflow: auto;
   display: flex;
   flex-direction: row;
   align-items: center;
-  width: 60%;
+  width: 90%;
   height: 180px;
 
   /* background-color: violet; */
@@ -118,14 +114,16 @@
   width: 250px;
   height: 50px;
 
+  margin-left: 10px;
   cursor: pointer;
-  box-shadow: 5px 5px 15px rgb(150, 150, 168);
+  box-shadow: 5px 5px 10px rgb(150, 150, 168);
   border-radius: 16px;
   background: #fde86e;
 }
 
 .priceProductDetails {
   margin-top: 20px;
+  margin-left: 20px;
   margin-bottom: 20px;
   font-family: "Roboto", sans-serif;
   font-style: normal;

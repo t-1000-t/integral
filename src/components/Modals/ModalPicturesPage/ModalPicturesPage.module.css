@@ -11,8 +11,11 @@
 }
 
 .modal {
-  height: 40vh;
+  flex: 0 0 auto;
 
-  object-fit: cover;
-  overflow-y: scroll;
+  text-align: center;
+}
+
+.modal img {
+  max-width: 100%;
 }

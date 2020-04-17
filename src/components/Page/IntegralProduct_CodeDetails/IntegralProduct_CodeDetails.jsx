@@ -130,7 +130,6 @@ class IntegralProduct_CodeDetails extends Component {
                     Кнопка без назначения
                   </button>
 
-                  {/* <ModalProductDetails> */}
                   <ul className={stylish.ulRight}>
                     {prodCodeDetails.options.map((elem) => (
                       <li className={stylish.liRight}>
@@ -138,7 +137,6 @@ class IntegralProduct_CodeDetails extends Component {
                       </li>
                     ))}
                   </ul>
-                  {/* </ModalProductDetails> */}
                 </div>
               </div>
               <div className={stylish.priceProductDetails}>
