@@ -156,6 +156,7 @@
   }
   .mainMiddle {
     width: 100%;
+    flex: 1 1 auto;
   }
   .wrapperMiddle {
     flex-direction: column;
@@ -210,7 +211,7 @@
   }
 }
 
-@media (min-width: 360px) and (max-width: 939px) {
+@media (min-width: 360px) and (max-width: 814px) {
   .card {
     flex-direction: column;
   }
@@ -222,6 +223,8 @@
   }
   .mainMiddle {
     width: 100%;
+    min-height: 812px;
+    flex: 1 1 auto;
   }
   .wrapperMiddle {
     flex-direction: column;
