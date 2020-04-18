@@ -12,8 +12,10 @@ import chatboxEllipsesOutline from "@iconify/icons-ion/chatbox-ellipses-outline"
 class NavigationPage extends Component {
   render() {
     return (
-      <div>
+      <div className={stylish.boxWrapper}>
+        {/* <div className={stylish.headerMenu}></div> */}
         <ul className={stylish.wrapper}>
+          {/* <li className={stylish.headerMenu}></li> */}
           <li className={stylish.integral}>
             <NavLink className={stylish.logoNavLink} exact to={routes.HOME}>
               <p className={stylish.logo}>Integral</p>
@@ -24,6 +26,9 @@ class NavigationPage extends Component {
             <NavLink exact to={routes.HOME}>
               <button className={stylish.home}>home</button>
             </NavLink>
+            <div className={stylish.header_burger}>
+              <span></span>
+            </div>
             {/* <NavLink exact to={routes.MAIN}>
               <button className={stylish.main}>main</button>
             </NavLink> */}

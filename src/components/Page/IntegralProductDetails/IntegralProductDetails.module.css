@@ -79,6 +79,7 @@
 
   padding: 10px;
   height: 350px;
+  margin-top: 10px;
 }
 .boxMoreFoto {
   margin-top: 15px;
@@ -87,7 +88,9 @@
   flex-direction: row;
   align-items: center;
   width: 90%;
-  height: 180px;
+  height: 200px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 
   /* background-color: violet; */
 }
