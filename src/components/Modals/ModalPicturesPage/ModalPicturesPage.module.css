@@ -19,3 +19,9 @@
 .modal img {
   max-width: 100%;
 }
+
+@media (min-width: 320px) and (max-width: 414px) and (min-height: 360px) and (max-height: 896px) {
+  .modal {
+    flex: 0 1 400px;
+  }
+}
