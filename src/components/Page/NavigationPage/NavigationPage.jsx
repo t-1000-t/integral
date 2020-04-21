@@ -10,9 +10,22 @@ import mailOpenOutline from "@iconify/icons-ion/mail-open-outline";
 import chatboxEllipsesOutline from "@iconify/icons-ion/chatbox-ellipses-outline";
 
 class NavigationPage extends Component {
+  state = {
+    isOpenBurger: false,
+  };
+
+  toggleBurger = () => {
+    this.setState({
+      isOpenBurger: !this.state.isOpenBurger,
+    });
+  };
+
   render() {
+    const { isOpenBurger } = this.state;
     return (
-      <div className={stylish.boxWrapper}>
+      <div
+        className={isOpenBurger ? stylish.boxWrapperAfter : stylish.boxWrapper}
+      >
         {/* <div className={stylish.headerMenu}></div> */}
         <ul className={stylish.wrapper}>
           {/* <li className={stylish.headerMenu}></li> */}
@@ -23,18 +36,24 @@ class NavigationPage extends Component {
             </NavLink>
           </li>
           <li className={stylish.middleNavigation}>
-            <NavLink exact to={routes.HOME}>
-              <button className={stylish.home}>home</button>
-            </NavLink>
-            <div className={stylish.header_burger}>
+            {!isOpenBurger && (
+              <NavLink exact to={routes.HOME}>
+                <button className={stylish.home}>home</button>
+              </NavLink>
+            )}
+
+            <div className={stylish.header_burger} onClick={this.toggleBurger}>
               <span></span>
             </div>
+
             {/* <NavLink exact to={routes.MAIN}>
               <button className={stylish.main}>main</button>
             </NavLink> */}
-            <NavLink exact to={routes.ABOUT}>
-              <button className={stylish.about}>about</button>
-            </NavLink>
+            {!isOpenBurger && (
+              <NavLink exact to={routes.ABOUT}>
+                <button className={stylish.about}>about</button>
+              </NavLink>
+            )}
           </li>
           <li className={stylish.support}>
             <div className={stylish.boxSupport1}>
@@ -70,6 +89,18 @@ class NavigationPage extends Component {
             </div>
           </li>
         </ul>
+        {isOpenBurger && (
+          <div className={stylish.listBurgerMenu}>
+            <NavLink exact to={routes.HOME} onClick={this.toggleBurger}>
+              <button className={stylish.start}>home</button>
+            </NavLink>
+            <NavLink exact to={routes.ABOUT}>
+              <button className={stylish.contact} onClick={this.toggleBurger}>
+                contact
+              </button>
+            </NavLink>
+          </div>
+        )}
       </div>
     );
   }

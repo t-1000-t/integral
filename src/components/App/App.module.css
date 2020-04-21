@@ -1,6 +1,7 @@
 @media (min-width: 320px) and (max-width: 414px) and (min-height: 360px) and (max-height: 896px) {
   .container {
     margin-top: 85px;
+    padding-bottom: 5px;
     display: flex;
     overflow: hidden;
     flex-direction: column;
@@ -8,6 +9,12 @@
 
     /* justify-content: center; */
     /* align-content: space-between; */
+  }
+}
+
+@media (min-width: 360px) and (max-width: 414px) and (min-height: 875px) and (max-height: 896px) {
+  .container {
+    margin-top: 80px;
   }
 }
 
