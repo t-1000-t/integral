@@ -1,6 +1,7 @@
 .wrapper {
   width: 100%;
   height: 808.5px;
+
   background-color: #e8e8fd;
 }
 
@@ -68,7 +69,7 @@
   display: flex;
   flex-wrap: wrap;
   width: 100%;
-  height: 760px;
+  height: 759px;
   overflow: hidden;
   /* background-color: yellowgreen; */
 }
@@ -79,7 +80,7 @@
   display: flex;
   flex-wrap: wrap;
   width: 100%;
-  height: 760px;
+  height: 759px;
   overflow-y: auto;
 }
 .ulList {

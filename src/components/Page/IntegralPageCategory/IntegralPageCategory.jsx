@@ -211,6 +211,18 @@ class IntegralPageCategory extends Component {
                   <div className={stylish.fontName}>{elem.name10}</div>
                 </button>
               </NavLink>
+
+              <NavLink
+                className={stylish.boxCellNavLink}
+                to={{
+                  pathname: routes.PRODUCTS,
+                  search: `?category=${elem.category11}`,
+                }}
+              >
+                <button className={stylish.boxCell}>
+                  <div className={stylish.fontName}>{elem.name11}</div>
+                </button>
+              </NavLink>
             </div>
           </ModalLicategory>
         )}
