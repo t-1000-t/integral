@@ -33,6 +33,7 @@
   margin-left: 20px;
   height: 35px;
   border-radius: 8px;
+  border-color: #fed700;
   cursor: pointer;
   font-family: "Boogaloo", cursive;
   font-size: 19px;
@@ -234,6 +235,12 @@ input:focus:invalid {
 }
 
 @media (min-width: 360px) and (max-width: 939px) {
+  .btnSearch {
+    margin-left: 10px;
+  }
+  .container {
+    background-color: #1f65d6;
+  }
   .boxTest {
     justify-content: center;
     margin-bottom: 0px;
@@ -257,7 +264,7 @@ input:focus:invalid {
     margin-left: 0px;
   }
   .ulList {
-    top: 165px;
+    top: 145px;
     left: 5%;
   }
 }

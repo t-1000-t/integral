@@ -26,16 +26,18 @@
 
 @media (min-width: 320px) and (max-width: 359px) {
   .backdrop {
+    top: 110px;
     width: 94%;
     height: 62%;
-    left: 2%;
+    left: 1%;
   }
 }
 
 @media (min-width: 360px) and (max-width: 940px) {
   .backdrop {
+    top: 110px;
     width: 94%;
     height: 62%;
-    left: 2%;
+    left: 4%;
   }
 }
