@@ -124,14 +124,25 @@ class IntegralProduct_CodeDetails extends Component {
                       Код продукта: {prodCodeDetails.product_code}
                     </div>
                   </div>
-                  <div className={stylish.imgDescription}>
-                    <img
-                      className={stylish.img}
-                      src={prodCodeDetails.medium_image}
-                      alt="foto_small"
-                    />
-                    <p>{prodCodeDetails.brief_description}</p>
-                  </div>
+                  {prodCodeDetails.stocks.length > 0 ? (
+                    <div className={stylish.imgDescription}>
+                      <img
+                        className={stylish.img}
+                        src={prodCodeDetails.medium_image}
+                        alt="foto_small"
+                      />
+                      <p>{prodCodeDetails.brief_description}</p>
+                    </div>
+                  ) : (
+                    <div className={stylish.imgDescription}>
+                      <img
+                        className={stylish.imgNoProduct}
+                        src={prodCodeDetails.medium_image}
+                        alt="foto_small"
+                      />
+                      <p>{prodCodeDetails.brief_description}</p>
+                    </div>
+                  )}
                 </div>
                 <div className={stylish.middleRight}>
                   <button
@@ -151,9 +162,15 @@ class IntegralProduct_CodeDetails extends Component {
                   )}
                 </div>
               </div>
-              <div className={stylish.priceProductDetails}>
-                {prodCodeDetails.retail_price_uah} грн.
-              </div>
+              {prodCodeDetails.stocks.length > 0 ? (
+                <div className={stylish.priceProductDetails}>
+                  {prodCodeDetails.retail_price_uah} грн.
+                </div>
+              ) : (
+                <div className={stylish.priceProductDetails}>
+                  НЕТ В НАЛИЧИИ!
+                </div>
+              )}
               <button className={stylish.btnProductDetails}>
                 <div className={stylish.fontProductDetails}>Купить</div>
               </button>

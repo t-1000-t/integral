@@ -39,6 +39,12 @@
   padding-bottom: 20px;
   overflow: scroll;
 }
+.imgNoProdu {
+  opacity: 0.3;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  overflow: scroll;
+}
 .imgDescription {
   width: 100%;
   margin-top: 10px;

@@ -136,11 +136,19 @@ class IntegralProductDetails extends Component {
                     </div>
                   </div>
                   <div className={stylish.imgDescription}>
-                    <img
-                      className={stylish.img}
-                      src={prodDetails.medium_image}
-                      alt="foto_small"
-                    />
+                    {prodDetails.stocks.length > 0 ? (
+                      <img
+                        className={stylish.img}
+                        src={prodDetails.medium_image}
+                        alt="foto_small"
+                      />
+                    ) : (
+                      <img
+                        className={stylish.imgNoProdu}
+                        src={prodDetails.medium_image}
+                        alt="foto_small"
+                      />
+                    )}
                     <p className={stylish.infoProdImg}>
                       {prodDetails.brief_description}
                     </p>
@@ -167,9 +175,15 @@ class IntegralProductDetails extends Component {
                   )}
                 </div>
               </div>
-              <div className={stylish.priceProductDetails}>
-                {prodDetails.retail_price_uah} грн.
-              </div>
+              {prodDetails.stocks.length > 0 ? (
+                <div className={stylish.priceProductDetails}>
+                  {prodDetails.retail_price_uah} грн.
+                </div>
+              ) : (
+                <div className={stylish.priceProductDetails}>
+                  НЕТ В НАЛИЧИИ!
+                </div>
+              )}
               <button className={stylish.btnProductDetails}>
                 <div className={stylish.fontProductDetails}>Купить</div>
               </button>

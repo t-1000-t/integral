@@ -95,35 +95,65 @@ class IntegralViewNotebooks extends Component {
           )}
           <div className={stylish.container}>
             <ul className={stylish.wrapper}>
-              {newArrProducts.map((item) => (
-                <li key={item.productID}>
-                  <div className={stylish.card}>
-                    <div>
-                      <div className={stylish.nameItem}>{item.name}</div>
-                      <div className={stylish.fontProdCode}>
-                        Код Товара: {item.product_code}
+              {newArrProducts.map((item) =>
+                item.stocks.length > 0 ? (
+                  <li key={item.productID}>
+                    <div className={stylish.card}>
+                      <div>
+                        <div className={stylish.nameItem}>{item.name}</div>
+                        <div className={stylish.fontProdCode}>
+                          Код Товара: {item.product_code}
+                        </div>
+                        <NavLink
+                          className={stylish.NavLinkProd}
+                          to={`${routes.PRODUCT}/${item.productID}`}
+                        >
+                          <div>
+                            <img src={item.medium_image} alt={item.articul} />
+                          </div>
+                        </NavLink>
+                        <div className={stylish.priceInfo}>
+                          <div className={stylish.fontPriceRetail}>
+                            {item.retail_price_uah} грн.
+                          </div>
+                          <div className={stylish.fontCountry}>
+                            {item.country}
+                          </div>
+                        </div>
+                        <button className={stylish.btnCard}>Купить</button>
                       </div>
-                      <NavLink
-                        className={stylish.NavLinkProd}
-                        to={`${routes.PRODUCT}/${item.productID}`}
-                      >
-                        <div>
-                          <img src={item.medium_image} alt={item.articul} />
-                        </div>
-                      </NavLink>
-                      <div className={stylish.priceInfo}>
-                        <div className={stylish.fontPriceRetail}>
-                          {item.retail_price_uah} грн.
-                        </div>
-                        <div className={stylish.fontCountry}>
-                          {item.country}
-                        </div>
-                      </div>
-                      <button className={stylish.btnCard}>Купить</button>
                     </div>
-                  </div>
-                </li>
-              ))}
+                  </li>
+                ) : (
+                  <li key={item.productID}>
+                    <div className={stylish.card}>
+                      <div>
+                        <div className={stylish.nameItem}>{item.name}</div>
+                        <div className={stylish.fontProdCode}>
+                          Код Товара: {item.product_code}
+                        </div>
+                        <NavLink
+                          className={stylish.NavLinkProd}
+                          to={`${routes.PRODUCT}/${item.productID}`}
+                        >
+                          <div className={stylish.noPresentProduct}>
+                            <img src={item.medium_image} alt={item.articul} />
+                          </div>
+                        </NavLink>
+                        <div className={stylish.priceInfo}>
+                          <div className={stylish.fontPriceRetailNoProduct}>
+                            {item.retail_price_uah} грн.
+                          </div>
+                          <div className={stylish.fontCountry}>
+                            {item.country}
+                          </div>
+                        </div>
+                        {/* <button className={stylish.btnCard}>Купить</button> */}
+                      </div>
+                    </div>
+                  </li>
+                )
+              )}
             </ul>
           </div>
         </div>

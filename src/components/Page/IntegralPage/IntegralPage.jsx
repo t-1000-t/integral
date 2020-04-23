@@ -286,6 +286,7 @@ class IntegralPage extends Component {
   // toggle for on click
 
   btnRef = createRef();
+  btnRouteRef = createRef();
 
   componentDidMount() {
     window.addEventListener("keydown", this.handleKeyPress);
@@ -298,6 +299,9 @@ class IntegralPage extends Component {
 
   handleKeyPress = (e) => {
     console.log(e);
+
+    // if (e.code === "Enter" && this.state.inputValue.trim().length !== 0) {
+    // }
 
     if (e.code !== "Escape") {
       return;
@@ -413,7 +417,7 @@ class IntegralPage extends Component {
                             </div>
                           </NavLink>
                           <div className={stylish.fontPayProductMain}>
-                            {elem.retail_price_uah} грн.
+                            {/* {elem.retail_price_uah} грн. */}
                           </div>
                           <div className={stylish.fontProductMain}>
                             {elem.country}
@@ -475,13 +479,12 @@ class IntegralPage extends Component {
             >
               <button
                 className={stylish.btnSearch}
-                disabled={this.state.inputValue.trim().length === 0} 
+                disabled={this.state.inputValue.trim().length === 0}
               >
                 search
               </button>
             </NavLink>
           </div>
-          {/* <div>cart</div> */}
         </div>
       </div>
     );
