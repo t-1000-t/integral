@@ -26,7 +26,7 @@ class App extends Component {
             <Route path="/products" component={IntegralViewCategoryProducts} />
             <Route
               path="/product/product_code/:someIDproduct"
-              component={IntegralProduct_CodeDetails}
+              component={IntegralProduct_CodeDetails} 
             />
             <Route
               path="/product/:someIDproduct"

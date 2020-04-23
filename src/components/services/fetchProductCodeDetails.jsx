@@ -1,7 +1,7 @@
 const fetchCodeDetails = async (prodID) => {
   try {
     return await fetch(
-      `https://shop-integral.herokuapp.com/api/product/product_code?num=${prodID}`
+      `https://shop-integral.herokuapp.com/api/product/product_code/${prodID}`
     )
       .then((res) => res.json())
       .then((data) => data)

@@ -9,6 +9,7 @@ import PhotoCard from "./PhotoCard/PhotoCard";
 class IntegralProduct_CodeDetails extends Component {
   state = {
     isOpen: false,
+    isOpenInfo: false,
     prodCodeDetails: null,
     isLoading: false,
     pictures: null,
@@ -18,7 +19,7 @@ class IntegralProduct_CodeDetails extends Component {
   fetchViewDetails = async () => {
     this.setState({ isLoading: true });
     const prodID = this.props.match.params.someIDproduct;
-    console.log(prodID);
+
     await fetchProductCodeDetails
       .fetchCodeDetails(prodID)
       .then((data) => {
@@ -35,7 +36,8 @@ class IntegralProduct_CodeDetails extends Component {
   };
 
   getPictures = async () => {
-    const prodID = this.props.match.params.someIDproduct;
+    const prodID = this.state.prodCodeDetails.productID;
+    console.log(prodID);
     await fetchPicturesProduct
       .fetchProducts(prodID)
       .then((data) => {
@@ -66,8 +68,7 @@ class IntegralProduct_CodeDetails extends Component {
 
   componentDidMount() {
     this.fetchViewDetails();
-    this.getPictures();
-    this.getComments();
+    // this.getComments();
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -86,9 +87,16 @@ class IntegralProduct_CodeDetails extends Component {
     });
   };
 
+  toggleBtmInfo = () => {
+    const { isOpenInfo } = this.state;
+    this.setState({
+      isOpenInfo: !isOpenInfo,
+    });
+    this.getPictures();
+  };
+
   render() {
-    const { prodCodeDetails, isLoading, pictures } = this.state;
-    console.log(prodCodeDetails);
+    const { prodCodeDetails, isLoading, pictures, isOpenInfo } = this.state;
     return (
       <>
         {isLoading && (
@@ -126,17 +134,21 @@ class IntegralProduct_CodeDetails extends Component {
                   </div>
                 </div>
                 <div className={stylish.middleRight}>
-                  <button className={stylish.btnMiddleRight}>
-                    Кнопка без назначения
+                  <button
+                    className={stylish.btnMiddleRight}
+                    onClick={this.toggleBtmInfo}
+                  >
+                    Больше информации
                   </button>
-
-                  <ul className={stylish.ulRight}>
-                    {prodCodeDetails.options.map((elem) => (
-                      <li className={stylish.liRight}>
-                        {elem.name}: {elem.value}
-                      </li>
-                    ))}
-                  </ul>
+                  {isOpenInfo && (
+                    <ul className={stylish.ulRight}>
+                      {prodCodeDetails.options.map((elem) => (
+                        <li className={stylish.liRight}>
+                          {elem.name}: {elem.value}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
                 </div>
               </div>
               <div className={stylish.priceProductDetails}>
@@ -145,14 +157,17 @@ class IntegralProduct_CodeDetails extends Component {
               <button className={stylish.btnProductDetails}>
                 <div className={stylish.fontProductDetails}>Купить</div>
               </button>
-              <div className={stylish.boxMoreFoto}>
-                {pictures &&
-                  pictures.map((elem) => (
-                    <div className={stylish.listFoto}>
-                      <PhotoCard elem={elem} />
-                    </div>
-                  ))}
-              </div>
+
+              {isOpenInfo && (
+                <div className={stylish.boxMoreFoto}>
+                  {pictures &&
+                    pictures.map((elem) => (
+                      <div className={stylish.listFoto}>
+                        <PhotoCard elem={elem} />
+                      </div>
+                    ))}
+                </div>
+              )}
             </div>
 
             <div className={stylish.mainRight}></div>

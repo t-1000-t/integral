@@ -22,6 +22,11 @@
   height: 50px;
 }
 
+/* .containerCart {
+  width: 100%;
+  background-color: hotpink;
+} */
+
 .btnList {
   display: inline-block;
   padding: 10px;

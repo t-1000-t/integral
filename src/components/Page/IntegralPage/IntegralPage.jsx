@@ -475,12 +475,13 @@ class IntegralPage extends Component {
             >
               <button
                 className={stylish.btnSearch}
-                disabled={this.state.inputValue.trim().length === 0}
+                disabled={this.state.inputValue.trim().length === 0} 
               >
                 search
               </button>
             </NavLink>
           </div>
+          {/* <div>cart</div> */}
         </div>
       </div>
     );
