@@ -1,7 +1,8 @@
-import React, { Component } from "react";
+import React, { Component, createRef } from "react";
 import { NavLink } from "react-router-dom";
 import routes from "../../../routes/routes";
 import Loader from "react-loader-spinner";
+import ScrollButton from "../../services/ScrollButton/ScrollButton";
 
 import stylish from "./IntegralViewCategoryProducts.module.css";
 
@@ -11,6 +12,8 @@ class IntegralViewNotebooks extends Component {
     textSearch: "",
     isLoading: false,
   };
+
+  ulListRef = createRef();
 
   componentDidMount(prevProps, prevState) {
     this.fetchArrProducts();
@@ -69,6 +72,9 @@ class IntegralViewNotebooks extends Component {
     return (
       <>
         <div className={stylish.wrapperPage}>
+          <div>
+            <ScrollButton ulListRef={this.ulListRef} />
+          </div>
           <div className={stylish.wrapperTitle}>
             <div className={stylish.boxTitle}>
               <div className={stylish.title}>Продукты категории</div>
@@ -93,8 +99,8 @@ class IntegralViewNotebooks extends Component {
               />
             </div>
           )}
-          <div className={stylish.container}>
-            <ul className={stylish.wrapper}>
+          <div id="idCategProdScroll" className={stylish.container}>
+            <ul className={stylish.wrapper} ref={this.ulListRef}>
               {newArrProducts.map((item) =>
                 item.stocks.length > 0 ? (
                   <li key={item.productID}>
