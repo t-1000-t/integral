@@ -33,7 +33,7 @@ class App extends Component {
               component={IntegralProduct_CodeDetails}
             />
             <Route
-              path={`${routes.PRODUCT}:someIDproduct`}
+              path={`${routes.PRODUCT}/:someIDproduct`}
               component={IntegralProductDetails}
             />
             <Redirect to={routes.HOME} />
