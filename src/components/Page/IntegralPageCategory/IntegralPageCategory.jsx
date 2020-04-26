@@ -94,10 +94,7 @@ class IntegralPageCategory extends Component {
             >
               <NavLink
                 className={stylish.boxCellNavLink}
-                to={{
-                  pathname: routes.PRODUCTS,
-                  search: `?category=${elem.category1}`,
-                }}
+                to={`${routes.PRODUCTS}/${elem.category1}`}
               >
                 <button className={stylish.boxCell}>
                   <div className={stylish.fontName}>{elem.name1}</div>
@@ -106,10 +103,7 @@ class IntegralPageCategory extends Component {
 
               <NavLink
                 className={stylish.boxCellNavLink}
-                to={{
-                  pathname: routes.PRODUCTS,
-                  search: `?category=${elem.category2}`,
-                }}
+                to={`${routes.PRODUCTS}/${elem.category2}`}
               >
                 <button className={stylish.boxCell}>
                   <div className={stylish.fontName}>{elem.name2}</div>
@@ -118,10 +112,7 @@ class IntegralPageCategory extends Component {
 
               <NavLink
                 className={stylish.boxCellNavLink}
-                to={{
-                  pathname: routes.PRODUCTS,
-                  search: `?category=${elem.category3}`,
-                }}
+                to={`${routes.PRODUCTS}/${elem.category3}`}
               >
                 <button className={stylish.boxCell}>
                   <div className={stylish.fontName}>{elem.name3}</div>
@@ -130,10 +121,7 @@ class IntegralPageCategory extends Component {
 
               <NavLink
                 className={stylish.boxCellNavLink}
-                to={{
-                  pathname: routes.PRODUCTS,
-                  search: `?category=${elem.category4}`,
-                }}
+                to={`${routes.PRODUCTS}/${elem.category4}`}
               >
                 <button className={stylish.boxCell}>
                   <div className={stylish.fontName}>{elem.name4}</div>
@@ -142,10 +130,7 @@ class IntegralPageCategory extends Component {
 
               <NavLink
                 className={stylish.boxCellNavLink}
-                to={{
-                  pathname: routes.PRODUCTS,
-                  search: `?category=${elem.category5}`,
-                }}
+                to={`${routes.PRODUCTS}/${elem.category5}`}
               >
                 <button className={stylish.boxCell}>
                   <div className={stylish.fontName}>{elem.name5}</div>
@@ -154,10 +139,7 @@ class IntegralPageCategory extends Component {
 
               <NavLink
                 className={stylish.boxCellNavLink}
-                to={{
-                  pathname: routes.PRODUCTS,
-                  search: `?category=${elem.category6}`,
-                }}
+                to={`${routes.PRODUCTS}/${elem.category6}`}
               >
                 <button className={stylish.boxCell}>
                   <div className={stylish.fontName}>{elem.name6}</div>
@@ -166,10 +148,7 @@ class IntegralPageCategory extends Component {
 
               <NavLink
                 className={stylish.boxCellNavLink}
-                to={{
-                  pathname: routes.PRODUCTS,
-                  search: `?category=${elem.category7}`,
-                }}
+                to={`${routes.PRODUCTS}/${elem.category7}`}
               >
                 <button className={stylish.boxCell}>
                   <div className={stylish.fontName}>{elem.name7}</div>
@@ -178,10 +157,7 @@ class IntegralPageCategory extends Component {
 
               <NavLink
                 className={stylish.boxCellNavLink}
-                to={{
-                  pathname: routes.PRODUCTS,
-                  search: `?category=${elem.category8}`,
-                }}
+                to={`${routes.PRODUCTS}/${elem.category8}`}
               >
                 <button className={stylish.boxCell}>
                   <div className={stylish.fontName}>{elem.name8}</div>
@@ -190,10 +166,7 @@ class IntegralPageCategory extends Component {
 
               <NavLink
                 className={stylish.boxCellNavLink}
-                to={{
-                  pathname: routes.PRODUCTS,
-                  search: `?category=${elem.category9}`,
-                }}
+                to={`${routes.PRODUCTS}/${elem.category9}`}
               >
                 <button className={stylish.boxCell}>
                   <div className={stylish.fontName}>{elem.name9}</div>
@@ -202,10 +175,7 @@ class IntegralPageCategory extends Component {
 
               <NavLink
                 className={stylish.boxCellNavLink}
-                to={{
-                  pathname: routes.PRODUCTS,
-                  search: `?category=${elem.category10}`,
-                }}
+                to={`${routes.PRODUCTS}/${elem.category10}`}
               >
                 <button className={stylish.boxCell}>
                   <div className={stylish.fontName}>{elem.name10}</div>

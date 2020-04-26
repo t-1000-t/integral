@@ -11,6 +11,8 @@ class IntegralViewNotebooks extends Component {
     arrProducts: [],
     textSearch: "",
     isLoading: false,
+    getStartNum: 0,
+    totalCount: 0,
   };
 
   ulListRef = createRef();
@@ -19,29 +21,32 @@ class IntegralViewNotebooks extends Component {
     this.fetchArrProducts();
   }
 
-  nextCategory = new URLSearchParams(this.props.location.search).get(
-    "category"
-  );
+  nextCategory = this.props.match.params.categorynum;
 
   setSearchCategory = (nextCategory) => {
     this.props.history.push({
-      ...this.props.location,
-      search: `?category=${nextCategory}`,
+      ...this.props,
     });
   };
 
   async fetchArrProducts() {
+    console.log(this.nextCategory);
     this.setState({ isLoading: true });
     try {
       await fetch(
-        `https://shop-integral.herokuapp.com/api/products${this.props.location.search}`
+        // `http://localhost:5000/api/products/${this.nextCategory}/${this.state.getStartNum}`
+        `https://shop-integral.herokuapp.com/api/products/${this.nextCategory}/${this.state.getStartNum}`
       )
+        // `https://shop-integral.herokuapp.com/api/products${this.props.location.search}`
         .then((res) => res.json())
-        .then((data) =>
+        .then((data) => {
           this.setState({
-            arrProducts: data,
-          })
-        )
+            arrProducts: data.list,
+            totalCount: data.count,
+          });
+          console.log("data.count", data.count);
+          console.log("totalCount", this.state.totalCount);
+        })
         .catch((error) => {
           this.setState({
             error,
@@ -61,14 +66,14 @@ class IntegralViewNotebooks extends Component {
 
   render() {
     const { isLoading, arrProducts, textSearch } = this.state;
-
+    console.log(arrProducts);
     const newArrProducts = arrProducts.filter(
       (elem) =>
         elem.name.toLowerCase().includes(textSearch.toLowerCase()) ||
         elem.product_code.toLowerCase().includes(textSearch.toLowerCase()) ||
         elem.articul.toLowerCase().includes(textSearch.toLowerCase())
     );
-
+    // console.log(newArrProducts);
     return (
       <>
         <div className={stylish.wrapperPage}>
