@@ -1,4 +1,4 @@
-import React, { Component, createRef } from "react";
+import React, { Component } from "react";
 import stylish from "./ScrollButton.module.css";
 import { Icon } from "@iconify/react";
 import playBackOutline from "@iconify/icons-ion/play-back-outline";
@@ -9,8 +9,6 @@ class ScrollButton extends Component {
     yScrollSet: 0,
     isShowBtn: false,
   };
-
-  btnTopRef = createRef();
 
   componentDidMount() {
     window.addEventListener("scroll", this.handleKeyPress);
@@ -24,22 +22,21 @@ class ScrollButton extends Component {
     if (e.type !== "scroll") {
       return;
     }
-    if (e.SCROLL_PAGE_UP) {
-      this.setState({
-        isShowBtn: true,
-      });
-    }
-    setTimeout(() => {
-      this.setState({
-        isShowBtn: false,
-      });
-    }, 6000);
+
+    window.pageYOffset !== 0
+      ? this.setState({
+          isShowBtn: true,
+        })
+      : this.setState({
+          isShowBtn: false,
+        });
   };
 
   scrollStep = () => {
     if (window.pageYOffset === 0) {
       clearInterval(this.state.intervalId);
     }
+
     window.scroll(0, window.pageYOffset - 50);
   };
 
@@ -52,13 +49,10 @@ class ScrollButton extends Component {
 
   render() {
     const { isShowBtn } = this.state;
-    console.log(this.props.ulListRef);
-    console.log(this.btnTopRef);
     return (
       <>
         {isShowBtn && (
           <button
-            ref={this.btnTopRef}
             title="Back to top"
             className={stylish.scroll}
             onClick={() => {

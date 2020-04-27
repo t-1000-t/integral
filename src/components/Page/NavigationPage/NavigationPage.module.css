@@ -3,6 +3,25 @@
   align-items: center;
   height: 100px;
 }
+
+.banner {
+  width: 100px;
+  height: 90px;
+  background-size: cover;
+  background-image: url("../../../images/tp-link.jpg");
+  cursor: pointer;
+  opacity: 0.8;
+}
+.banner:hover {
+  opacity: 1;
+}
+.bannerModal {
+  width: 1148px;
+  height: 640px;
+  background-size: cover;
+  background-image: url("../../../images/tp-link.jpg");
+}
+
 .middleNavigation {
   display: flex;
   justify-content: left;

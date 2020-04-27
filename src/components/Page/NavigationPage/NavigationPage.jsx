@@ -8,10 +8,18 @@ import callOutline from "@iconify/icons-ion/call-outline";
 // import headsetOutline from "@iconify/icons-ion/headset-outline";
 import mailOpenOutline from "@iconify/icons-ion/mail-open-outline";
 import chatboxEllipsesOutline from "@iconify/icons-ion/chatbox-ellipses-outline";
+import ModalPicturesPage from "../../Modals/ModalPicturesPage/ModalPicturesPage";
 
 class NavigationPage extends Component {
   state = {
     isOpenBurger: false,
+    isOpenBanner: false,
+  };
+
+  toggleBanner = () => {
+    this.setState({
+      isOpenBanner: !this.state.isOpenBanner,
+    });
   };
 
   toggleBurger = () => {
@@ -21,14 +29,12 @@ class NavigationPage extends Component {
   };
 
   render() {
-    const { isOpenBurger } = this.state;
+    const { isOpenBurger, isOpenBanner } = this.state;
     return (
       <div
         className={isOpenBurger ? stylish.boxWrapperAfter : stylish.boxWrapper}
       >
-        {/* <div className={stylish.headerMenu}></div> */}
         <ul className={stylish.wrapper}>
-          {/* <li className={stylish.headerMenu}></li> */}
           <li className={stylish.integral}>
             <NavLink className={stylish.logoNavLink} exact to={routes.HOME}>
               <p className={stylish.logo}>Integral</p>
@@ -41,11 +47,9 @@ class NavigationPage extends Component {
                 <button className={stylish.home}>home</button>
               </NavLink>
             )}
-
             <div className={stylish.header_burger} onClick={this.toggleBurger}>
               <span></span>
             </div>
-
             {/* <NavLink exact to={routes.MAIN}>
               <button className={stylish.main}>main</button>
             </NavLink> */}
@@ -54,11 +58,21 @@ class NavigationPage extends Component {
                 <button className={stylish.about}>about</button>
               </NavLink>
             )}
+            {!isOpenBurger && (
+              <div onClick={this.toggleBanner} className={stylish.banner}></div>
+            )}
+            <>
+              {isOpenBanner && (
+                <ModalPicturesPage onClose={this.toggleBanner}>
+                  <div className={stylish.bannerModal}></div>
+                </ModalPicturesPage>
+              )}
+            </>
           </li>
           <li className={stylish.support}>
             <div className={stylish.boxSupport1}>
               <Icon className={stylish.iconCall} icon={callOutline} />
-              {/* <Icon className={stylish.iconHeadset} icon={headsetOutline} /> */}
+
               <div className={stylish.suppNomber}>
                 (+38) 066 <b>911</b> 0347
               </div>

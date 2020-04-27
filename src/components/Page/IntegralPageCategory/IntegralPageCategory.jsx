@@ -184,10 +184,7 @@ class IntegralPageCategory extends Component {
 
               <NavLink
                 className={stylish.boxCellNavLink}
-                to={{
-                  pathname: routes.PRODUCTS,
-                  search: `?category=${elem.category11}`,
-                }}
+                to={`${routes.PRODUCTS}/${elem.category11}`}
               >
                 <button className={stylish.boxCell}>
                   <div className={stylish.fontName}>{elem.name11}</div>

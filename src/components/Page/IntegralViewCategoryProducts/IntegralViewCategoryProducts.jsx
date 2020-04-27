@@ -29,22 +29,32 @@ class IntegralViewNotebooks extends Component {
     });
   };
 
+  fetchProducrs(val) {
+    console.log("fetch todo started...");
+    return fetch(
+      // `http://localhost:5000/api/products/${this.nextCategory}/${val}`
+      `https://shop-integral.herokuapp.com/api/products/${this.nextCategory}/${val}`
+    ).then((res) => res.json());
+  }
+
   async fetchArrProducts() {
+    const { getStartNum } = this.state;
     console.log(this.nextCategory);
     this.setState({ isLoading: true });
     try {
-      await fetch(
-        // `http://localhost:5000/api/products/${this.nextCategory}/${this.state.getStartNum}`
-        `https://shop-integral.herokuapp.com/api/products/${this.nextCategory}/${this.state.getStartNum}`
-      )
-        // `https://shop-integral.herokuapp.com/api/products${this.props.location.search}`
-        .then((res) => res.json())
+      await this.fetchProducrs(getStartNum)
         .then((data) => {
           this.setState({
-            arrProducts: data.list,
-            totalCount: data.count,
+            arrProducts: data.result.list,
+            totalCount: data.result.count,
           });
-          console.log("data.count", data.count);
+          // if (data.result.count > 1000) {
+          //   for (let i = 1000; this.state.totalCount > i; i + 1000) {
+          //     console.log("i", i);
+          //     this.fetchProducrs(i);
+          //   }
+          // }
+          console.log("data.count", data.result.count);
           console.log("totalCount", this.state.totalCount);
         })
         .catch((error) => {
