@@ -30,6 +30,9 @@
   padding-left: 15px;
   border-radius: 8px;
 }
+.tCountNum {
+  margin-left: 20px;
+}
 .container {
   width: 100%;
   display: flex;

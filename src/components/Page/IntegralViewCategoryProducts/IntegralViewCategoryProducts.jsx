@@ -12,7 +12,7 @@ class IntegralViewNotebooks extends Component {
     textSearch: "",
     isLoading: false,
     getStartNum: 0,
-    totalCount: 0,
+    totalCount: null,
   };
 
   ulListRef = createRef();
@@ -44,18 +44,28 @@ class IntegralViewNotebooks extends Component {
     try {
       await this.fetchProducrs(getStartNum)
         .then((data) => {
+          if (data.result.count > 1000) {
+            this.setState({ isLoading: true });
+            const nIteration = Math.round(data.result.count / 1000);
+            console.log(nIteration);
+            for (let i = 0; nIteration >= i; i++) {
+              console.log("i", i);
+              this.fetchProducrs(i * 1000).then((data) => {
+                this.setState((state) => ({
+                  arrProducts: [...state.arrProducts, ...data.result.list],
+                  totalCount: data.result.count,
+                }));
+              });
+            }
+            return;
+          }
           this.setState({
             arrProducts: data.result.list,
             totalCount: data.result.count,
           });
-          // if (data.result.count > 1000) {
-          //   for (let i = 1000; this.state.totalCount > i; i + 1000) {
-          //     console.log("i", i);
-          //     this.fetchProducrs(i);
-          //   }
-          // }
-          console.log("data.count", data.result.count);
-          console.log("totalCount", this.state.totalCount);
+
+          console.log("data.count 1", data.result.count);
+          console.log("totalCount 1", this.state.totalCount);
         })
         .catch((error) => {
           this.setState({
@@ -75,15 +85,16 @@ class IntegralViewNotebooks extends Component {
   };
 
   render() {
-    const { isLoading, arrProducts, textSearch } = this.state;
-    console.log(arrProducts);
+    const { isLoading, arrProducts, textSearch, totalCount } = this.state;
+    console.log("arrProducts", arrProducts);
+    console.log("totalCount", totalCount);
     const newArrProducts = arrProducts.filter(
       (elem) =>
         elem.name.toLowerCase().includes(textSearch.toLowerCase()) ||
         elem.product_code.toLowerCase().includes(textSearch.toLowerCase()) ||
         elem.articul.toLowerCase().includes(textSearch.toLowerCase())
     );
-    // console.log(newArrProducts);
+    console.log("newArrProducts", newArrProducts);
     return (
       <>
         <div className={stylish.wrapperPage}>
@@ -101,6 +112,9 @@ class IntegralViewNotebooks extends Component {
                 title="ввод крилицей или латиницей"
                 onChange={this.heandlerSearch}
               />
+              {totalCount && (
+                <div className={stylish.tCountNum}>{totalCount}</div>
+              )}
             </div>
           </div>
           {isLoading && (
