@@ -14,7 +14,7 @@ class NavigationPage extends Component {
   state = {
     isOpenBurger: false,
     isOpenBanner: false,
-    isOpenChange: false,
+    // isOpenChange: false,
   };
 
   componentDidMount() {
@@ -29,11 +29,11 @@ class NavigationPage extends Component {
     }, 2500);
   };
 
-  toggleBanner = () => {
-    this.setState({
-      isOpenBanner: !this.state.isOpenBanner,
-    });
-  };
+  // toggleBanner = () => {
+  //   this.setState({
+  //     isOpenBanner: !this.state.isOpenBanner,
+  //   });
+  // };
 
   toggleBurger = () => {
     this.setState({
@@ -42,7 +42,7 @@ class NavigationPage extends Component {
   };
 
   render() {
-    const { isOpenBurger, isOpenBanner, isOpenChange } = this.state;
+    const { isOpenBurger, isOpenBanner } = this.state;
     return (
       <div
         className={isOpenBurger ? stylish.boxWrapperAfter : stylish.boxWrapper}
@@ -71,12 +71,7 @@ class NavigationPage extends Component {
                 <button className={stylish.about}>about</button>
               </NavLink>
             )}
-            {!isOpenBurger && (
-              <div
-                onClick={this.toggleBanner}
-                className={isOpenChange ? stylish.banner : stylish.bannerUa}
-              ></div>
-            )}
+
             <>
               {isOpenBanner && (
                 <ModalPicturesPage onClose={this.toggleBanner}>

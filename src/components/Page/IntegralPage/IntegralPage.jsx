@@ -3,6 +3,7 @@ import routes from "../../../routes/routes";
 import { NavLink } from "react-router-dom";
 import IntegralPageCategory from "../IntegralPageCategory/IntegralPageCategory";
 import Loader from "react-loader-spinner";
+import ModalPicturesPage from "../../Modals/ModalPicturesPage/ModalPicturesPage";
 
 import stylish from "./IntegralPage.module.css";
 
@@ -258,6 +259,7 @@ class IntegralPage extends Component {
     inputValue: "",
     setCategory: "",
     isOpenChange: false,
+    isOpenBanner: false,
   };
 
   toggleTrue = () => {
@@ -270,6 +272,12 @@ class IntegralPage extends Component {
 
   toggleChange = () => {
     this.setState({ isOpenArrCategory: !this.state.isOpenArrCategory });
+  };
+
+  toggleBanner = () => {
+    this.setState({
+      isOpenBanner: !this.state.isOpenBanner,
+    });
   };
 
   changeBanner = () => {
@@ -363,6 +371,7 @@ class IntegralPage extends Component {
       isLoading,
       inputValue,
       isOpenChange,
+      isOpenBanner,
     } = this.state;
 
     inputValue.replace();
@@ -499,10 +508,16 @@ class IntegralPage extends Component {
           </div>
         </div>
 
-        <div
-          onClick={this.toggleBanner}
-          className={isOpenChange ? stylish.banner : stylish.bannerUa}
-        ></div>
+        <div className={stylish.boxImgBanner} onClick={this.toggleBanner}>
+          <div
+            className={isOpenChange ? stylish.banner : stylish.bannerUa}
+          ></div>
+        </div>
+        {isOpenBanner && (
+          <ModalPicturesPage onClose={this.toggleBanner}>
+            <div className={stylish.bannerModal}></div>
+          </ModalPicturesPage>
+        )}
       </div>
     );
   }
