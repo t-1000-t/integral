@@ -7,6 +7,7 @@
 .bannerUa {
   width: 220px;
   height: 90px;
+  border-radius: 4px;
   background-size: cover;
   background-image: url("../../../images/tp_link_ua.jpg");
   cursor: pointer;
@@ -16,6 +17,7 @@
 .banner {
   width: 220px;
   height: 90px;
+  border-radius: 4px;
   background-size: cover;
   background-image: url("../../../images/tp_link.jpg");
   cursor: pointer;

@@ -127,7 +127,32 @@
   outline: none;
 }
 
-.imgBox {
+.bannerUa {
+  max-width: 360px;
+  height: 150px;
+  border-radius: 8px;
+  margin: 5px;
+  background-size: cover;
+  background-image: url("../../../images/tp_link_ua.jpg");
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.banner {
+  max-width: 360px;
+  height: 150px;
+  border-radius: 8px;
+  margin: 5px;
+  background-size: cover;
+  background-image: url("../../../images/tp_link.jpg");
+  cursor: pointer;
+  opacity: 0.8;
+}
+.banner:hover {
+  opacity: 1;
+}
+.bannerUa:hover {
+  opacity: 1;
 }
 
 .nameProductMain {
@@ -242,6 +267,23 @@ input:focus:invalid {
     top: 165px;
     left: 5%;
   }
+  .bannerUa {
+    width: 0px;
+    height: 0px;
+    background-size: cover;
+    background-image: url("");
+    cursor: pointer;
+    opacity: 0.8;
+  }
+
+  .banner {
+    width: 0px;
+    height: 0px;
+    background-size: cover;
+    background-image: url("");
+    cursor: pointer;
+    opacity: 0.8;
+  }
 }
 
 @media (min-width: 360px) and (max-width: 939px) {
@@ -276,6 +318,23 @@ input:focus:invalid {
   .ulList {
     top: 145px;
     left: 5%;
+  }
+  .bannerUa {
+    width: 0px;
+    height: 0px;
+    background-size: cover;
+    background-image: url("");
+    cursor: pointer;
+    opacity: 0.8;
+  }
+
+  .banner {
+    width: 0px;
+    height: 0px;
+    background-size: cover;
+    background-image: url("");
+    cursor: pointer;
+    opacity: 0.8;
   }
 }
 

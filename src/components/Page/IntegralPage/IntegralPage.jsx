@@ -257,6 +257,7 @@ class IntegralPage extends Component {
     pageNum: 1,
     inputValue: "",
     setCategory: "",
+    isOpenChange: false,
   };
 
   toggleTrue = () => {
@@ -269,6 +270,14 @@ class IntegralPage extends Component {
 
   toggleChange = () => {
     this.setState({ isOpenArrCategory: !this.state.isOpenArrCategory });
+  };
+
+  changeBanner = () => {
+    setInterval(() => {
+      this.setState({
+        isOpenChange: !this.state.isOpenChange,
+      });
+    }, 2500);
   };
 
   liHandlerCategoryTrue = () => {
@@ -291,6 +300,7 @@ class IntegralPage extends Component {
   componentDidMount() {
     window.addEventListener("keydown", this.handleKeyPress);
     this.fetchHomeProducts();
+    this.changeBanner();
   }
 
   componentWillUnmount() {
@@ -352,6 +362,7 @@ class IntegralPage extends Component {
       arrMain,
       isLoading,
       inputValue,
+      isOpenChange,
     } = this.state;
 
     inputValue.replace();
@@ -368,6 +379,7 @@ class IntegralPage extends Component {
               >
                 Shop By Catalog
               </button>
+
               <div
                 className={stylish.boxTest}
                 ref={this.btnRef}
@@ -486,6 +498,11 @@ class IntegralPage extends Component {
             </NavLink>
           </div>
         </div>
+
+        <div
+          onClick={this.toggleBanner}
+          className={isOpenChange ? stylish.banner : stylish.bannerUa}
+        ></div>
       </div>
     );
   }
