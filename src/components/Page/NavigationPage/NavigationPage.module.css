@@ -4,22 +4,35 @@
   height: 100px;
 }
 
-.banner {
-  width: 100px;
+.bannerUa {
+  width: 220px;
   height: 90px;
   background-size: cover;
-  background-image: url("../../../images/tp-link.jpg");
+  background-image: url("../../../images/tp_link_ua.jpg");
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.banner {
+  width: 220px;
+  height: 90px;
+  background-size: cover;
+  background-image: url("../../../images/tp_link.jpg");
   cursor: pointer;
   opacity: 0.8;
 }
 .banner:hover {
   opacity: 1;
 }
+.bannerUa:hover {
+  opacity: 1;
+}
+
 .bannerModal {
-  width: 1148px;
-  height: 640px;
+  width: 1110px;
+  height: 453px;
   background-size: cover;
-  background-image: url("../../../images/tp-link.jpg");
+  background-image: url("../../../images/tp_link_ua.jpg");
 }
 
 .middleNavigation {
@@ -254,6 +267,24 @@
     order: 2;
     position: relative;
     z-index: 5;
+  }
+
+  .bannerUa {
+    width: 0px;
+    height: 0px;
+    background-size: cover;
+    background-image: url("");
+    cursor: pointer;
+    opacity: 0.8;
+  }
+
+  .banner {
+    width: 0px;
+    height: 0px;
+    background-size: cover;
+    background-image: url("");
+    cursor: pointer;
+    opacity: 0.8;
   }
 
   .basta {

@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import stylish from "./NavigationPage.module.css";
 import routes from "../../../routes/routes";
-// npm install --save-dev @iconify/react @iconify/icons-ion
+
 import { Icon } from "@iconify/react";
 import callOutline from "@iconify/icons-ion/call-outline";
-// import headsetOutline from "@iconify/icons-ion/headset-outline";
+
 import mailOpenOutline from "@iconify/icons-ion/mail-open-outline";
 import chatboxEllipsesOutline from "@iconify/icons-ion/chatbox-ellipses-outline";
 import ModalPicturesPage from "../../Modals/ModalPicturesPage/ModalPicturesPage";
@@ -14,6 +14,19 @@ class NavigationPage extends Component {
   state = {
     isOpenBurger: false,
     isOpenBanner: false,
+    isOpenChange: false,
+  };
+
+  componentDidMount() {
+    this.changeBanner();
+  }
+
+  changeBanner = () => {
+    setInterval(() => {
+      this.setState({
+        isOpenChange: !this.state.isOpenChange,
+      });
+    }, 2500);
   };
 
   toggleBanner = () => {
@@ -29,7 +42,7 @@ class NavigationPage extends Component {
   };
 
   render() {
-    const { isOpenBurger, isOpenBanner } = this.state;
+    const { isOpenBurger, isOpenBanner, isOpenChange } = this.state;
     return (
       <div
         className={isOpenBurger ? stylish.boxWrapperAfter : stylish.boxWrapper}
@@ -59,7 +72,10 @@ class NavigationPage extends Component {
               </NavLink>
             )}
             {!isOpenBurger && (
-              <div onClick={this.toggleBanner} className={stylish.banner}></div>
+              <div
+                onClick={this.toggleBanner}
+                className={isOpenChange ? stylish.banner : stylish.bannerUa}
+              ></div>
             )}
             <>
               {isOpenBanner && (
