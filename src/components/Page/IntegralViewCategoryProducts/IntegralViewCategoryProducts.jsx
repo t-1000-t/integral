@@ -7,6 +7,8 @@ import ScrollButton from "../../services/ScrollButton/ScrollButton";
 import stylish from "./IntegralViewCategoryProducts.module.css";
 
 class IntegralViewNotebooks extends Component {
+  _isMounted = false;
+
   state = {
     arrProducts: [],
     textSearch: "",
@@ -23,7 +25,7 @@ class IntegralViewNotebooks extends Component {
 
   nextCategory = this.props.match.params.categorynum;
 
-  setSearchCategory = (nextCategory) => {
+  setSearchCategory = () => {
     this.props.history.push({
       ...this.props,
     });
@@ -44,24 +46,24 @@ class IntegralViewNotebooks extends Component {
     try {
       await this.fetchProducrs(getStartNum)
         .then((data) => {
-          if (data.result.count > 1000) {
+          if (data.length > 1000) {
             this.setState({ isLoading: true });
-            const nIteration = Math.round(data.result.count / 1000);
+            const nIteration = Math.round(data.length / 1000);
             console.log(nIteration);
             for (let i = 0; nIteration >= i; i++) {
               console.log("i", i);
               this.fetchProducrs(i * 1000).then((data) => {
                 this.setState((state) => ({
-                  arrProducts: [...state.arrProducts, ...data.result.list],
-                  totalCount: data.result.count,
+                  arrProducts: [...state.arrProducts, ...data],
+                  totalCount: data.length,
                 }));
               });
             }
             return;
           }
           this.setState({
-            arrProducts: data.result.list,
-            totalCount: data.result.count,
+            arrProducts: data,
+            totalCount: data.length,
           });
 
           console.log("data.count 1", data.result.count);
