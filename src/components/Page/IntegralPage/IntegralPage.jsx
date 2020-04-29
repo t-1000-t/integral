@@ -339,7 +339,10 @@ class IntegralPage extends Component {
   fetchHomeProducts() {
     this.setState({ isLoading: true });
     try {
-      return fetch(`https://shop-integral.herokuapp.com/api/main`)
+      return fetch(
+        // `http://localhost:5000/api/main`
+        `https://shop-integral.herokuapp.com/api/main`
+      )
         .then((res) => res.json())
         .then((data) => data.main)
         .then((arr) => {

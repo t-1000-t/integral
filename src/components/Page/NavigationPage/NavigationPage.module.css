@@ -1,3 +1,15 @@
+button,
+button:active,
+button:focus {
+  outline: none;
+}
+
+::-moz-focus-outer,
+::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+
 .wrapper {
   display: flex;
   align-items: center;

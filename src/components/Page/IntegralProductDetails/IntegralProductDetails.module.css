@@ -89,16 +89,33 @@
 }
 .boxMoreFoto {
   margin-top: 15px;
-  overflow: auto;
+  overflow-x: scroll;
+  white-space: nowrap;
   display: flex;
   flex-direction: row;
   align-items: center;
-  width: 90%;
+  width: 95%;
   height: 200px;
   padding-top: 10px;
   padding-bottom: 10px;
 
   /* background-color: violet; */
+}
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: rgb(212, 212, 248);
+  box-shadow: 0 0 2px rgba(0, 0, 0, 1) inset;
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: rgb(165, 194, 207);
+  border-radius: 8px;
+  border: 3px solid #e0dc99;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(139, 187, 209);
 }
 
 .listFoto {
