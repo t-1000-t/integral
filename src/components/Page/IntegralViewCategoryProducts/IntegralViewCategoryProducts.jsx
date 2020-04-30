@@ -46,24 +46,25 @@ class IntegralViewNotebooks extends Component {
     try {
       await this.fetchProducrs(getStartNum)
         .then((data) => {
-          if (data.length > 1000) {
+          console.log("data", data);
+          if (data.count > 1000) {
             this.setState({ isLoading: true });
-            const nIteration = Math.round(data.length / 1000);
+            const nIteration = Math.round(data.count / 1000);
             console.log(nIteration);
             for (let i = 0; nIteration >= i; i++) {
               console.log("i", i);
               this.fetchProducrs(i * 1000).then((data) => {
                 this.setState((state) => ({
-                  arrProducts: [...state.arrProducts, ...data],
-                  totalCount: data.length,
+                  arrProducts: [...state.arrProducts, ...data.newArr],
+                  totalCount: state.totalCount + data.newArr.length,
                 }));
               });
             }
             return;
           }
           this.setState({
-            arrProducts: data,
-            totalCount: data.length,
+            arrProducts: data.newArr,
+            totalCount: data.newArr.length,
           });
 
           console.log("data.count 1", data.result.count);
