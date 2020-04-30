@@ -103,6 +103,7 @@
 }
 ::-webkit-scrollbar {
   width: 10px;
+  height: 15px;
 }
 ::-webkit-scrollbar-track {
   background: rgb(212, 212, 248);
