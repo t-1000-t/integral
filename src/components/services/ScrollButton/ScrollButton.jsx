@@ -37,7 +37,7 @@ class ScrollButton extends Component {
       clearInterval(this.state.intervalId);
     }
 
-    window.scroll(0, window.pageYOffset - 50);
+    window.scroll(0, window.pageYOffset - 1000);
   };
 
   scrollToTop = () => {

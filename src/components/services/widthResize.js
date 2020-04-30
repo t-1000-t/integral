@@ -5,31 +5,31 @@ module.exports = function widthResize() {
   const boxRightBottom = document.createElement("div");
   const setStyle = (elem, obj) => {
     const keys = Object.keys(obj);
-    keys.map(e => (elem.style[e] = obj[e]));
+    keys.map((e) => (elem.style[e] = obj[e]));
   };
   const bl = {
     position: "fixed",
     top: "1rem",
     left: "1rem",
-    color: "#fff"
+    color: "#fff",
   };
   const br = {
     position: "fixed",
     top: "1rem",
     right: "1rem",
-    color: "#000"
+    color: "#000",
   };
   const bbl = {
     position: "fixed",
     bottom: "1rem",
     left: "1rem",
-    color: "#000"
+    color: "#000",
   };
   const bbr = {
     position: "fixed",
     bottom: "1rem",
     right: "1rem",
-    color: "#fff"
+    color: "#fff",
   };
   setStyle(boxLeft, bl);
   setStyle(boxRight, br);

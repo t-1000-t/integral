@@ -15,13 +15,35 @@ class IntegralViewNotebooks extends Component {
     isLoading: false,
     getStartNum: 0,
     totalCount: null,
+    scrolled: 0,
   };
 
-  ulListRef = createRef();
+  progressRef = createRef();
 
-  componentDidMount(prevProps, prevState) {
+  componentDidMount() {
+    window.addEventListener("scroll", this.scrollProgress);
     this.fetchArrProducts();
   }
+
+  componentWillUnmount() {
+    window.removeEventListener("scroll", this.scrollProgress);
+  }
+
+  scrollProgress = (e) => {
+    const scrollPx = document.documentElement.scrollTop;
+    const winHeightPx =
+      document.documentElement.scrollHeight -
+      document.documentElement.clientHeight;
+    const scrolled = `${(scrollPx / winHeightPx) * 100}%`;
+
+    // console.log(scrolled);
+
+    this.setState({
+      scrolled: scrolled,
+    });
+  };
+
+  // progress = document.getElementById("progressID");
 
   nextCategory = this.props.match.params.categorynum;
 
@@ -32,7 +54,7 @@ class IntegralViewNotebooks extends Component {
   };
 
   fetchProducrs(val) {
-    console.log("fetch todo started...");
+    // console.log("fetch todo started...");
     return fetch(
       // `http://localhost:5000/api/products/${this.nextCategory}/${val}`
       `https://shop-integral.herokuapp.com/api/products/${this.nextCategory}/${val}`
@@ -41,18 +63,18 @@ class IntegralViewNotebooks extends Component {
 
   async fetchArrProducts() {
     const { getStartNum } = this.state;
-    console.log(this.nextCategory);
+    // console.log(this.nextCategory);
     this.setState({ isLoading: true });
     try {
       await this.fetchProducrs(getStartNum)
         .then((data) => {
-          console.log("data", data);
+          // console.log("data", data);
           if (data.count > 1000) {
             this.setState({ isLoading: true });
             const nIteration = Math.round(data.count / 1000);
-            console.log(nIteration);
+            // console.log(nIteration);
             for (let i = 0; nIteration >= i; i++) {
-              console.log("i", i);
+              // console.log("i", i);
               this.fetchProducrs(i * 1000).then((data) => {
                 this.setState((state) => ({
                   arrProducts: [...state.arrProducts, ...data.newArr],
@@ -88,21 +110,41 @@ class IntegralViewNotebooks extends Component {
   };
 
   render() {
-    const { isLoading, arrProducts, textSearch, totalCount } = this.state;
-    console.log("arrProducts", arrProducts);
-    console.log("totalCount", totalCount);
+    const {
+      isLoading,
+      arrProducts,
+      textSearch,
+      totalCount,
+      scrolled,
+    } = this.state;
+    const progressContainerStyle = {
+      background: "#e8e8fd",
+      boxShadow: "0 2px 4px rgba(0, 0, 0, 0.3)",
+      height: "8px",
+      position: "fixed",
+      top: 0,
+      left: 0,
+      width: "100vw",
+      zIndex: 99,
+    };
+    const progressBarStyle = {
+      height: "8px",
+      background: "#fed700",
+      width: scrolled,
+    };
     const newArrProducts = arrProducts.filter(
       (elem) =>
         elem.name.toLowerCase().includes(textSearch.toLowerCase()) ||
         elem.product_code.toLowerCase().includes(textSearch.toLowerCase()) ||
         elem.articul.toLowerCase().includes(textSearch.toLowerCase())
     );
-    console.log("newArrProducts", newArrProducts);
+    // console.log("newArrProducts", newArrProducts);
+
     return (
       <>
         <div className={stylish.wrapperPage}>
           <div>
-            <ScrollButton ulListRef={this.ulListRef} />
+            <ScrollButton />
           </div>
           <div className={stylish.wrapperTitle}>
             <div className={stylish.boxTitle}>
@@ -119,6 +161,9 @@ class IntegralViewNotebooks extends Component {
                 <div className={stylish.tCountNum}>{totalCount}</div>
               )}
             </div>
+            <div style={progressContainerStyle}>
+              <div style={progressBarStyle}></div>
+            </div>
           </div>
           {isLoading && (
             <div className={stylish.loadPosition}>
@@ -132,7 +177,7 @@ class IntegralViewNotebooks extends Component {
             </div>
           )}
           <div id="idCategProdScroll" className={stylish.container}>
-            <ul className={stylish.wrapper} ref={this.ulListRef}>
+            <ul className={stylish.wrapper}>
               {newArrProducts.map((item) =>
                 item.stocks.length > 0 ? (
                   <li key={item.productID}>

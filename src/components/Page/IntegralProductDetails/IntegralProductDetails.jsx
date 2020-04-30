@@ -109,7 +109,7 @@ class IntegralProductDetails extends Component {
 
   render() {
     const { prodDetails, isLoading, pictures, isOpenInfo } = this.state;
-    console.log(prodDetails);
+    // console.log(prodDetails);
     return (
       <>
         {isLoading && (

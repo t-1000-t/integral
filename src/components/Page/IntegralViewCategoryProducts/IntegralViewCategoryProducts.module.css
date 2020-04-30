@@ -33,6 +33,7 @@
 .tCountNum {
   margin-left: 20px;
 }
+
 .container {
   width: 100%;
   display: flex;
@@ -43,6 +44,28 @@
   width: 1180px;
   display: flex;
   flex-wrap: wrap;
+  scroll-behavior: smooth;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 100%;
+}
+
+::-webkit-scrollbar-track {
+  background-color: rgb(212, 212, 248);
+  box-shadow: 0 0 2px rgba(0, 0, 0, 1) inset;
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgb(165, 194, 207);
+  border-radius: 8px;
+  border: 3px solid #e0dc99;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgb(139, 187, 209);
 }
 
 .card {
