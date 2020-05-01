@@ -5,6 +5,7 @@ import Loader from "react-loader-spinner";
 import ScrollButton from "../../services/ScrollButton/ScrollButton";
 
 import stylish from "./IntegralViewCategoryProducts.module.css";
+// import SortProducts from "../SortProducts/SortProducts";
 
 class IntegralViewNotebooks extends Component {
   _isMounted = false;
@@ -16,6 +17,7 @@ class IntegralViewNotebooks extends Component {
     getStartNum: 0,
     totalCount: null,
     scrolled: 0,
+    activeItem: "",
   };
 
   progressRef = createRef();
@@ -109,6 +111,48 @@ class IntegralViewNotebooks extends Component {
     this.setState({ textSearch: e.currentTarget.value });
   };
 
+  handleItemClick = (e) => {
+    this.setState({
+      activeItem: e.currentTarget.name,
+    });
+  };
+
+  sortByDateLow = (arr) => {
+    return arr.sort(function (a, b) {
+      return a.retail_price_uah - b.retail_price_uah;
+    });
+  };
+
+  sortByDateHigh = (arr) => {
+    return arr.sort(function (a, b) {
+      return b.retail_price_uah - a.retail_price_uah;
+    });
+  };
+
+  newSortArrProducts = (array, activeItem) => {
+    switch (activeItem) {
+      case "price_low":
+        return this.sortByDateLow(array);
+      case "price_high":
+        return this.sortByDateHigh(array);
+      default:
+    }
+  };
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    const { activeItem, arrProducts } = this.state;
+    if (prevState.activeItem !== activeItem && activeItem === "price_low") {
+      this.setState({
+        arrProducts: this.newSortArrProducts(arrProducts, activeItem),
+      });
+    }
+    if (prevState.activeItem !== activeItem && activeItem === "price_high") {
+      this.setState({
+        arrProducts: this.newSortArrProducts(arrProducts, activeItem),
+      });
+    }
+  }
+
   render() {
     const {
       isLoading,
@@ -117,6 +161,7 @@ class IntegralViewNotebooks extends Component {
       totalCount,
       scrolled,
     } = this.state;
+
     const progressContainerStyle = {
       background: "#e8e8fd",
       boxShadow: "0 2px 4px rgba(0, 0, 0, 0.3)",
@@ -127,11 +172,13 @@ class IntegralViewNotebooks extends Component {
       width: "100vw",
       zIndex: 99,
     };
+
     const progressBarStyle = {
       height: "8px",
       background: "#fed700",
       width: scrolled,
     };
+
     const newArrProducts = arrProducts.filter(
       (elem) =>
         elem.name.toLowerCase().includes(textSearch.toLowerCase()) ||
@@ -160,6 +207,28 @@ class IntegralViewNotebooks extends Component {
               {totalCount && (
                 <div className={stylish.tCountNum}>{totalCount}</div>
               )}
+              <div>
+                <ul className={stylish.boxSortBtn}>
+                  <li className={stylish.liName}>
+                    <button
+                      name="price_low"
+                      className={stylish.liBtn}
+                      onClick={this.handleItemClick}
+                    >
+                      От дешовых
+                    </button>
+                  </li>
+                  <li className={stylish.liName}>
+                    <button
+                      name="price_high"
+                      className={stylish.liBtn}
+                      onClick={this.handleItemClick}
+                    >
+                      От дорогих
+                    </button>
+                  </li>
+                </ul>
+              </div>
             </div>
             <div style={progressContainerStyle}>
               <div style={progressBarStyle}></div>

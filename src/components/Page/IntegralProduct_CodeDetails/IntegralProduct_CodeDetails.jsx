@@ -14,6 +14,13 @@ class IntegralProduct_CodeDetails extends Component {
     isLoading: false,
     pictures: null,
     comments: null,
+    stocksexpect: null,
+  };
+
+  sortByDate = (obj) => {
+    return Object.values(obj).sort(function (a, b) {
+      return new Date(a) - new Date(b);
+    });
   };
 
   fetchViewDetails = async () => {
@@ -25,6 +32,7 @@ class IntegralProduct_CodeDetails extends Component {
       .then((data) => {
         this.setState({
           prodCodeDetails: data,
+          stocksexpect: this.sortByDate(data.stocks_expected),
         });
       })
       .catch((error) => {
@@ -96,7 +104,13 @@ class IntegralProduct_CodeDetails extends Component {
   };
 
   render() {
-    const { prodCodeDetails, isLoading, pictures, isOpenInfo } = this.state;
+    const {
+      prodCodeDetails,
+      isLoading,
+      pictures,
+      isOpenInfo,
+      stocksexpect,
+    } = this.state;
     return (
       <>
         {isLoading && (
@@ -168,12 +182,19 @@ class IntegralProduct_CodeDetails extends Component {
                 </div>
               ) : (
                 <div className={stylish.priceProductDetails}>
-                  НЕТ В НАЛИЧИИ!
+                  <div className={stylish.productExpect}>НЕТ В НАЛИЧИИ!</div>{" "}
+                  <br></br> ближайшее поступление на склад - {stocksexpect[0]}
                 </div>
               )}
-              <button className={stylish.btnProductDetails}>
-                <div className={stylish.fontProductDetails}>Купить</div>
-              </button>
+              {prodCodeDetails.stocks.length > 0 ? (
+                <button className={stylish.btnProductDetails}>
+                  <div className={stylish.fontProductDetails}>Купить</div>
+                </button>
+              ) : (
+                <button disabled className={stylish.btnProductDetails}>
+                  <div className={stylish.fontProductDetails}>Купить</div>
+                </button>
+              )}
 
               {isOpenInfo && (
                 <div className={stylish.boxMoreFoto}>

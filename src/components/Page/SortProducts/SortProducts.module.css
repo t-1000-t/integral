@@ -1,0 +1,15 @@
+.container {
+}
+
+.boxSortBtn {
+  display: flex;
+}
+
+.liName {
+  margin-left: 20px;
+}
+
+.liBtn {
+  padding: 5px 10px 5px 10px;
+  border-radius: 8px;
+}
