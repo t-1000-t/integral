@@ -183,7 +183,10 @@ class IntegralProduct_CodeDetails extends Component {
               ) : (
                 <div className={stylish.priceProductDetails}>
                   <div className={stylish.productExpect}>НЕТ В НАЛИЧИИ!</div>{" "}
-                  <br></br> ближайшее поступление на склад - {stocksexpect[0]}
+                  <br></br> Ближайшее поступление на склад -{" "}
+                  {stocksexpect.length > 0
+                    ? stocksexpect[0]
+                    : "не планируется ближайшее время!"}
                 </div>
               )}
               {prodCodeDetails.stocks.length > 0 ? (

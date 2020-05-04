@@ -21,14 +21,25 @@ class IntegralViewNotebooks extends Component {
     indicatorLoadProducts: 0,
     activeItem: "",
     testArray: [],
-    arrNum: 0,
+    currentPage: 0,
   };
 
   progressRef = createRef();
 
+  move = 1;
+
   componentDidMount() {
     window.addEventListener("scroll", this.scrollProgress);
     this.fetchArrProducts();
+    // const { props } = this.props.location;
+    // if (!props) this.saveHistory(this.move);
+
+    // const item = new URLSearchParams(this.props.location.props).get("item");
+    // if (item < this.move || item > this.state.arrProducts.length) {
+    //   this.saveHistory(this.move);
+    //   return;
+    // }
+    // this.setState({ currentPage: Number(item) });
   }
 
   componentWillUnmount() {
@@ -165,20 +176,31 @@ class IntegralViewNotebooks extends Component {
     );
   }
 
-  nextCount = () => {
+  saveHistory = (item) => console.log("ok");
+  // this.props.history.push({ ...this.props.location, props: `${item}` });
+
+  handleCounter = (name) =>
+    name === "back"
+      ? this.saveHistory(this.state.currentPage)
+      : this.saveHistory(this.state.currentPage);
+
+  nextCount = ({ target: { name } }) => {
     this.setState({
-      arrNum: this.state.arrNum + 1,
+      currentPage: this.state.currentPage + 1,
     });
+    this.handleCounter(name);
   };
 
-  backCount = () => {
+  backCount = ({ target: { name } }) => {
     this.setState({
-      arrNum: this.state.arrNum - 1,
+      currentPage: this.state.currentPage - 1,
     });
+    this.handleCounter(name);
   };
 
   componentDidUpdate(prevProps, prevState, snapshot) {
     const { activeItem, arrProducts, indicatorLoadProducts } = this.state;
+    const { location } = this.props;
     if (prevState.indicatorLoadProducts !== indicatorLoadProducts) {
       this.loadProgress();
     }
@@ -192,6 +214,9 @@ class IntegralViewNotebooks extends Component {
         arrProducts: this.newSortArrProducts(arrProducts, activeItem),
       });
     }
+    if (location.props === prevProps.location.props) return;
+    const item = new URLSearchParams(location.props).get("item");
+    this.setState({ currentPage: Number(item) });
   }
 
   render() {
@@ -202,7 +227,7 @@ class IntegralViewNotebooks extends Component {
       totalCount,
       scrolled,
       testArray,
-      arrNum,
+      currentPage,
       indicatorLoadProducts,
     } = this.state;
 
@@ -319,7 +344,7 @@ class IntegralViewNotebooks extends Component {
           <div id="idCategProdScroll" className={stylish.container}>
             <ul className={stylish.wrapper}>
               {newArrProducts.length > 0 &&
-                newArrProducts[arrNum].map((item) =>
+                newArrProducts[currentPage].map((item) =>
                   item.stocks.length > 0 ? (
                     <li key={item.productID}>
                       <div className={stylish.card}>
@@ -382,19 +407,23 @@ class IntegralViewNotebooks extends Component {
                 {newArrProducts.length > 0 && (
                   <>
                     <button
+                      name="back"
                       className={stylish.btnMore}
                       type="button"
                       onClick={this.backCount}
-                      disabled={arrNum === 0}
+                      disabled={currentPage === 0}
                     >
                       Back
                     </button>
 
                     <button
+                      name="next"
                       className={stylish.btnMore}
                       type="button"
                       onClick={this.nextCount}
-                      disabled={arrNum === newArrProducts.length - 1}
+                      disabled={
+                        currentPage === Number(newArrProducts.length) - 1
+                      }
                     >
                       Next
                     </button>
