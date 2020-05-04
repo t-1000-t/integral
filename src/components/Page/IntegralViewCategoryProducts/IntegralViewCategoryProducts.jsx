@@ -15,9 +15,13 @@ class IntegralViewNotebooks extends Component {
     textSearch: "",
     isLoading: false,
     getStartNum: 0,
+    count: 0,
     totalCount: null,
     scrolled: 0,
+    indicatorLoadProducts: 0,
     activeItem: "",
+    testArray: [],
+    arrNum: 0,
   };
 
   progressRef = createRef();
@@ -42,6 +46,19 @@ class IntegralViewNotebooks extends Component {
 
     this.setState({
       scrolled: scrolled,
+    });
+  };
+
+  loadProgress = () => {
+    const { count, totalCount } = this.state;
+    const loadPx = count;
+    const wLoadPx = loadPx - totalCount;
+    const fullLoad = `${(loadPx / wLoadPx) * 100}%`;
+
+    console.log(fullLoad);
+
+    this.setState({
+      indicatorLoadProducts: fullLoad,
     });
   };
 
@@ -71,6 +88,9 @@ class IntegralViewNotebooks extends Component {
       await this.fetchProducrs(getStartNum)
         .then((data) => {
           // console.log("data", data);
+          this.setState({
+            count: data.count,
+          });
           if (data.count > 1000) {
             this.setState({ isLoading: true });
             const nIteration = Math.round(data.count / 1000);
@@ -139,8 +159,29 @@ class IntegralViewNotebooks extends Component {
     }
   };
 
+  chunk(arr, size) {
+    return Array.from({ length: Math.ceil(arr.length / size) }, (v, i) =>
+      arr.slice(i * size, i * size + size)
+    );
+  }
+
+  nextCount = () => {
+    this.setState({
+      arrNum: this.state.arrNum + 1,
+    });
+  };
+
+  backCount = () => {
+    this.setState({
+      arrNum: this.state.arrNum - 1,
+    });
+  };
+
   componentDidUpdate(prevProps, prevState, snapshot) {
-    const { activeItem, arrProducts } = this.state;
+    const { activeItem, arrProducts, indicatorLoadProducts } = this.state;
+    if (prevState.indicatorLoadProducts !== indicatorLoadProducts) {
+      this.loadProgress();
+    }
     if (prevState.activeItem !== activeItem && activeItem === "price_low") {
       this.setState({
         arrProducts: this.newSortArrProducts(arrProducts, activeItem),
@@ -160,7 +201,13 @@ class IntegralViewNotebooks extends Component {
       textSearch,
       totalCount,
       scrolled,
+      testArray,
+      arrNum,
+      indicatorLoadProducts,
     } = this.state;
+
+    console.log("testArray", testArray);
+    console.log("arrProducts", arrProducts);
 
     const progressContainerStyle = {
       background: "#e8e8fd",
@@ -179,13 +226,33 @@ class IntegralViewNotebooks extends Component {
       width: scrolled,
     };
 
-    const newArrProducts = arrProducts.filter(
-      (elem) =>
-        elem.name.toLowerCase().includes(textSearch.toLowerCase()) ||
-        elem.product_code.toLowerCase().includes(textSearch.toLowerCase()) ||
-        elem.articul.toLowerCase().includes(textSearch.toLowerCase())
+    const progressBoxStyle = {
+      background: "#e8e8fd",
+      boxShadow: "0 2px 4px rgba(0, 0, 0, 0.3)",
+      height: "25px",
+      // position: "fixed",
+      // top: 0,
+      // left: 0,
+      width: "10vw",
+      zIndex: 99,
+    };
+
+    const progressLoadStyle = {
+      height: "8px",
+      background: "#fed700",
+      width: indicatorLoadProducts,
+    };
+
+    const newArrProducts = this.chunk(
+      arrProducts.filter(
+        (elem) =>
+          elem.name.toLowerCase().includes(textSearch.toLowerCase()) ||
+          elem.product_code.toLowerCase().includes(textSearch.toLowerCase()) ||
+          elem.articul.toLowerCase().includes(textSearch.toLowerCase())
+      ),
+      20
     );
-    // console.log("newArrProducts", newArrProducts);
+    console.log("newArrProducts", newArrProducts.length);
 
     return (
       <>
@@ -205,7 +272,11 @@ class IntegralViewNotebooks extends Component {
                 onChange={this.heandlerSearch}
               />
               {totalCount && (
-                <div className={stylish.tCountNum}>{totalCount}</div>
+                <div style={progressBoxStyle}>
+                  <div style={progressLoadStyle}>
+                    <div className={stylish.tCountNum}>{totalCount}</div>
+                  </div>
+                </div>
               )}
               <div>
                 <ul className={stylish.boxSortBtn}>
@@ -247,65 +318,89 @@ class IntegralViewNotebooks extends Component {
           )}
           <div id="idCategProdScroll" className={stylish.container}>
             <ul className={stylish.wrapper}>
-              {newArrProducts.map((item) =>
-                item.stocks.length > 0 ? (
-                  <li key={item.productID}>
-                    <div className={stylish.card}>
-                      <div>
-                        <div className={stylish.nameItem}>{item.name}</div>
-                        <div className={stylish.fontProdCode}>
-                          Код Товара: {item.product_code}
+              {newArrProducts.length > 0 &&
+                newArrProducts[arrNum].map((item) =>
+                  item.stocks.length > 0 ? (
+                    <li key={item.productID}>
+                      <div className={stylish.card}>
+                        <div>
+                          <div className={stylish.nameItem}>{item.name}</div>
+                          <div className={stylish.fontProdCode}>
+                            Код Товара: {item.product_code}
+                          </div>
+                          <NavLink
+                            className={stylish.NavLinkProd}
+                            to={`${routes.PRODUCT}/${item.productID}`}
+                          >
+                            <div>
+                              <img src={item.medium_image} alt={item.articul} />
+                            </div>
+                          </NavLink>
+                          <div className={stylish.priceInfo}>
+                            <div className={stylish.fontPriceRetail}>
+                              {item.retail_price_uah} грн.
+                            </div>
+                            <div className={stylish.fontCountry}>
+                              {item.country}
+                            </div>
+                          </div>
+                          <button className={stylish.btnCard}>Купить</button>
                         </div>
-                        <NavLink
-                          className={stylish.NavLinkProd}
-                          to={`${routes.PRODUCT}/${item.productID}`}
-                        >
-                          <div>
-                            <img src={item.medium_image} alt={item.articul} />
-                          </div>
-                        </NavLink>
-                        <div className={stylish.priceInfo}>
-                          <div className={stylish.fontPriceRetail}>
-                            {item.retail_price_uah} грн.
-                          </div>
-                          <div className={stylish.fontCountry}>
-                            {item.country}
-                          </div>
-                        </div>
-                        <button className={stylish.btnCard}>Купить</button>
                       </div>
-                    </div>
-                  </li>
-                ) : (
-                  <li key={item.productID}>
-                    <div className={stylish.card}>
-                      <div>
-                        <div className={stylish.nameItem}>{item.name}</div>
-                        <div className={stylish.fontProdCode}>
-                          Код Товара: {item.product_code}
+                    </li>
+                  ) : (
+                    <li key={item.productID}>
+                      <div className={stylish.card}>
+                        <div>
+                          <div className={stylish.nameItem}>{item.name}</div>
+                          <div className={stylish.fontProdCode}>
+                            Код Товара: {item.product_code}
+                          </div>
+                          <NavLink
+                            className={stylish.NavLinkProd}
+                            to={`${routes.PRODUCT}/${item.productID}`}
+                          >
+                            <div className={stylish.noPresentProduct}>
+                              <img src={item.medium_image} alt={item.articul} />
+                            </div>
+                          </NavLink>
+                          <div className={stylish.priceInfo}>
+                            <div className={stylish.fontPriceRetailNoProduct}>
+                              {item.retail_price_uah} грн.
+                            </div>
+                            <div className={stylish.fontCountry}>
+                              {item.country}
+                            </div>
+                          </div>
+                          {/* <button className={stylish.btnCard}>Купить</button> */}
                         </div>
-                        <NavLink
-                          className={stylish.NavLinkProd}
-                          to={`${routes.PRODUCT}/${item.productID}`}
-                        >
-                          <div className={stylish.noPresentProduct}>
-                            <img src={item.medium_image} alt={item.articul} />
-                          </div>
-                        </NavLink>
-                        <div className={stylish.priceInfo}>
-                          <div className={stylish.fontPriceRetailNoProduct}>
-                            {item.retail_price_uah} грн.
-                          </div>
-                          <div className={stylish.fontCountry}>
-                            {item.country}
-                          </div>
-                        </div>
-                        {/* <button className={stylish.btnCard}>Купить</button> */}
                       </div>
-                    </div>
-                  </li>
-                )
-              )}
+                    </li>
+                  )
+                )}
+              <div className={stylish.btnWrap}>
+                {newArrProducts.length > 0 && (
+                  <>
+                    <button
+                      className={stylish.btnMore}
+                      type="button"
+                      onClick={this.backCount}
+                      disabled={arrNum === 0}
+                    >
+                      Back
+                    </button>
+
+                    <button
+                      className={stylish.btnMore}
+                      type="button"
+                      onClick={this.nextCount}
+                      disabled={arrNum === newArrProducts.length - 1}
+                    >
+                      Next
+                    </button>
+                  </>
+                )}
+              </div>
             </ul>
           </div>
         </div>
