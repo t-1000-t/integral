@@ -4,7 +4,7 @@ import stylish from "./App.module.css";
 import routes from "../../routes/routes";
 // import widthResize from "../services/widthResize";
 import NavigationPage from "../Page/NavigationPage/NavigationPage";
-import AboutPage from "../Page/AboutPage/AboutPage";
+import ContactPage from "../Page/ContactPage/ContactPage";
 import FooterPage from "../Page/FooterPage/FooterPage";
 import IntegralPage from "../Page/IntegralPage/IntegralPage";
 import IntegralViewCategoryProducts from "../Page/IntegralViewCategoryProducts/IntegralViewCategoryProducts";
@@ -23,7 +23,7 @@ class App extends Component {
         <div className={stylish.container}>
           <Switch>
             <Route exact path={routes.HOME} component={IntegralPage} />
-            <Route exact path={routes.ABOUT} component={AboutPage} />
+            <Route exact path={routes.CONTACT} component={ContactPage} />
             <Route
               path={`${routes.PRODUCTS}/:categorynum`}
               component={IntegralViewCategoryProducts}

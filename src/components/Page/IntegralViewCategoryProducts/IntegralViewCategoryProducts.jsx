@@ -14,6 +14,7 @@ class IntegralViewNotebooks extends Component {
     arrProducts: [],
     textSearch: "",
     isLoading: false,
+    isOpenIconLoad: false,
     getStartNum: 0,
     count: 0,
     totalCount: null,
@@ -222,6 +223,7 @@ class IntegralViewNotebooks extends Component {
   render() {
     const {
       isLoading,
+      isOpenIconLoad,
       arrProducts,
       textSearch,
       totalCount,
@@ -255,17 +257,10 @@ class IntegralViewNotebooks extends Component {
       background: "#e8e8fd",
       boxShadow: "0 2px 4px rgba(0, 0, 0, 0.3)",
       height: "25px",
-      // position: "fixed",
-      // top: 0,
-      // left: 0,
-      width: "10vw",
+      width: "110px",
+      borderRadius: "8px",
+      marginLeft: "20px",
       zIndex: 99,
-    };
-
-    const progressLoadStyle = {
-      height: "8px",
-      background: "#fed700",
-      width: indicatorLoadProducts,
     };
 
     const newArrProducts = this.chunk(
@@ -296,13 +291,18 @@ class IntegralViewNotebooks extends Component {
                 title="ввод крилицей или латиницей"
                 onChange={this.heandlerSearch}
               />
-              {totalCount && (
-                <div style={progressBoxStyle}>
-                  <div style={progressLoadStyle}>
-                    <div className={stylish.tCountNum}>{totalCount}</div>
-                  </div>
+              {/* {totalCount && ( */}
+              <div style={progressBoxStyle}>
+                <div className={stylish.tCountNum}>
+                  <div className={stylish.numbers}>{totalCount}</div>
+                  {isOpenIconLoad ? (
+                    <div>Load...</div>
+                  ) : (
+                    <div className={stylish.iconSeconds}></div>
+                  )}
                 </div>
-              )}
+              </div>
+              {/* )} */}
               <div>
                 <ul className={stylish.boxSortBtn}>
                   <li className={stylish.liName}>

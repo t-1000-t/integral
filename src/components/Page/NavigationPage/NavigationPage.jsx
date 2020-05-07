@@ -67,8 +67,8 @@ class NavigationPage extends Component {
               <button className={stylish.main}>main</button>
             </NavLink> */}
             {!isOpenBurger && (
-              <NavLink exact to={routes.ABOUT}>
-                <button className={stylish.about}>about</button>
+              <NavLink exact to={routes.CONTACT}>
+                <button className={stylish.about}>contact</button>
               </NavLink>
             )}
 

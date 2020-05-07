@@ -131,6 +131,11 @@ button:focus {
   border: none;
 }
 
+.boxWrapper {
+  border-bottom: solid 1px;
+  border-color: #fed700;
+}
+
 .main {
   text-align: center;
   border-radius: 8px;

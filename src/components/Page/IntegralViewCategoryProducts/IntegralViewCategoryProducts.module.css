@@ -31,7 +31,25 @@
   border-radius: 8px;
 }
 .tCountNum {
-  margin-left: 20px;
+  display: flex;
+  justify-content: space-around;
+  border-radius: 8px;
+
+  /* margin-left: 20px; */
+}
+.numbers {
+  width: 40px;
+  margin-top: 2px;
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-size: 18px;
+}
+
+.iconSeconds {
+  width: 23px;
+  height: 25px;
+  background-size: cover;
+  background-image: url("../../../images/seconds.svg");
 }
 
 .boxSortBtn {

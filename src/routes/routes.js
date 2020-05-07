@@ -1,7 +1,7 @@
 export default {
   HOME: "/",
   MAIN: "/main",
-  ABOUT: "/about",
+  CONTACT: "/contact",
   PRODUCT: "/product",
   PRODUCT_CODE: "/product/product_code",
   PRODUCTS: "/products",
