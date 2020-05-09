@@ -14,14 +14,14 @@ class IntegralViewNotebooks extends Component {
     arrProducts: [],
     textSearch: "",
     isLoading: false,
-    isOpenIconLoad: false,
+    isLoadingBoxIcon: false,
+    isOpenIconLoad: true,
     getStartNum: 0,
     count: 0,
     totalCount: null,
     scrolled: 0,
-    indicatorLoadProducts: 0,
+    indicFullProd: 0,
     activeItem: "",
-    testArray: [],
     currentPage: 0,
   };
 
@@ -32,15 +32,6 @@ class IntegralViewNotebooks extends Component {
   componentDidMount() {
     window.addEventListener("scroll", this.scrollProgress);
     this.fetchArrProducts();
-    // const { props } = this.props.location;
-    // if (!props) this.saveHistory(this.move);
-
-    // const item = new URLSearchParams(this.props.location.props).get("item");
-    // if (item < this.move || item > this.state.arrProducts.length) {
-    //   this.saveHistory(this.move);
-    //   return;
-    // }
-    // this.setState({ currentPage: Number(item) });
   }
 
   componentWillUnmount() {
@@ -61,21 +52,6 @@ class IntegralViewNotebooks extends Component {
     });
   };
 
-  loadProgress = () => {
-    const { count, totalCount } = this.state;
-    const loadPx = count;
-    const wLoadPx = loadPx - totalCount;
-    const fullLoad = `${(loadPx / wLoadPx) * 100}%`;
-
-    console.log(fullLoad);
-
-    this.setState({
-      indicatorLoadProducts: fullLoad,
-    });
-  };
-
-  // progress = document.getElementById("progressID");
-
   nextCategory = this.props.match.params.categorynum;
 
   setSearchCategory = () => {
@@ -94,26 +70,27 @@ class IntegralViewNotebooks extends Component {
 
   async fetchArrProducts() {
     const { getStartNum } = this.state;
-    // console.log(this.nextCategory);
+
     this.setState({ isLoading: true });
     try {
       await this.fetchProducrs(getStartNum)
         .then((data) => {
-          // console.log("data", data);
           this.setState({
             count: data.count,
           });
           if (data.count > 1000) {
-            this.setState({ isLoading: true });
+            this.setState({ isLoading: true, isLoadingBoxIcon: true });
             const nIteration = Math.round(data.count / 1000);
-            // console.log(nIteration);
+
             for (let i = 0; nIteration >= i; i++) {
-              // console.log("i", i);
               this.fetchProducrs(i * 1000).then((data) => {
                 this.setState((state) => ({
                   arrProducts: [...state.arrProducts, ...data.newArr],
                   totalCount: state.totalCount + data.newArr.length,
                 }));
+              });
+              this.setState({
+                indicFullProd: i * 1000,
               });
             }
             return;
@@ -200,10 +177,14 @@ class IntegralViewNotebooks extends Component {
   };
 
   componentDidUpdate(prevProps, prevState, snapshot) {
-    const { activeItem, arrProducts, indicatorLoadProducts } = this.state;
+    const { activeItem, arrProducts, isOpenIconLoad } = this.state;
     const { location } = this.props;
-    if (prevState.indicatorLoadProducts !== indicatorLoadProducts) {
-      this.loadProgress();
+    if (this.state.indicFullProd >= this.state.count && isOpenIconLoad) {
+      setTimeout(() => {
+        this.setState({
+          isOpenIconLoad: false,
+        });
+      }, 7000);
     }
     if (prevState.activeItem !== activeItem && activeItem === "price_low") {
       this.setState({
@@ -228,13 +209,16 @@ class IntegralViewNotebooks extends Component {
       textSearch,
       totalCount,
       scrolled,
-      testArray,
       currentPage,
-      indicatorLoadProducts,
+      isLoadingBoxIcon,
+      indicFullProd,
+      count,
     } = this.state;
 
-    console.log("testArray", testArray);
-    console.log("arrProducts", arrProducts);
+    console.log("indicFullProd", indicFullProd);
+    console.log("count", count);
+    console.log("isOpenIconLoad", isOpenIconLoad);
+    console.log("isLoadingBoxIcon", isLoadingBoxIcon);
 
     const progressContainerStyle = {
       background: "#e8e8fd",
@@ -291,15 +275,18 @@ class IntegralViewNotebooks extends Component {
                 title="ввод крилицей или латиницей"
                 onChange={this.heandlerSearch}
               />
-              {/* {totalCount && ( */}
+
               <div style={progressBoxStyle}>
                 <div className={stylish.tCountNum}>
                   <div className={stylish.numbers}>{totalCount}</div>
-                  {isOpenIconLoad ? (
-                    <div>Load...</div>
-                  ) : (
-                    <div className={stylish.iconSeconds}></div>
-                  )}
+
+                  <>
+                    {isOpenIconLoad ? (
+                      <div className={stylish.iconSeconds}></div>
+                    ) : (
+                      <div></div>
+                    )}
+                  </>
                 </div>
               </div>
               {/* )} */}
@@ -342,95 +329,115 @@ class IntegralViewNotebooks extends Component {
             </div>
           )}
           <div id="idCategProdScroll" className={stylish.container}>
-            <ul className={stylish.wrapper}>
-              {newArrProducts.length > 0 &&
-                newArrProducts[currentPage].map((item) =>
-                  item.stocks.length > 0 ? (
-                    <li key={item.productID}>
-                      <div className={stylish.card}>
-                        <div>
-                          <div className={stylish.nameItem}>{item.name}</div>
-                          <div className={stylish.fontProdCode}>
-                            Код Товара: {item.product_code}
-                          </div>
-                          <NavLink
-                            className={stylish.NavLinkProd}
-                            to={`${routes.PRODUCT}/${item.productID}`}
-                          >
-                            <div>
-                              <img src={item.medium_image} alt={item.articul} />
-                            </div>
-                          </NavLink>
-                          <div className={stylish.priceInfo}>
-                            <div className={stylish.fontPriceRetail}>
-                              {item.retail_price_uah} грн.
-                            </div>
-                            <div className={stylish.fontCountry}>
-                              {item.country}
-                            </div>
-                          </div>
-                          <button className={stylish.btnCard}>Купить</button>
-                        </div>
-                      </div>
-                    </li>
-                  ) : (
-                    <li key={item.productID}>
-                      <div className={stylish.card}>
-                        <div>
-                          <div className={stylish.nameItem}>{item.name}</div>
-                          <div className={stylish.fontProdCode}>
-                            Код Товара: {item.product_code}
-                          </div>
-                          <NavLink
-                            className={stylish.NavLinkProd}
-                            to={`${routes.PRODUCT}/${item.productID}`}
-                          >
-                            <div className={stylish.noPresentProduct}>
-                              <img src={item.medium_image} alt={item.articul} />
-                            </div>
-                          </NavLink>
-                          <div className={stylish.priceInfo}>
-                            <div className={stylish.fontPriceRetailNoProduct}>
-                              {item.retail_price_uah} грн.
-                            </div>
-                            <div className={stylish.fontCountry}>
-                              {item.country}
-                            </div>
-                          </div>
-                          {/* <button className={stylish.btnCard}>Купить</button> */}
-                        </div>
-                      </div>
-                    </li>
-                  )
-                )}
-              <div className={stylish.btnWrap}>
-                {newArrProducts.length > 0 && (
-                  <>
-                    <button
-                      name="back"
-                      className={stylish.btnMore}
-                      type="button"
-                      onClick={this.backCount}
-                      disabled={currentPage === 0}
-                    >
-                      Back
-                    </button>
-
-                    <button
-                      name="next"
-                      className={stylish.btnMore}
-                      type="button"
-                      onClick={this.nextCount}
-                      disabled={
-                        currentPage === Number(newArrProducts.length) - 1
-                      }
-                    >
-                      Next
-                    </button>
-                  </>
-                )}
+            {newArrProducts.length > 0 && (
+              <div className={stylish.containerLeft}>
+                <button className={stylish.BtnBack}>Back</button>
               </div>
-            </ul>
+            )}
+            <div className={stylish.containerMiddle}>
+              <ul className={stylish.wrapper}>
+                {newArrProducts.length > 0 &&
+                  newArrProducts[currentPage].map((item) =>
+                    item.stocks.length > 0 ? (
+                      <li key={item.productID}>
+                        <div className={stylish.card}>
+                          <div>
+                            <div className={stylish.nameItem}>{item.name}</div>
+                            <div className={stylish.fontProdCode}>
+                              Код Товара: {item.product_code}
+                            </div>
+                            <NavLink
+                              className={stylish.NavLinkProd}
+                              to={`${routes.PRODUCT}/${item.productID}`}
+                            >
+                              <div>
+                                <img
+                                  src={item.medium_image}
+                                  alt={item.articul}
+                                />
+                              </div>
+                            </NavLink>
+                            <div className={stylish.priceInfo}>
+                              <div className={stylish.fontPriceRetail}>
+                                {item.retail_price_uah} грн.
+                              </div>
+                              <div className={stylish.fontCountry}>
+                                {item.country}
+                              </div>
+                            </div>
+                            <button className={stylish.btnCard}>Купить</button>
+                          </div>
+                        </div>
+                      </li>
+                    ) : (
+                      <li key={item.productID}>
+                        <div className={stylish.card}>
+                          <div>
+                            <div className={stylish.nameItem}>{item.name}</div>
+                            <div className={stylish.fontProdCode}>
+                              Код Товара: {item.product_code}
+                            </div>
+                            <NavLink
+                              className={stylish.NavLinkProd}
+                              to={`${routes.PRODUCT}/${item.productID}`}
+                            >
+                              <div className={stylish.noPresentProduct}>
+                                <img
+                                  src={item.medium_image}
+                                  alt={item.articul}
+                                />
+                              </div>
+                            </NavLink>
+                            <div className={stylish.priceInfo}>
+                              <div className={stylish.fontPriceRetailNoProduct}>
+                                {item.retail_price_uah} грн.
+                              </div>
+                              <div className={stylish.fontCountry}>
+                                {item.country}
+                              </div>
+                            </div>
+                            {/* <button className={stylish.btnCard}>Купить</button> */}
+                          </div>
+                        </div>
+                      </li>
+                    )
+                  )}
+                <div className={stylish.btnWrap}>
+                  {newArrProducts.length > 0 && (
+                    <>
+                      <button
+                        name="back"
+                        className={stylish.btnMore}
+                        type="button"
+                        onClick={this.backCount}
+                        disabled={currentPage === 0}
+                      >
+                        Back
+                      </button>
+
+                      <button
+                        name="next"
+                        className={stylish.btnMore}
+                        type="button"
+                        onClick={this.nextCount}
+                        disabled={
+                          currentPage === Number(newArrProducts.length) - 1
+                        }
+                      >
+                        Next
+                      </button>
+                    </>
+                  )}
+                </div>
+              </ul>
+            </div>
+            {newArrProducts.length > 0 && (
+              <div className={stylish.containerRight}>
+                <div className={stylish.someOneContent}>
+                  Тут может быть ваша реклама
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </>

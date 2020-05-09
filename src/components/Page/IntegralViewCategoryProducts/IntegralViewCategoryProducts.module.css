@@ -8,6 +8,8 @@
   height: 50px;
   align-items: center;
   justify-content: center;
+  position: sticky;
+  top: 8px;
   background-color: cornflowerblue;
 }
 .boxTitle {
@@ -33,6 +35,7 @@
 .tCountNum {
   display: flex;
   justify-content: space-around;
+
   border-radius: 8px;
 
   /* margin-left: 20px; */
@@ -46,8 +49,9 @@
 }
 
 .iconSeconds {
-  width: 23px;
-  height: 25px;
+  width: 19px;
+  height: 21px;
+  margin-top: 2px;
   background-size: cover;
   background-image: url("../../../images/seconds.svg");
 }
@@ -69,6 +73,29 @@
   width: 100%;
   display: flex;
   justify-content: center;
+}
+
+.containerLeft {
+  width: 100%;
+  display: flex;
+  justify-content: right;
+}
+
+.containerMiddle {
+  width: 1180px;
+}
+
+.containerRight {
+  width: 100%;
+}
+
+.BtnBack {
+  position: sticky;
+  top: 70px;
+  width: 55px;
+  height: 55px;
+  border-radius: 16px;
+  margin: 10px;
 }
 
 .wrapper {
@@ -233,6 +260,18 @@
 .btnMore:focus {
   background-color: #1f65d6;
   border: solid 1px;
+}
+
+.someOneContent {
+  width: 300px;
+  height: 200px;
+  position: sticky;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 75px;
+  margin: 10px;
+  background-color: lightcyan;
 }
 
 @media (min-width: 320px) and (max-width: 359px) {
