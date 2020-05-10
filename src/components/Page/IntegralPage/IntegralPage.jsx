@@ -258,6 +258,7 @@ class IntegralPage extends Component {
     arrMain: [],
     pageNum: 1,
     inputValue: "",
+    patternValue: null,
     setCategory: "",
     isOpenChange: false,
     isOpenBanner: false,
@@ -368,7 +369,10 @@ class IntegralPage extends Component {
   }
 
   heandleChange = (e) => {
-    this.setState({ inputValue: e.currentTarget.value });
+    this.setState({
+      inputValue: e.currentTarget.value,
+      patternValue: "[A-Z][0-9]{7}",
+    });
   };
 
   render() {
@@ -378,6 +382,7 @@ class IntegralPage extends Component {
       arrMain,
       isLoading,
       inputValue,
+      patternValue,
       isOpenChange,
       isOpenBanner,
     } = this.state;
@@ -494,11 +499,13 @@ class IntegralPage extends Component {
             <form>
               <label htmlFor={this.inputIds.nameInputId}>
                 <input
-                  id="input-btn-search"
+                  id={this.inputIds.nameInputId}
+                  // id="input-btn-search"
                   placeholder="КОД продутка..."
                   title="Используйте формат ввода: A1234567"
                   type="text"
-                  pattern="[A-Z][0-9]{7}"
+                  // pattern="[A-Z][0-9]{7}"
+                  pattern={patternValue}
                   className={stylish.inputIntegral}
                   value={inputValue}
                   onChange={this.heandleChange}
@@ -509,7 +516,10 @@ class IntegralPage extends Component {
                 >
                   <button
                     className={stylish.btnSearch}
-                    disabled={this.state.inputValue.trim().length === 0}
+                    disabled={
+                      this.state.inputValue.trim().length === 0 &&
+                      patternValue === true
+                    }
                   >
                     search
                   </button>

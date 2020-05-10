@@ -16,6 +16,7 @@
   flex-direction: column;
   width: 60%;
   overflow-y: hidden;
+  padding-top: 15px;
 }
 /* .footerMiddle:hover {
   overflow-y: scroll;
@@ -87,6 +88,11 @@
   height: 350px;
   margin-top: 10px;
 }
+
+.productExpect {
+  color: crimson;
+}
+
 .boxMoreFoto {
   margin-top: 15px;
   overflow-x: scroll;

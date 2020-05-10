@@ -14,11 +14,18 @@ class IntegralProductDetails extends Component {
     isLoading: false,
     pictures: null,
     // comments: null,
+    stocksexpect: null,
   };
 
   setSearchPathName = () => {
     this.props.history.push({
       ...this.props.location,
+    });
+  };
+
+  sortByDate = (obj) => {
+    return Object.values(obj).sort(function (a, b) {
+      return new Date(a) - new Date(b);
     });
   };
 
@@ -30,6 +37,7 @@ class IntegralProductDetails extends Component {
       .then((data) => {
         this.setState({
           prodDetails: data,
+          stocksexpect: this.sortByDate(data.stocks_expected),
         });
       })
       .catch((error) => {
@@ -108,8 +116,14 @@ class IntegralProductDetails extends Component {
   };
 
   render() {
-    const { prodDetails, isLoading, pictures, isOpenInfo } = this.state;
-    // console.log(prodDetails);
+    const {
+      prodDetails,
+      isLoading,
+      pictures,
+      isOpenInfo,
+      stocksexpect,
+    } = this.state;
+    console.log(stocksexpect);
     return (
       <>
         {isLoading && (
@@ -156,12 +170,22 @@ class IntegralProductDetails extends Component {
                 </div>
                 <div>
                   <div className={stylish.middleRight}>
-                    <button
-                      className={stylish.btnMiddleRight}
-                      onClick={this.toggleBtmInfo}
-                    >
-                      Больше информации
-                    </button>
+                    {stocksexpect.length > 0 ? (
+                      <button
+                        className={stylish.btnMiddleRight}
+                        onClick={this.toggleBtmInfo}
+                      >
+                        Больше информации
+                      </button>
+                    ) : (
+                      <button
+                        disabled={stocksexpect.length === 0}
+                        className={stylish.btnMiddleRight}
+                        onClick={this.toggleBtmInfo}
+                      >
+                        Больше информации
+                      </button>
+                    )}
                   </div>
 
                   {isOpenInfo && (
@@ -181,7 +205,11 @@ class IntegralProductDetails extends Component {
                 </div>
               ) : (
                 <div className={stylish.priceProductDetails}>
-                  НЕТ В НАЛИЧИИ!
+                  <div className={stylish.productExpect}> НЕТ В НАЛИЧИИ!</div>
+                  <br></br> Ближайшее поступление на склад -
+                  {stocksexpect.length > 0
+                    ? stocksexpect[0]
+                    : " не планируется!"}
                 </div>
               )}
               <button className={stylish.btnProductDetails}>

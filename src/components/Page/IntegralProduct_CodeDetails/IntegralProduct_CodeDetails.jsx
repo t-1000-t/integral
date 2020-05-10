@@ -159,12 +159,22 @@ class IntegralProduct_CodeDetails extends Component {
                   )}
                 </div>
                 <div className={stylish.middleRight}>
-                  <button
-                    className={stylish.btnMiddleRight}
-                    onClick={this.toggleBtmInfo}
-                  >
-                    Больше информации
-                  </button>
+                  {stocksexpect.length > 0 ? (
+                    <button
+                      className={stylish.btnMiddleRight}
+                      onClick={this.toggleBtmInfo}
+                    >
+                      Больше информации
+                    </button>
+                  ) : (
+                    <button
+                      disabled={stocksexpect.length === 0}
+                      className={stylish.btnMiddleRightDisable}
+                      onClick={this.toggleBtmInfo}
+                    >
+                      Больше информации
+                    </button>
+                  )}
                   {isOpenInfo && (
                     <ul className={stylish.ulRight}>
                       {prodCodeDetails.options.map((elem) => (
@@ -186,7 +196,7 @@ class IntegralProduct_CodeDetails extends Component {
                   <br></br> Ближайшее поступление на склад -{" "}
                   {stocksexpect.length > 0
                     ? stocksexpect[0]
-                    : "не планируется ближайшее время!"}
+                    : "не планируется!"}
                 </div>
               )}
               {prodCodeDetails.stocks.length > 0 ? (
