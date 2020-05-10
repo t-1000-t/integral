@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom";
 import IntegralPageCategory from "../IntegralPageCategory/IntegralPageCategory";
 import Loader from "react-loader-spinner";
 import ModalPicturesPage from "../../Modals/ModalPicturesPage/ModalPicturesPage";
+import shortid from "shortid";
 
 import stylish from "./IntegralPage.module.css";
 
@@ -300,6 +301,10 @@ class IntegralPage extends Component {
     });
   };
 
+  inputIds = {
+    nameInputId: shortid.generate(),
+  };
+
   // toggle for on click
 
   btnRef = createRef();
@@ -486,28 +491,31 @@ class IntegralPage extends Component {
                 </div> */}
               </div>
             </div>
-
-            <input
-              id="input-btn-search"
-              placeholder="КОД продутка..."
-              title="Используйте формат ввода: A1234567"
-              type="text"
-              pattern="[A-Z][0-9]{7}"
-              className={stylish.inputIntegral}
-              value={inputValue}
-              onChange={this.heandleChange}
-            />
-            <NavLink
-              className={stylish.NavLinkProd}
-              to={`${routes.PRODUCT_CODE}/${inputValue}`}
-            >
-              <button
-                className={stylish.btnSearch}
-                disabled={this.state.inputValue.trim().length === 0}
-              >
-                search
-              </button>
-            </NavLink>
+            <form>
+              <label htmlFor={this.inputIds.nameInputId}>
+                <input
+                  id="input-btn-search"
+                  placeholder="КОД продутка..."
+                  title="Используйте формат ввода: A1234567"
+                  type="text"
+                  pattern="[A-Z][0-9]{7}"
+                  className={stylish.inputIntegral}
+                  value={inputValue}
+                  onChange={this.heandleChange}
+                />
+                <NavLink
+                  className={stylish.NavLinkProd}
+                  to={`${routes.PRODUCT_CODE}/${inputValue}`}
+                >
+                  <button
+                    className={stylish.btnSearch}
+                    disabled={this.state.inputValue.trim().length === 0}
+                  >
+                    search
+                  </button>
+                </NavLink>
+              </label>
+            </form>
           </div>
         </div>
 
