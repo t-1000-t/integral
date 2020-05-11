@@ -11,6 +11,22 @@
 .mainLeft {
   width: 20%;
 }
+
+.containerLeft {
+  width: 100%;
+  display: flex;
+  justify-content: right;
+}
+
+.BtnBack {
+  position: sticky;
+  top: 70px;
+  width: 55px;
+  height: 55px;
+  border-radius: 16px;
+  margin: 10px;
+}
+
 .mainMiddle {
   display: flex;
   flex-direction: column;
@@ -80,7 +96,7 @@
   width: 20%;
 }
 .ulRight {
-  width: 100%;
+  width: 80%;
 
   overflow-y: scroll;
 

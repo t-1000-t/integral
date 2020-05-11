@@ -23,6 +23,7 @@ class IntegralViewNotebooks extends Component {
     indicFullProd: 0,
     activeItem: "",
     currentPage: 0,
+    gobacktwo: "",
   };
 
   progressRef = createRef();
@@ -178,7 +179,7 @@ class IntegralViewNotebooks extends Component {
 
   componentDidUpdate(prevProps, prevState, snapshot) {
     const { activeItem, arrProducts, isOpenIconLoad } = this.state;
-    const { location } = this.props;
+    // const { location } = this.props;
     if (this.state.indicFullProd >= this.state.count && isOpenIconLoad) {
       setTimeout(() => {
         this.setState({
@@ -196,10 +197,11 @@ class IntegralViewNotebooks extends Component {
         arrProducts: this.newSortArrProducts(arrProducts, activeItem),
       });
     }
-    if (location.props === prevProps.location.props) return;
-    const item = new URLSearchParams(location.props).get("item");
-    this.setState({ currentPage: Number(item) });
   }
+
+  setHistoryPush = () => {
+    this.props.history.push("/");
+  };
 
   render() {
     const {
@@ -210,15 +212,7 @@ class IntegralViewNotebooks extends Component {
       totalCount,
       scrolled,
       currentPage,
-      isLoadingBoxIcon,
-      indicFullProd,
-      count,
     } = this.state;
-
-    console.log("indicFullProd", indicFullProd);
-    console.log("count", count);
-    console.log("isOpenIconLoad", isOpenIconLoad);
-    console.log("isLoadingBoxIcon", isLoadingBoxIcon);
 
     const progressContainerStyle = {
       background: "#e8e8fd",
@@ -256,7 +250,6 @@ class IntegralViewNotebooks extends Component {
       ),
       20
     );
-    console.log("newArrProducts", newArrProducts.length);
 
     return (
       <>
@@ -289,7 +282,6 @@ class IntegralViewNotebooks extends Component {
                   </>
                 </div>
               </div>
-              {/* )} */}
               <div>
                 <ul className={stylish.boxSortBtn}>
                   <li className={stylish.liName}>
@@ -331,7 +323,12 @@ class IntegralViewNotebooks extends Component {
           <div id="idCategProdScroll" className={stylish.container}>
             {newArrProducts.length > 0 && (
               <div className={stylish.containerLeft}>
-                <button className={stylish.BtnBack}>Back</button>
+                <button
+                  className={stylish.BtnBack}
+                  onClick={this.setHistoryPush}
+                >
+                  Back
+                </button>
               </div>
             )}
             <div className={stylish.containerMiddle}>

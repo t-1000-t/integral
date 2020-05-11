@@ -258,7 +258,7 @@ class IntegralPage extends Component {
     arrMain: [],
     pageNum: 1,
     inputValue: "",
-    patternValue: null,
+    patternValue: "",
     setCategory: "",
     isOpenChange: false,
     isOpenBanner: false,
@@ -307,7 +307,7 @@ class IntegralPage extends Component {
   };
 
   // toggle for on click
-
+  inputRef = createRef();
   btnRef = createRef();
   btnRouteRef = createRef();
 
@@ -323,9 +323,6 @@ class IntegralPage extends Component {
 
   handleKeyPress = (e) => {
     console.log(e);
-
-    // if (e.code === "Enter" && this.state.inputValue.trim().length !== 0) {
-    // }
 
     if (e.code !== "Escape") {
       return;
@@ -375,6 +372,12 @@ class IntegralPage extends Component {
     });
   };
 
+  heandleBack = () => {
+    this.setState({
+      goback: { from: this.props.location },
+    });
+  };
+
   render() {
     const {
       arrCategory,
@@ -387,7 +390,7 @@ class IntegralPage extends Component {
       isOpenBanner,
     } = this.state;
 
-    inputValue.replace();
+    // inputValue.replace();
 
     return (
       <div className={stylish.wrapper}>
@@ -463,20 +466,21 @@ class IntegralPage extends Component {
                 {isOpenArrCategory && (
                   <ul
                     className={stylish.ulList}
-                    onClick={this.handleBackdropClick}
+                    // onClick={this.handleBackdropClick}
                   >
                     {arrCategory.map((el) => (
                       <li
                         className={stylish.liList}
                         key={el.id}
                         id={el.id}
-                        onClick={this.heandleChangeRadio}
+                        onClick={this.heandleBack}
                       >
                         <IntegralPageCategory
                           id={el.id}
                           elem={el}
                           liHandlerCategoryTrue={this.liHandlerCategoryTrue}
                           className={stylish.liNameCategory}
+                          onClick={this.handleBackdropClick}
                         />
                         <div className={stylish.detector}></div>
                       </li>
@@ -499,8 +503,8 @@ class IntegralPage extends Component {
             <form>
               <label htmlFor={this.inputIds.nameInputId}>
                 <input
+                  ref={this.inputRef}
                   id={this.inputIds.nameInputId}
-                  // id="input-btn-search"
                   placeholder="КОД продутка..."
                   title="Используйте формат ввода: A1234567"
                   type="text"
@@ -516,10 +520,7 @@ class IntegralPage extends Component {
                 >
                   <button
                     className={stylish.btnSearch}
-                    disabled={
-                      this.state.inputValue.trim().length === 0 &&
-                      patternValue === true
-                    }
+                    disabled={this.state.inputValue.trim().length === 0}
                   >
                     search
                   </button>

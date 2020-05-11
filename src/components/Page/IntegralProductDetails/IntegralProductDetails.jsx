@@ -115,6 +115,10 @@ class IntegralProductDetails extends Component {
     });
   };
 
+  setHistoryPush = () => {
+    this.props.history.push("/");
+  };
+
   render() {
     const {
       prodDetails,
@@ -123,7 +127,7 @@ class IntegralProductDetails extends Component {
       isOpenInfo,
       stocksexpect,
     } = this.state;
-    console.log(stocksexpect);
+
     return (
       <>
         {isLoading && (
@@ -139,7 +143,16 @@ class IntegralProductDetails extends Component {
         )}
         {prodDetails && (
           <div className={stylish.card}>
-            <div className={stylish.mainLeft}></div>
+            <div className={stylish.mainLeft}>
+              <div className={stylish.containerLeft}>
+                <button
+                  className={stylish.BtnBack}
+                  onClick={this.setHistoryPush}
+                >
+                  Back
+                </button>
+              </div>
+            </div>
             <div className={stylish.mainMiddle}>
               <div className={stylish.wrapperMiddle}>
                 <div className={stylish.middleLeft}>
@@ -208,7 +221,7 @@ class IntegralProductDetails extends Component {
                   <div className={stylish.productExpect}> НЕТ В НАЛИЧИИ!</div>
                   <br></br> Ближайшее поступление на склад -
                   {stocksexpect.length > 0
-                    ? stocksexpect[0]
+                    ? ` ${stocksexpect[0]}`
                     : " не планируется!"}
                 </div>
               )}
