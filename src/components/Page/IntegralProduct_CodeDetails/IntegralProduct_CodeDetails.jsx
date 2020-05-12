@@ -5,6 +5,7 @@ import fetchPicturesProduct from "../../services/fetchPicturesProduct";
 import Loader from "react-loader-spinner";
 import stylish from "./IntegralProduct_CodeDetails.module.css";
 import PhotoCard from "./PhotoCard/PhotoCard";
+import ModalLiqPay from "../../Modals/ModalLiqPay/ModalLiqPay";
 
 class IntegralProduct_CodeDetails extends Component {
   state = {
@@ -109,6 +110,7 @@ class IntegralProduct_CodeDetails extends Component {
       isLoading,
       pictures,
       isOpenInfo,
+      isOpen,
       stocksexpect,
     } = this.state;
     return (
@@ -200,7 +202,10 @@ class IntegralProduct_CodeDetails extends Component {
                 </div>
               )}
               {prodCodeDetails.stocks.length > 0 ? (
-                <button className={stylish.btnProductDetails}>
+                <button
+                  className={stylish.btnProductDetails}
+                  onClick={this.handleOnModal}
+                >
                   <div className={stylish.fontProductDetails}>Купить</div>
                 </button>
               ) : (
@@ -218,6 +223,10 @@ class IntegralProduct_CodeDetails extends Component {
                       </div>
                     ))}
                 </div>
+              )}
+
+              {isOpen && (
+                <ModalLiqPay onClose={this.handleOnModal}>!1111</ModalLiqPay>
               )}
             </div>
 

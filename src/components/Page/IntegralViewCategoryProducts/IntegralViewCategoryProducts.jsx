@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import routes from "../../../routes/routes";
 import Loader from "react-loader-spinner";
 import ScrollButton from "../../services/ScrollButton/ScrollButton";
+import ModalLiqPay from "../../Modals/ModalLiqPay/ModalLiqPay";
 
 import stylish from "./IntegralViewCategoryProducts.module.css";
 // import SortProducts from "../SortProducts/SortProducts";
@@ -16,6 +17,7 @@ class IntegralViewNotebooks extends Component {
     isLoading: false,
     isLoadingBoxIcon: false,
     isOpenIconLoad: true,
+    isOpenModalLiqPay: false,
     getStartNum: 0,
     count: 0,
     totalCount: null,
@@ -203,10 +205,17 @@ class IntegralViewNotebooks extends Component {
     this.props.history.push("/");
   };
 
+  toggleOpenModalLigPay = () => {
+    this.setState({
+      isOpenModalLiqPay: !this.state.isOpenModalLiqPay,
+    });
+  };
+
   render() {
     const {
       isLoading,
       isOpenIconLoad,
+      isOpenModalLiqPay,
       arrProducts,
       textSearch,
       totalCount,
@@ -362,7 +371,12 @@ class IntegralViewNotebooks extends Component {
                                 {item.country}
                               </div>
                             </div>
-                            <button className={stylish.btnCard}>Купить</button>
+                            <button
+                              className={stylish.btnCard}
+                              onClick={this.toggleOpenModalLigPay}
+                            >
+                              Купить
+                            </button>
                           </div>
                         </div>
                       </li>
@@ -436,6 +450,12 @@ class IntegralViewNotebooks extends Component {
               </div>
             )}
           </div>
+
+          {isOpenModalLiqPay && (
+            <ModalLiqPay onClose={this.toggleOpenModalLigPay}>
+              1111111122323
+            </ModalLiqPay>
+          )}
         </div>
       </>
     );
