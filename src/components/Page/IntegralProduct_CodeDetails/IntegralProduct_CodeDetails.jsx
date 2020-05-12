@@ -226,7 +226,9 @@ class IntegralProduct_CodeDetails extends Component {
               )}
 
               {isOpen && (
-                <ModalLiqPay onClose={this.handleOnModal}>!1111</ModalLiqPay>
+                <ModalLiqPay onClose={this.handleOnModal}>
+                  Окно для оформления платежа в разработке
+                </ModalLiqPay>
               )}
             </div>
 

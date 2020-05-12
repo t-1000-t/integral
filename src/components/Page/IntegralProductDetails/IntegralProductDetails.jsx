@@ -5,10 +5,11 @@ import fetchPicturesProduct from "../../services/fetchPicturesProduct";
 import Loader from "react-loader-spinner";
 import stylish from "./IntegralProductDetails.module.css";
 import PhotoCard from "./PhotoCard/PhotoCard";
+import ModalLiqPay from "../../Modals/ModalLiqPay/ModalLiqPay";
 
 class IntegralProductDetails extends Component {
   state = {
-    isOpen: false,
+    isOpenModalLiqPay: false,
     isOpenInfo: false,
     prodDetails: null,
     isLoading: false,
@@ -102,9 +103,9 @@ class IntegralProductDetails extends Component {
   }
 
   handleOnModal = () => {
-    const { isOpen } = this.state;
+    const { isOpenModalLiqPay } = this.state;
     this.setState({
-      isOpen: !isOpen,
+      isOpenModalLiqPay: !isOpenModalLiqPay,
     });
   };
 
@@ -121,6 +122,7 @@ class IntegralProductDetails extends Component {
 
   render() {
     const {
+      isOpenModalLiqPay,
       prodDetails,
       isLoading,
       pictures,
@@ -225,7 +227,11 @@ class IntegralProductDetails extends Component {
                     : " не планируется!"}
                 </div>
               )}
-              <button className={stylish.btnProductDetails}>
+              <button
+                className={stylish.btnProductDetails}
+                onClick={this.handleOnModal}
+                disabled={stocksexpect.length === 0}
+              >
                 <div className={stylish.fontProductDetails}>Купить</div>
               </button>
 
@@ -242,6 +248,12 @@ class IntegralProductDetails extends Component {
             </div>
 
             <div className={stylish.mainRight}></div>
+
+            {isOpenModalLiqPay && (
+              <ModalLiqPay onClose={this.handleOnModal}>
+                Окно для оформления платежа в разработке
+              </ModalLiqPay>
+            )}
           </div>
         )}
       </>
