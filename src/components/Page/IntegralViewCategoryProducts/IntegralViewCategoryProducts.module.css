@@ -98,6 +98,29 @@
   margin: 10px;
 }
 
+.btnFilter {
+  margin-right: 10px;
+  padding: 5px 10px 5px 10px;
+  border-radius: 8px;
+}
+
+.btnSearch {
+  margin-right: 10px;
+  padding: 5px 10px 5px 10px;
+  border-radius: 8px;
+}
+
+.filterBody {
+  width: 250px;
+
+  background-color: rgb(123, 161, 123);
+}
+
+.liFilterCellfirst {
+  width: 240px;
+  height: 40px;
+}
+
 .wrapper {
   width: 1180px;
   display: flex;

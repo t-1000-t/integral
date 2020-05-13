@@ -4,6 +4,8 @@ import routes from "../../../routes/routes";
 import Loader from "react-loader-spinner";
 import ScrollButton from "../../services/ScrollButton/ScrollButton";
 import ModalLiqPay from "../../Modals/ModalLiqPay/ModalLiqPay";
+import FilterallViewProducts from "../FilterallViewProducts/FilterallViewProducts";
+import fetchFilterProducts from "../../services/fetchFilterProducts";
 
 import stylish from "./IntegralViewCategoryProducts.module.css";
 // import SortProducts from "../SortProducts/SortProducts";
@@ -13,11 +15,13 @@ class IntegralViewNotebooks extends Component {
 
   state = {
     arrProducts: [],
+    arrFilterAll: [],
     textSearch: "",
     isLoading: false,
     isLoadingBoxIcon: false,
     isOpenIconLoad: true,
     isOpenModalLiqPay: false,
+    isOpenFilter: false,
     getStartNum: 0,
     count: 0,
     totalCount: null,
@@ -59,9 +63,50 @@ class IntegralViewNotebooks extends Component {
 
   setSearchCategory = () => {
     this.props.history.push({
-      ...this.props,
+      ...this.props.location,
+      pathname: `/products/${this.nextCategory}`,
+    });
+
+    fetchFilterProducts.fetchFilter(this.nextCategory).then((items) => {
+      this.setState({
+        arrFilterAll: items.result,
+      });
     });
   };
+
+  toggleOpenFilter = () => {
+    this.setSearchCategory();
+    this.setState({
+      isOpenFilter: !this.state.isOpenFilter,
+    });
+  };
+
+  setHistoryPush = () => {
+    this.props.history.push("/");
+  };
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    console.log("update");
+    const { activeItem, arrProducts, isOpenIconLoad } = this.state;
+    // const { location } = this.props;
+    if (this.state.indicFullProd >= this.state.count && isOpenIconLoad) {
+      setTimeout(() => {
+        this.setState({
+          isOpenIconLoad: false,
+        });
+      }, 7000);
+    }
+    if (prevState.activeItem !== activeItem && activeItem === "price_low") {
+      this.setState({
+        arrProducts: this.newSortArrProducts(arrProducts, activeItem),
+      });
+    }
+    if (prevState.activeItem !== activeItem && activeItem === "price_high") {
+      this.setState({
+        arrProducts: this.newSortArrProducts(arrProducts, activeItem),
+      });
+    }
+  }
 
   fetchProducrs(val) {
     // console.log("fetch todo started...");
@@ -179,32 +224,6 @@ class IntegralViewNotebooks extends Component {
     this.handleCounter(name);
   };
 
-  componentDidUpdate(prevProps, prevState, snapshot) {
-    const { activeItem, arrProducts, isOpenIconLoad } = this.state;
-    // const { location } = this.props;
-    if (this.state.indicFullProd >= this.state.count && isOpenIconLoad) {
-      setTimeout(() => {
-        this.setState({
-          isOpenIconLoad: false,
-        });
-      }, 7000);
-    }
-    if (prevState.activeItem !== activeItem && activeItem === "price_low") {
-      this.setState({
-        arrProducts: this.newSortArrProducts(arrProducts, activeItem),
-      });
-    }
-    if (prevState.activeItem !== activeItem && activeItem === "price_high") {
-      this.setState({
-        arrProducts: this.newSortArrProducts(arrProducts, activeItem),
-      });
-    }
-  }
-
-  setHistoryPush = () => {
-    this.props.history.push("/");
-  };
-
   toggleOpenModalLigPay = () => {
     this.setState({
       isOpenModalLiqPay: !this.state.isOpenModalLiqPay,
@@ -217,10 +236,12 @@ class IntegralViewNotebooks extends Component {
       isOpenIconLoad,
       isOpenModalLiqPay,
       arrProducts,
+      arrFilterAll,
       textSearch,
       totalCount,
       scrolled,
       currentPage,
+      isOpenFilter,
     } = this.state;
 
     const progressContainerStyle = {
@@ -269,6 +290,12 @@ class IntegralViewNotebooks extends Component {
           <div className={stylish.wrapperTitle}>
             <div className={stylish.boxTitle}>
               <div className={stylish.title}>Продукты категории</div>
+              <button
+                className={stylish.btnFilter}
+                onClick={this.toggleOpenFilter}
+              >
+                Filter
+              </button>
               <input
                 className={stylish.inputSearch}
                 type="text"
@@ -332,6 +359,29 @@ class IntegralViewNotebooks extends Component {
           <div id="idCategProdScroll" className={stylish.container}>
             {newArrProducts.length > 0 && (
               <div className={stylish.containerLeft}>
+                {isOpenFilter && (
+                  <div className={stylish.filterBody}>
+                    <ul>
+                      {arrFilterAll.length > 0 &&
+                        arrFilterAll.map((elem) => (
+                          <li>
+                            <p>{elem.name}</p>
+                            {/* <div>{elem.optionsID}</div> */}
+                            <ul>
+                              {elem.filters.length > 0 &&
+                                elem.filters.map((cell) => (
+                                  <li>
+                                    <p>{cell.name}</p>
+                                    {/* <div>{cell.filterID}</div> */}
+                                  </li>
+                                ))}
+                            </ul>
+                          </li>
+                        ))}
+                    </ul>
+                  </div>
+                )}
+
                 <button
                   className={stylish.BtnBack}
                   onClick={this.setHistoryPush}
@@ -341,6 +391,7 @@ class IntegralViewNotebooks extends Component {
               </div>
             )}
             <div className={stylish.containerMiddle}>
+              <FilterallViewProducts />
               <ul className={stylish.wrapper}>
                 {newArrProducts.length > 0 &&
                   newArrProducts[currentPage].map((item) =>
