@@ -89,6 +89,14 @@
   width: 100%;
 }
 
+.liCheckbox {
+  display: flex;
+  flex-direction: row;
+}
+
+.checkbox {
+}
+
 .BtnBack {
   position: sticky;
   top: 70px;

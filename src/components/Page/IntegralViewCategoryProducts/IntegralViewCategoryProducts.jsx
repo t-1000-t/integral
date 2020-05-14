@@ -6,6 +6,8 @@ import ScrollButton from "../../services/ScrollButton/ScrollButton";
 import ModalLiqPay from "../../Modals/ModalLiqPay/ModalLiqPay";
 import FilterallViewProducts from "../FilterallViewProducts/FilterallViewProducts";
 import fetchFilterProducts from "../../services/fetchFilterProducts";
+import fetchVendorsList from "../../services/fetchVendorsList";
+import fetchArrProductsFilter from "../../services/fetchArrProductsFilter";
 
 import stylish from "./IntegralViewCategoryProducts.module.css";
 // import SortProducts from "../SortProducts/SortProducts";
@@ -16,15 +18,20 @@ class IntegralViewNotebooks extends Component {
   state = {
     arrProducts: [],
     arrFilterAll: [],
+    arrVendors: [],
+    arrProductsFilter: [],
     textSearch: "",
     isLoading: false,
     isLoadingBoxIcon: false,
     isOpenIconLoad: true,
     isOpenModalLiqPay: false,
     isOpenFilter: false,
+    vendorID: 0,
     getStartNum: 0,
     count: 0,
+    countDataFilter: 0,
     totalCount: null,
+    totalCountProductsFilter: null,
     scrolled: 0,
     indicFullProd: 0,
     activeItem: "",
@@ -36,59 +43,19 @@ class IntegralViewNotebooks extends Component {
 
   move = 1;
 
+  // ----------------------------- Start LifeCicle
+
   componentDidMount() {
     window.addEventListener("scroll", this.scrollProgress);
     this.fetchArrProducts();
+    this.getVendors();
   }
-
-  componentWillUnmount() {
-    window.removeEventListener("scroll", this.scrollProgress);
-  }
-
-  scrollProgress = (e) => {
-    const scrollPx = document.documentElement.scrollTop;
-    const winHeightPx =
-      document.documentElement.scrollHeight -
-      document.documentElement.clientHeight;
-    const scrolled = `${(scrollPx / winHeightPx) * 100}%`;
-
-    // console.log(scrolled);
-
-    this.setState({
-      scrolled: scrolled,
-    });
-  };
-
-  nextCategory = this.props.match.params.categorynum;
-
-  setSearchCategory = () => {
-    this.props.history.push({
-      ...this.props.location,
-      pathname: `/products/${this.nextCategory}`,
-    });
-
-    fetchFilterProducts.fetchFilter(this.nextCategory).then((items) => {
-      this.setState({
-        arrFilterAll: items.result,
-      });
-    });
-  };
-
-  toggleOpenFilter = () => {
-    this.setSearchCategory();
-    this.setState({
-      isOpenFilter: !this.state.isOpenFilter,
-    });
-  };
-
-  setHistoryPush = () => {
-    this.props.history.push("/");
-  };
 
   componentDidUpdate(prevProps, prevState, snapshot) {
-    console.log("update");
-    const { activeItem, arrProducts, isOpenIconLoad } = this.state;
-    // const { location } = this.props;
+    const { vendorID, activeItem, arrProducts, isOpenIconLoad } = this.state;
+    if (prevState.vendorID !== vendorID) {
+      this.fetchArrProductsFilter();
+    }
     if (this.state.indicFullProd >= this.state.count && isOpenIconLoad) {
       setTimeout(() => {
         this.setState({
@@ -108,6 +75,141 @@ class IntegralViewNotebooks extends Component {
     }
   }
 
+  componentWillUnmount() {
+    window.removeEventListener("scroll", this.scrollProgress);
+  }
+
+  // ---------------------------------- Finish LifeCicle
+
+  // ----------------------------- Start ALL Function
+
+  scrollProgress = (e) => {
+    const scrollPx = document.documentElement.scrollTop;
+    const winHeightPx =
+      document.documentElement.scrollHeight -
+      document.documentElement.clientHeight;
+    const scrolled = `${(scrollPx / winHeightPx) * 100}%`;
+
+    this.setState({
+      scrolled: scrolled,
+    });
+  };
+
+  nextCategory = this.props.match.params.categorynum;
+
+  setSearchCategory = () => {
+    this.props.history.push({
+      ...this.props.location,
+      pathname: `/products/${this.nextCategory}`,
+    });
+  };
+
+  updateElemStatus = (elemID) => {
+    this.setState((state) => ({
+      arrVendors: state.arrVendors.map((item) => {
+        if (item.vendorID === elemID) {
+          return {
+            ...item,
+            completed: !item.completed,
+          };
+        }
+        return { ...item, completed: false };
+      }),
+      vendorID: elemID,
+    }));
+  };
+
+  setHistoryPush = () => {
+    this.props.history.push("/");
+  };
+
+  heandlerSearch = (e) => {
+    this.setState({ textSearch: e.currentTarget.value });
+  };
+
+  handleItemClick = (e) => {
+    this.setState({
+      activeItem: e.currentTarget.name,
+    });
+  };
+
+  sortByDateLow = (arr) => {
+    return arr.sort(function (a, b) {
+      return a.retail_price_uah - b.retail_price_uah;
+    });
+  };
+
+  sortByDateHigh = (arr) => {
+    return arr.sort(function (a, b) {
+      return b.retail_price_uah - a.retail_price_uah;
+    });
+  };
+
+  newSortArrProducts = (array, activeItem) => {
+    switch (activeItem) {
+      case "price_low":
+        return this.sortByDateLow(array);
+      case "price_high":
+        return this.sortByDateHigh(array);
+      default:
+    }
+  };
+
+  chunk(arr, size) {
+    return Array.from({ length: Math.ceil(arr.length / size) }, (v, i) =>
+      arr.slice(i * size, i * size + size)
+    );
+  }
+
+  handleCounter = (name) =>
+    name === "back" ? this.state.currentPage : this.state.currentPage;
+
+  nextCount = ({ target: { name } }) => {
+    this.setState({
+      currentPage: this.state.currentPage + 1,
+    });
+    this.handleCounter(name);
+  };
+
+  backCount = ({ target: { name } }) => {
+    this.setState({
+      currentPage: this.state.currentPage - 1,
+    });
+    this.handleCounter(name);
+  };
+
+  toggleOpenModalLigPay = () => {
+    this.setState({
+      isOpenModalLiqPay: !this.state.isOpenModalLiqPay,
+    });
+  };
+
+  // ----------------------------- Finish ALL Function
+
+  // ----------------------------- Start AnyONE Fetch
+
+  getVendors = () => {
+    fetchVendorsList.fetchVendors(this.nextCategory).then((data) => {
+      this.setState({
+        arrVendors: data.result.map((elem) => {
+          return { ...elem, completed: false };
+        }),
+      });
+    });
+  };
+
+  toggleOpenFilter = () => {
+    fetchFilterProducts.fetchFilter(this.nextCategory).then((items) => {
+      this.setState({
+        arrFilterAll: items.result,
+      });
+    });
+
+    this.setState({
+      isOpenFilter: !this.state.isOpenFilter,
+    });
+  };
+
   fetchProducrs(val) {
     // console.log("fetch todo started...");
     return fetch(
@@ -115,6 +217,57 @@ class IntegralViewNotebooks extends Component {
       `https://shop-integral.herokuapp.com/api/products/${this.nextCategory}/${val}`
     ).then((res) => res.json());
   }
+
+  // ----- !!!! ---- //
+
+  async fetchArrProductsFilter() {
+    const note = {
+      category: this.nextCategory,
+      vendor: this.state.vendorID,
+    };
+    try {
+      await fetchArrProductsFilter
+        .fetchFilter(note)
+        .then((data) => {
+          this.setState({
+            countDataFilter: data.count,
+          });
+          if (data.count > 1000) {
+            this.setState({ isLoadingBoxIcon: true });
+            const nIteration = Math.round(data.count / 1000);
+
+            for (let i = 0; nIteration >= i; i++) {
+              this.fetchProducrs(i * 1000).then((data) => {
+                this.setState((state) => ({
+                  arrProductsFilter: [
+                    ...state.arrProductsFilter,
+                    ...data.newArr,
+                  ],
+                }));
+              });
+              this.setState({
+                indicFullProd: i * 1000,
+              });
+            }
+            return;
+          }
+          this.setState({
+            arrProductsFilter: data.newArr,
+            totalCountProductsFilter: data.newArr.length,
+          });
+        })
+        .catch((error) => {
+          this.setState({
+            error,
+          });
+        })
+        .finally();
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
+  // ----------------------------------------------- //
 
   async fetchArrProducts() {
     const { getStartNum } = this.state;
@@ -164,71 +317,7 @@ class IntegralViewNotebooks extends Component {
     }
   }
 
-  heandlerSearch = (e) => {
-    this.setState({ textSearch: e.currentTarget.value });
-  };
-
-  handleItemClick = (e) => {
-    this.setState({
-      activeItem: e.currentTarget.name,
-    });
-  };
-
-  sortByDateLow = (arr) => {
-    return arr.sort(function (a, b) {
-      return a.retail_price_uah - b.retail_price_uah;
-    });
-  };
-
-  sortByDateHigh = (arr) => {
-    return arr.sort(function (a, b) {
-      return b.retail_price_uah - a.retail_price_uah;
-    });
-  };
-
-  newSortArrProducts = (array, activeItem) => {
-    switch (activeItem) {
-      case "price_low":
-        return this.sortByDateLow(array);
-      case "price_high":
-        return this.sortByDateHigh(array);
-      default:
-    }
-  };
-
-  chunk(arr, size) {
-    return Array.from({ length: Math.ceil(arr.length / size) }, (v, i) =>
-      arr.slice(i * size, i * size + size)
-    );
-  }
-
-  saveHistory = (item) => console.log("ok");
-  // this.props.history.push({ ...this.props.location, props: `${item}` });
-
-  handleCounter = (name) =>
-    name === "back"
-      ? this.saveHistory(this.state.currentPage)
-      : this.saveHistory(this.state.currentPage);
-
-  nextCount = ({ target: { name } }) => {
-    this.setState({
-      currentPage: this.state.currentPage + 1,
-    });
-    this.handleCounter(name);
-  };
-
-  backCount = ({ target: { name } }) => {
-    this.setState({
-      currentPage: this.state.currentPage - 1,
-    });
-    this.handleCounter(name);
-  };
-
-  toggleOpenModalLigPay = () => {
-    this.setState({
-      isOpenModalLiqPay: !this.state.isOpenModalLiqPay,
-    });
-  };
+  // ----------------------------- Finish AnyONE Fetch
 
   render() {
     const {
@@ -236,7 +325,8 @@ class IntegralViewNotebooks extends Component {
       isOpenIconLoad,
       isOpenModalLiqPay,
       arrProducts,
-      arrFilterAll,
+      // arrFilterAll,
+      arrVendors,
       textSearch,
       totalCount,
       scrolled,
@@ -362,22 +452,38 @@ class IntegralViewNotebooks extends Component {
                 {isOpenFilter && (
                   <div className={stylish.filterBody}>
                     <ul>
-                      {arrFilterAll.length > 0 &&
+                      {arrVendors.length > 0 &&
+                        arrVendors.map((elem) => (
+                          <li
+                            key={elem.vendorID}
+                            className={stylish.liCheckbox}
+                          >
+                            <p>{elem.name}</p>
+                            <input
+                              type="checkbox"
+                              className={stylish.checkbox}
+                              checked={elem.completed}
+                              onChange={() =>
+                                this.updateElemStatus(elem.vendorID)
+                              }
+                            />
+                            <div>{elem.vendorID}</div>
+                          </li>
+                        ))}
+                      {/* {arrFilterAll.length > 0 &&
                         arrFilterAll.map((elem) => (
                           <li>
                             <p>{elem.name}</p>
-                            {/* <div>{elem.optionsID}</div> */}
                             <ul>
                               {elem.filters.length > 0 &&
                                 elem.filters.map((cell) => (
                                   <li>
                                     <p>{cell.name}</p>
-                                    {/* <div>{cell.filterID}</div> */}
                                   </li>
                                 ))}
                             </ul>
                           </li>
-                        ))}
+                        ))} */}
                     </ul>
                   </div>
                 )}
