@@ -1,6 +1,5 @@
 import React, { Component, createRef } from "react";
-import { NavLink } from "react-router-dom";
-import routes from "../../../routes/routes";
+
 import Loader from "react-loader-spinner";
 import ScrollButton from "../../services/ScrollButton/ScrollButton";
 import ModalLiqPay from "../../Modals/ModalLiqPay/ModalLiqPay";
@@ -8,6 +7,7 @@ import FilterallViewProducts from "../FilterallViewProducts/FilterallViewProduct
 import fetchFilterProducts from "../../services/fetchFilterProducts";
 import fetchVendorsList from "../../services/fetchVendorsList";
 import fetchArrProductsFilter from "../../services/fetchArrProductsFilter";
+import AllViewProducts from "../../Page/IntegralViewCategoryProducts/AllViewProducts/AllViewProducts";
 
 import stylish from "./IntegralViewCategoryProducts.module.css";
 // import SortProducts from "../SortProducts/SortProducts";
@@ -113,6 +113,9 @@ class IntegralViewNotebooks extends Component {
             completed: !item.completed,
           };
         }
+        this.setState({
+          vendorID: 0,
+        });
         return { ...item, completed: false };
       }),
       vendorID: elemID,
@@ -327,11 +330,13 @@ class IntegralViewNotebooks extends Component {
       arrProducts,
       // arrFilterAll,
       arrVendors,
+      arrProductsFilter,
       textSearch,
       totalCount,
       scrolled,
       currentPage,
       isOpenFilter,
+      vendorID,
     } = this.state;
 
     const progressContainerStyle = {
@@ -497,107 +502,16 @@ class IntegralViewNotebooks extends Component {
               </div>
             )}
             <div className={stylish.containerMiddle}>
-              <FilterallViewProducts />
-              <ul className={stylish.wrapper}>
-                {newArrProducts.length > 0 &&
-                  newArrProducts[currentPage].map((item) =>
-                    item.stocks.length > 0 ? (
-                      <li key={item.productID}>
-                        <div className={stylish.card}>
-                          <div>
-                            <div className={stylish.nameItem}>{item.name}</div>
-                            <div className={stylish.fontProdCode}>
-                              Код Товара: {item.product_code}
-                            </div>
-                            <NavLink
-                              className={stylish.NavLinkProd}
-                              to={`${routes.PRODUCT}/${item.productID}`}
-                            >
-                              <div>
-                                <img
-                                  src={item.medium_image}
-                                  alt={item.articul}
-                                />
-                              </div>
-                            </NavLink>
-                            <div className={stylish.priceInfo}>
-                              <div className={stylish.fontPriceRetail}>
-                                {item.retail_price_uah} грн.
-                              </div>
-                              <div className={stylish.fontCountry}>
-                                {item.country}
-                              </div>
-                            </div>
-                            <button
-                              className={stylish.btnCard}
-                              onClick={this.toggleOpenModalLigPay}
-                            >
-                              Купить
-                            </button>
-                          </div>
-                        </div>
-                      </li>
-                    ) : (
-                      <li key={item.productID}>
-                        <div className={stylish.card}>
-                          <div>
-                            <div className={stylish.nameItem}>{item.name}</div>
-                            <div className={stylish.fontProdCode}>
-                              Код Товара: {item.product_code}
-                            </div>
-                            <NavLink
-                              className={stylish.NavLinkProd}
-                              to={`${routes.PRODUCT}/${item.productID}`}
-                            >
-                              <div className={stylish.noPresentProduct}>
-                                <img
-                                  src={item.medium_image}
-                                  alt={item.articul}
-                                />
-                              </div>
-                            </NavLink>
-                            <div className={stylish.priceInfo}>
-                              <div className={stylish.fontPriceRetailNoProduct}>
-                                {item.retail_price_uah} грн.
-                              </div>
-                              <div className={stylish.fontCountry}>
-                                {item.country}
-                              </div>
-                            </div>
-                            {/* <button className={stylish.btnCard}>Купить</button> */}
-                          </div>
-                        </div>
-                      </li>
-                    )
-                  )}
-                <div className={stylish.btnWrap}>
-                  {newArrProducts.length > 0 && (
-                    <>
-                      <button
-                        name="back"
-                        className={stylish.btnMore}
-                        type="button"
-                        onClick={this.backCount}
-                        disabled={currentPage === 0}
-                      >
-                        Back
-                      </button>
-
-                      <button
-                        name="next"
-                        className={stylish.btnMore}
-                        type="button"
-                        onClick={this.nextCount}
-                        disabled={
-                          currentPage === Number(newArrProducts.length) - 1
-                        }
-                      >
-                        Next
-                      </button>
-                    </>
-                  )}
-                </div>
-              </ul>
+              {/* {vendorID === 0 ? ( */}
+              <FilterallViewProducts arrProductsFilter={arrProductsFilter} />
+              {/* ) : ( */}
+              <AllViewProducts
+                newArrProducts={newArrProducts}
+                currentPage={currentPage}
+                backCount={this.backCount}
+                nextCount={this.nextCount}
+              />
+              {/* )} */}
             </div>
             {newArrProducts.length > 0 && (
               <div className={stylish.containerRight}>
