@@ -128,11 +128,6 @@ class IntegralProductDetails extends Component {
       stocksexpect,
     } = this.state;
 
-    console.log(
-      "this.props.location.state.data",
-      this.props.location.state.data
-    );
-
     return (
       <>
         {isLoading && (
