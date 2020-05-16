@@ -6,6 +6,7 @@ import Loader from "react-loader-spinner";
 import stylish from "./IntegralProductDetails.module.css";
 import PhotoCard from "./PhotoCard/PhotoCard";
 import ModalLiqPay from "../../Modals/ModalLiqPay/ModalLiqPay";
+import routes from "../../../routes/routes";
 
 class IntegralProductDetails extends Component {
   state = {
@@ -16,12 +17,6 @@ class IntegralProductDetails extends Component {
     pictures: null,
     // comments: null,
     stocksexpect: null,
-  };
-
-  setSearchPathName = () => {
-    this.props.history.push({
-      ...this.props.location,
-    });
   };
 
   sortByDate = (obj) => {
@@ -117,7 +112,10 @@ class IntegralProductDetails extends Component {
   };
 
   setHistoryPush = () => {
-    this.props.history.push("/");
+    this.props.history.push({
+      ...this.props.location,
+      pathname: `${routes.PRODUCTS}/${this.props.location.state.data}`,
+    });
   };
 
   render() {
@@ -129,6 +127,11 @@ class IntegralProductDetails extends Component {
       isOpenInfo,
       stocksexpect,
     } = this.state;
+
+    console.log(
+      "this.props.location.state.data",
+      this.props.location.state.data
+    );
 
     return (
       <>

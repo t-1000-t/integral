@@ -6,6 +6,7 @@ import stylish from "./FilterallViewProducts.module.css";
 class FilterallViewProducts extends Component {
   render() {
     const { arrProductsFilter } = this.props;
+
     return (
       <ul className={stylish.wrapper}>
         {arrProductsFilter.length > 0 &&

@@ -22,6 +22,7 @@ class IntegralViewNotebooks extends Component {
     arrProductsFilter: [],
     textSearch: "",
     isLoading: false,
+    isLoadingProducts: false,
     isLoadingBoxIcon: false,
     isOpenIconLoad: true,
     isOpenModalLiqPay: false,
@@ -40,6 +41,7 @@ class IntegralViewNotebooks extends Component {
   };
 
   progressRef = createRef();
+  inputRef = createRef();
 
   move = 1;
 
@@ -52,10 +54,14 @@ class IntegralViewNotebooks extends Component {
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
-    const { vendorID, activeItem, arrProducts, isOpenIconLoad } = this.state;
-    if (prevState.vendorID !== vendorID) {
-      this.fetchArrProductsFilter();
-    }
+    const {
+      vendorID,
+      activeItem,
+      arrProducts,
+      isOpenIconLoad,
+      arrProductsFilter,
+    } = this.state;
+
     if (this.state.indicFullProd >= this.state.count && isOpenIconLoad) {
       setTimeout(() => {
         this.setState({
@@ -66,12 +72,23 @@ class IntegralViewNotebooks extends Component {
     if (prevState.activeItem !== activeItem && activeItem === "price_low") {
       this.setState({
         arrProducts: this.newSortArrProducts(arrProducts, activeItem),
+        arrProductsFilter: this.newSortArrProducts(
+          arrProductsFilter,
+          activeItem
+        ),
       });
     }
     if (prevState.activeItem !== activeItem && activeItem === "price_high") {
       this.setState({
         arrProducts: this.newSortArrProducts(arrProducts, activeItem),
+        arrProductsFilter: this.newSortArrProducts(
+          arrProductsFilter,
+          activeItem
+        ),
       });
+    }
+    if (prevState.vendorID !== vendorID && vendorID !== 0) {
+      this.fetchArrProductsFilter();
     }
   }
 
@@ -100,9 +117,13 @@ class IntegralViewNotebooks extends Component {
   setSearchCategory = () => {
     this.props.history.push({
       ...this.props.location,
-      pathname: `/products/${this.nextCategory}`,
+      pathname: `/`,
     });
   };
+
+  // setHistoryPush = () => {
+  //   this.props.history.push(`/products/${this.nextCategory}`);
+  // };
 
   updateElemStatus = (elemID) => {
     this.setState((state) => ({
@@ -113,17 +134,21 @@ class IntegralViewNotebooks extends Component {
             completed: !item.completed,
           };
         }
-        this.setState({
-          vendorID: 0,
-        });
         return { ...item, completed: false };
       }),
       vendorID: elemID,
+      activeItem: "",
     }));
   };
 
-  setHistoryPush = () => {
-    this.props.history.push("/");
+  updateVendorid = () => {
+    this.setState((state) => ({
+      arrVendors: state.arrVendors.map((item) => {
+        return { ...item, completed: false };
+      }),
+      vendorID: 0,
+    }));
+    this.fetchArrProductsFilter();
   };
 
   heandlerSearch = (e) => {
@@ -224,10 +249,12 @@ class IntegralViewNotebooks extends Component {
   // ----- !!!! ---- //
 
   async fetchArrProductsFilter() {
+    this.setState({ isLoadingProducts: true });
     const note = {
       category: this.nextCategory,
       vendor: this.state.vendorID,
     };
+
     try {
       await fetchArrProductsFilter
         .fetchFilter(note)
@@ -264,7 +291,9 @@ class IntegralViewNotebooks extends Component {
             error,
           });
         })
-        .finally();
+        .finally(() => {
+          this.setState({ isLoadingProducts: false });
+        });
     } catch (err) {
       console.error(err);
     }
@@ -325,6 +354,7 @@ class IntegralViewNotebooks extends Component {
   render() {
     const {
       isLoading,
+      isLoadingProducts,
       isOpenIconLoad,
       isOpenModalLiqPay,
       arrProducts,
@@ -463,8 +493,9 @@ class IntegralViewNotebooks extends Component {
                             key={elem.vendorID}
                             className={stylish.liCheckbox}
                           >
-                            <p>{elem.name}</p>
+                            <p className={stylish.checkboxName}>{elem.name}</p>
                             <input
+                              ref={this.inputRef}
                               type="checkbox"
                               className={stylish.checkbox}
                               checked={elem.completed}
@@ -472,47 +503,59 @@ class IntegralViewNotebooks extends Component {
                                 this.updateElemStatus(elem.vendorID)
                               }
                             />
-                            <div>{elem.vendorID}</div>
                           </li>
                         ))}
-                      {/* {arrFilterAll.length > 0 &&
-                        arrFilterAll.map((elem) => (
-                          <li>
-                            <p>{elem.name}</p>
-                            <ul>
-                              {elem.filters.length > 0 &&
-                                elem.filters.map((cell) => (
-                                  <li>
-                                    <p>{cell.name}</p>
-                                  </li>
-                                ))}
-                            </ul>
-                          </li>
-                        ))} */}
                     </ul>
                   </div>
                 )}
-
-                <button
-                  className={stylish.BtnBack}
-                  onClick={this.setHistoryPush}
-                >
-                  Back
-                </button>
+                <div className={stylish.btnBox}>
+                  <button
+                    className={stylish.btnBack}
+                    onClick={this.setSearchCategory}
+                  >
+                    Back
+                  </button>
+                  <button
+                    className={stylish.btnAll}
+                    onClick={this.updateVendorid}
+                  >
+                    All
+                  </button>
+                </div>
               </div>
             )}
-            <div className={stylish.containerMiddle}>
-              {/* {vendorID === 0 ? ( */}
-              <FilterallViewProducts arrProductsFilter={arrProductsFilter} />
-              {/* ) : ( */}
-              <AllViewProducts
-                newArrProducts={newArrProducts}
-                currentPage={currentPage}
-                backCount={this.backCount}
-                nextCount={this.nextCount}
-              />
-              {/* )} */}
-            </div>
+
+            {isLoadingProducts ? (
+              <div className={stylish.containerMiddle}>
+                <div className={stylish.loadingFilterProducts}>
+                  <Loader
+                    type="Circles"
+                    color="rgb(117, 111, 228)"
+                    height={80}
+                    width={80}
+                    // timeout={3000} //3 secs
+                  />
+                </div>
+              </div>
+            ) : (
+              <div className={stylish.containerMiddle}>
+                {vendorID !== 0 ? (
+                  <FilterallViewProducts
+                    arrProductsFilter={arrProductsFilter}
+                    vendorID={vendorID}
+                  />
+                ) : (
+                  <AllViewProducts
+                    categoryNum={this.nextCategory}
+                    newArrProducts={newArrProducts}
+                    currentPage={currentPage}
+                    backCount={this.backCount}
+                    nextCount={this.nextCount}
+                  />
+                )}
+              </div>
+            )}
+
             {newArrProducts.length > 0 && (
               <div className={stylish.containerRight}>
                 <div className={stylish.someOneContent}>

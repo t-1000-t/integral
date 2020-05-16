@@ -90,18 +90,38 @@
 .liCheckbox {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
+}
+
+.checkboxName {
+  margin-left: 20px;
 }
 
 .checkbox {
+  margin-right: 40px;
 }
 
-.BtnBack {
+.btnBack {
   position: sticky;
   top: 70px;
   width: 55px;
   height: 55px;
   border-radius: 16px;
   margin: 10px;
+}
+
+.btnAll {
+  position: sticky;
+  top: 140px;
+  width: 55px;
+  height: 55px;
+  border-radius: 16px;
+  margin: 10px;
+}
+
+.btnBox {
+  display: flex;
+  flex-direction: column;
 }
 
 .btnFilter {
@@ -119,7 +139,7 @@
 .filterBody {
   width: 250px;
 
-  background-color: rgb(123, 161, 123);
+  background-color: rgb(174, 179, 174);
 }
 
 .liFilterCellfirst {
@@ -166,6 +186,13 @@
   display: flex;
   justify-content: center;
   margin-top: 10%;
+}
+
+.loadingFilterProducts {
+  display: flex;
+  justify-content: center;
+  margin-top: 10%;
+  width: 1180px;
 }
 
 .someOneContent {

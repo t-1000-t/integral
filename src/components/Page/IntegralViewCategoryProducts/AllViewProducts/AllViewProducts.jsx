@@ -6,7 +6,14 @@ import stylish from "./AllViewProducts.module.css";
 
 class AllViewProducts extends Component {
   render() {
-    const { newArrProducts, currentPage, backCount, nextCount } = this.props;
+    const {
+      newArrProducts,
+      currentPage,
+      backCount,
+      nextCount,
+      categoryNum,
+    } = this.props;
+
     return (
       <ul className={stylish.wrapper}>
         {newArrProducts.length > 0 &&
@@ -21,7 +28,10 @@ class AllViewProducts extends Component {
                     </div>
                     <NavLink
                       className={stylish.NavLinkProd}
-                      to={`${routes.PRODUCT}/${item.productID}`}
+                      to={{
+                        pathname: `${routes.PRODUCT}/${item.productID}`,
+                        state: { data: categoryNum },
+                      }}
                     >
                       <div>
                         <img src={item.medium_image} alt={item.articul} />
