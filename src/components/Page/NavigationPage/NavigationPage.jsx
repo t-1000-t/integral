@@ -57,7 +57,7 @@ class NavigationPage extends Component {
           <li className={stylish.middleNavigation}>
             {!isOpenBurger && (
               <NavLink exact to={routes.HOME}>
-                <button className={stylish.home}>home</button>
+                <button className={stylish.home}>Главная</button>
               </NavLink>
             )}
             <div className={stylish.header_burger} onClick={this.toggleBurger}>
@@ -68,7 +68,7 @@ class NavigationPage extends Component {
             </NavLink> */}
             {!isOpenBurger && (
               <NavLink exact to={routes.CONTACT}>
-                <button className={stylish.about}>contact</button>
+                <button className={stylish.about}>Контакты</button>
               </NavLink>
             )}
 

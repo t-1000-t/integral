@@ -31,6 +31,7 @@ class IntegralViewNotebooks extends Component {
     getStartNum: 0,
     count: 0,
     countDataFilter: 0,
+    countArrVendors: 0,
     totalCount: null,
     totalCountProductsFilter: null,
     scrolled: 0,
@@ -88,7 +89,7 @@ class IntegralViewNotebooks extends Component {
       });
     }
     if (prevState.vendorID !== vendorID && vendorID !== 0) {
-      this.fetchArrProductsFilter();
+      this.getArrProductsFilter();
     }
   }
 
@@ -112,7 +113,7 @@ class IntegralViewNotebooks extends Component {
     });
   };
 
-  nextCategory = this.props.match.params.categorynum;
+  categoryNumber = this.props.match.params.categorynum;
 
   setSearchCategory = () => {
     this.props.history.push({
@@ -120,10 +121,6 @@ class IntegralViewNotebooks extends Component {
       pathname: `/`,
     });
   };
-
-  // setHistoryPush = () => {
-  //   this.props.history.push(`/products/${this.nextCategory}`);
-  // };
 
   updateElemStatus = (elemID) => {
     this.setState((state) => ({
@@ -148,7 +145,7 @@ class IntegralViewNotebooks extends Component {
       }),
       vendorID: 0,
     }));
-    this.fetchArrProductsFilter();
+    this.getArrProductsFilter();
   };
 
   heandlerSearch = (e) => {
@@ -217,7 +214,7 @@ class IntegralViewNotebooks extends Component {
   // ----------------------------- Start AnyONE Fetch
 
   getVendors = () => {
-    fetchVendorsList.fetchVendors(this.nextCategory).then((data) => {
+    fetchVendorsList.fetchVendors(this.categoryNumber).then((data) => {
       this.setState({
         arrVendors: data.result.map((elem) => {
           return { ...elem, completed: false };
@@ -227,7 +224,7 @@ class IntegralViewNotebooks extends Component {
   };
 
   toggleOpenFilter = () => {
-    fetchFilterProducts.fetchFilter(this.nextCategory).then((items) => {
+    fetchFilterProducts.fetchFilter(this.categoryNumber).then((items) => {
       this.setState({
         arrFilterAll: items.result,
       });
@@ -241,17 +238,17 @@ class IntegralViewNotebooks extends Component {
   fetchProducrs(val) {
     // console.log("fetch todo started...");
     return fetch(
-      // `http://localhost:5000/api/products/${this.nextCategory}/${val}`
-      `https://shop-integral.herokuapp.com/api/products/${this.nextCategory}/${val}`
+      // `http://localhost:5000/api/products/${this.categoryNumber}/${val}`
+      `https://shop-integral.herokuapp.com/api/products/${this.categoryNumber}/${val}`
     ).then((res) => res.json());
   }
 
   // ----- !!!! ---- //
 
-  async fetchArrProductsFilter() {
+  async getArrProductsFilter() {
     this.setState({ isLoadingProducts: true });
     const note = {
-      category: this.nextCategory,
+      category: this.categoryNumber,
       vendor: this.state.vendorID,
     };
 
@@ -546,7 +543,7 @@ class IntegralViewNotebooks extends Component {
                   />
                 ) : (
                   <AllViewProducts
-                    categoryNum={this.nextCategory}
+                    categoryNum={this.categoryNumber}
                     newArrProducts={newArrProducts}
                     currentPage={currentPage}
                     backCount={this.backCount}

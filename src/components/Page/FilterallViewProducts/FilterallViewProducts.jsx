@@ -11,7 +11,7 @@ class FilterallViewProducts extends Component {
       <ul className={stylish.wrapper}>
         {arrProductsFilter.length > 0 &&
           arrProductsFilter.map((item) => (
-            <li>
+            <li key={item.productID}>
               <div className={stylish.card}>
                 <div>
                   <div className={stylish.nameItem}>{item.name}</div>

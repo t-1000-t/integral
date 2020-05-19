@@ -4,7 +4,9 @@ const fetchVendors = async (prodID) => {
       `https://shop-integral.herokuapp.com/api/vendors/${prodID}`
     )
       .then((res) => res.json())
-      .then((data) => data)
+      .then((data) => {
+        return data;
+      })
       .catch()
       .finally();
   } catch (err) {

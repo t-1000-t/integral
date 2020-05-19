@@ -8,7 +8,10 @@ const fetchFilter = async (note) => {
       `https://shop-integral.herokuapp.com/api/products_search/${category}/${vendor}`
     )
       .then((res) => res.json())
-      .then((data) => data)
+      .then((data) => {
+        console.log("data", data);
+        return data;
+      })
       .catch()
       .finally();
   } catch (err) {

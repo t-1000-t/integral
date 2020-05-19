@@ -262,6 +262,7 @@ class IntegralPage extends Component {
     setCategory: "",
     isOpenChange: false,
     isOpenBanner: false,
+    isOpenBanner2eUa: false,
   };
 
   toggleTrue = () => {
@@ -279,6 +280,12 @@ class IntegralPage extends Component {
   toggleBanner = () => {
     this.setState({
       isOpenBanner: !this.state.isOpenBanner,
+    });
+  };
+
+  toggleBanner2eUa = () => {
+    this.setState({
+      isOpenBanner2eUa: !this.state.isOpenBanner2eUa,
     });
   };
 
@@ -388,6 +395,7 @@ class IntegralPage extends Component {
       patternValue,
       isOpenChange,
       isOpenBanner,
+      isOpenBanner2eUa,
     } = this.state;
 
     // inputValue.replace();
@@ -402,7 +410,7 @@ class IntegralPage extends Component {
                 onClick={this.toggleChange}
                 // onMouseEnter={this.toggleTrue}
               >
-                Shop By Catalog
+                Каталог Товаров
               </button>
 
               <div
@@ -502,29 +510,32 @@ class IntegralPage extends Component {
             </div>
             <form>
               <label htmlFor={this.inputIds.nameInputId}>
-                <input
-                  ref={this.inputRef}
-                  id={this.inputIds.nameInputId}
-                  placeholder="КОД продутка..."
-                  title="Используйте формат ввода: A1234567"
-                  type="text"
-                  // pattern="[A-Z][0-9]{7}"
-                  pattern={patternValue}
-                  className={stylish.inputIntegral}
-                  value={inputValue}
-                  onChange={this.heandleChange}
-                />
-                <NavLink
-                  className={stylish.NavLinkProd}
-                  to={`${routes.PRODUCT_CODE}/${inputValue}`}
-                >
-                  <button
-                    className={stylish.btnSearch}
-                    disabled={this.state.inputValue.trim().length === 0}
+                <div className={stylish.searchInput}>
+                  <input
+                    ref={this.inputRef}
+                    id={this.inputIds.nameInputId}
+                    placeholder="КОД продутка..."
+                    title="Используйте формат ввода: A1234567"
+                    type="text"
+                    // pattern="[A-Z][0-9]{7}"
+                    pattern={patternValue}
+                    className={stylish.inputIntegral}
+                    value={inputValue}
+                    onChange={this.heandleChange}
+                  />
+
+                  <NavLink
+                    className={stylish.NavLinkProd}
+                    to={`${routes.PRODUCT_CODE}/${inputValue}`}
                   >
-                    search
-                  </button>
-                </NavLink>
+                    <button
+                      className={stylish.btnSearch}
+                      disabled={this.state.inputValue.trim().length === 0}
+                    >
+                      поиск
+                    </button>
+                  </NavLink>
+                </div>
               </label>
             </form>
           </div>
@@ -535,9 +546,17 @@ class IntegralPage extends Component {
             className={isOpenChange ? stylish.banner : stylish.bannerUa}
           ></div>
         </div>
+        <div className={stylish.boxImgBanner} onClick={this.toggleBanner2eUa}>
+          <div className={stylish.banner2eUa}></div>
+        </div>
         {isOpenBanner && (
           <ModalPicturesPage onClose={this.toggleBanner}>
             <div className={stylish.bannerModal}></div>
+          </ModalPicturesPage>
+        )}
+        {isOpenBanner2eUa && (
+          <ModalPicturesPage onClose={this.toggleBanner2eUa}>
+            <div className={stylish.bannerModal2eUa}></div>
           </ModalPicturesPage>
         )}
       </div>
