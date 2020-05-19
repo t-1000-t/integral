@@ -33,6 +33,9 @@ const ContactPage = () => {
           <div>
             <b>ул. Илюши Кулика, 143.</b> Вход с торца по крыльцу, первый этаж.
           </div>
+          <div className={stylish.boxImgVisit}>
+            <div className={stylish.visitcard}></div>
+          </div>
         </div>
       </div>
     </div>

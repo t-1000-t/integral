@@ -56,6 +56,22 @@
   /* tabindex="0" */
 }
 
+.boxImgVisit {
+  width: 400px;
+  height: 200px;
+}
+
+.visitcard {
+  max-width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  margin: 15px;
+  background-size: cover;
+  background-image: url("../../../images/visit.jpg");
+  cursor: pointer;
+  opacity: 0.8;
+}
+
 @media (min-width: 320px) and (max-width: 359px) {
   .wrapper {
     height: 420px;
