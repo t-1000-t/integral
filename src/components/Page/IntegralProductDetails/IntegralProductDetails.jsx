@@ -112,6 +112,14 @@ class IntegralProductDetails extends Component {
   };
 
   setHistoryPush = () => {
+    if (this.props.location.state === null) {
+      this.props.history.push({
+        ...this.props.location,
+        pathname: "/",
+      });
+      return;
+    }
+
     this.props.history.push({
       ...this.props.location,
       pathname: `${routes.PRODUCTS}/${this.props.location.state.data}`,
