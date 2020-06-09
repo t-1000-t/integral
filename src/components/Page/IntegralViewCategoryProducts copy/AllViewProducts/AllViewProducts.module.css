@@ -1,15 +1,14 @@
 .wrapper {
   width: 1180px;
   display: flex;
-  justify-content: space-between;
   flex-wrap: wrap;
   scroll-behavior: smooth;
 }
 
 .card {
   display: flex;
-  justify-content: center;
   text-align: center;
+  padding: 5px;
   border: solid 1px;
   border-color: gray;
   border-radius: 8px;
@@ -20,7 +19,9 @@
 }
 
 .nameItem {
+  width: 210px;
   height: 80px;
+  padding-left: 15px;
   padding-bottom: 5px;
   margin-bottom: 5px;
   font-family: "Roboto", sans-serif;
@@ -91,12 +92,12 @@
   padding: 8px 16px;
   margin-left: 4px;
   margin-right: 4px;
-  border-radius: 16px;
-  background-color: #3776da;
+  border-radius: 3px;
+  background-color: #1f65d6;
 
   transition: all 200ms ease;
   font-family: inherit;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 500;
   line-height: 24px;
   font-style: normal;
@@ -114,7 +115,7 @@
 .btnMore:hover,
 .btnMore:focus {
   background-color: #1f65d6;
-  /* border: solid 1px; */
+  border: solid 1px;
 }
 
 .btnWrap {
@@ -123,8 +124,4 @@
   width: 100%;
   padding-top: 10px;
   padding-bottom: 10px;
-}
-.loaderMore {
-  display: flex;
-  justify-content: center;
 }

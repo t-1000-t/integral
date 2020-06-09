@@ -79,24 +79,8 @@
   justify-content: right;
 }
 
-/* .checkBoxList {
-  display: flex;
-  flex-direction: row;
-} */
-
 .containerMiddle {
   width: 1180px;
-}
-
-.boxContainerMiddle {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.wrappContainer {
-  display: flex;
-  flex-direction: column;
 }
 
 .containerRight {
@@ -105,90 +89,30 @@
 
 .liCheckbox {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: space-between;
-  cursor: pointer;
-  border-bottom: solid 1px;
 }
 
 .checkboxName {
-  padding-top: 20px;
   margin-left: 20px;
-  padding-bottom: 5px;
 }
-/* .checkboxNametwo {
-  margin-left: 40px;
-} */
 
-/* .checkbox {
+.checkbox {
   margin-right: 40px;
-} */
+}
 
 .btnBack {
   position: sticky;
-  top: 95px;
+  top: 70px;
   width: 55px;
   height: 55px;
   border-radius: 16px;
   margin: 10px;
 }
 
-.wrapperPagination {
-  position: sticky;
-  top: 58px;
-  display: flex;
-  justify-content: center;
-  background-color: grey;
-}
-
-.containerPagination {
-  width: 1158px;
-  height: 35px;
-
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  /* background-color: blueviolet; */
-}
-
-.listPagination {
-  display: flex;
-  justify-content: center;
-  width: 25px;
-  height: 25px;
-  background-color: rgb(93, 192, 151);
-  box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.5);
-  cursor: pointer;
-}
-
-.listPaginationActive {
-  display: flex;
-  justify-content: center;
-  width: 25px;
-  height: 25px;
-  border-radius: 8px;
-  background-color: rgb(93, 192, 151);
-  box-shadow: 4px 2px 8px rgba(0, 0, 0, 0.5);
-  cursor: pointer;
-}
-
-.cellPagination {
-  width: 25px;
-  margin: 0px 3px 0px 3px;
-  text-align: center;
-  /* background-color: rgb(237, 100, 225); */
-}
-
-.selected {
-  color: chocolate;
-}
-.selectedbold {
-  color: rgb(0, 68, 255);
-}
-
 .btnAll {
   position: sticky;
-  top: 160px;
+  top: 140px;
   width: 55px;
   height: 55px;
   border-radius: 16px;
@@ -212,11 +136,8 @@
   border-radius: 8px;
 }
 
-.filterWrapper {
-}
-
 .filterBody {
-  padding: 10px;
+  width: 250px;
 
   background-color: rgb(174, 179, 174);
 }
@@ -264,9 +185,7 @@
 .loadPosition {
   display: flex;
   justify-content: center;
-  width: 1180px;
-
-  /* margin-top: 2%; */
+  margin-top: 10%;
 }
 
 .loadingFilterProducts {
@@ -283,7 +202,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  top: 93px;
+  top: 75px;
   margin: 10px;
   background-color: lightcyan;
 }

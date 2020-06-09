@@ -495,17 +495,6 @@ class IntegralPage extends Component {
                     ))}
                   </ul>
                 )}
-                {/* <div className={stylish.btnWrap}>
-                  {arrMain.length > 0 && (
-                    <button
-                      className={stylish.buttonMain}
-                      type="button"
-                      onClick={this.fetchHomeProducts}
-                    >
-                      Load more articles
-                    </button>
-                  )}
-                </div> */}
               </div>
             </div>
             <form>

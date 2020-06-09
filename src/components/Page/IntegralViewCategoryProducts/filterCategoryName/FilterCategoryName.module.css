@@ -1,0 +1,17 @@
+.checkBoxList {
+  height: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-direction: row;
+}
+
+.checkboxNametwo {
+  margin-left: 10px;
+}
+
+.checkbox {
+  background-color: rgb(189, 237, 100);
+}
+.checkboxActive {
+}

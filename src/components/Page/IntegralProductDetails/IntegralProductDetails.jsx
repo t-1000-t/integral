@@ -112,10 +112,11 @@ class IntegralProductDetails extends Component {
   };
 
   setHistoryPush = () => {
+    const { prodDetails } = this.state;
     if (this.props.location.state === null) {
       this.props.history.push({
         ...this.props.location,
-        pathname: "/",
+        pathname: `${routes.PRODUCTS}/${prodDetails.categoryID}`,
       });
       return;
     }
@@ -157,7 +158,7 @@ class IntegralProductDetails extends Component {
                   className={stylish.BtnBack}
                   onClick={this.setHistoryPush}
                 >
-                  Back
+                  Назад
                 </button>
               </div>
             </div>

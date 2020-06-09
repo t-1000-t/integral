@@ -2,6 +2,7 @@ const fetchFilter = async (prodID) => {
   try {
     return await fetch(
       `https://shop-integral.herokuapp.com/api/filters_all/${prodID}`
+      // `https://shop-integral.herokuapp.com/api/filters_all/${prodID}`
     )
       .then((res) => res.json())
       .then((data) => data)
