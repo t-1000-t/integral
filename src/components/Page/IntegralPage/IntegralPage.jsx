@@ -2,6 +2,8 @@ import React, { Component, createRef } from "react";
 import routes from "../../../routes/routes";
 import { NavLink } from "react-router-dom";
 import IntegralPageCategory from "../IntegralPageCategory/IntegralPageCategory";
+import SearchInput from "../GlobalSearch/SearchInput/SearchInput";
+import Gallery from "../GlobalSearch/Gallery/Gallery";
 import Loader from "react-loader-spinner";
 import ModalPicturesPage from "../../Modals/ModalPicturesPage/ModalPicturesPage";
 import shortid from "shortid";
@@ -256,10 +258,14 @@ class IntegralPage extends Component {
     isOpenNameCategory: null,
     isLoading: false,
     arrMain: [],
+    articles: [],
     pageNum: 1,
     inputValue: "",
     patternValue: "",
     setCategory: "",
+    error: null,
+    num: 0,
+    query: "",
     isOpenChange: false,
     isOpenBanner: false,
     isOpenBanner2eUa: false,
@@ -319,18 +325,63 @@ class IntegralPage extends Component {
   btnRouteRef = createRef();
 
   componentDidMount() {
+    this._isMounted = true;
     window.addEventListener("keydown", this.handleKeyPress);
     this.fetchHomeProducts();
     this.changeBanner();
   }
 
   componentWillUnmount() {
+    this._isMounted = false;
     window.removeEventListener("keydown", this.handleKeyPress);
   }
 
-  handleKeyPress = (e) => {
-    console.log(e);
+  componentDidUpdate(prevProps, prevState) {
+    const { query } = this.state;
+    if (prevState.query !== query) {
+      this.getSearchQuery(query);
+    }
+  }
 
+  onSearch = (query) => {
+    this.setState({
+      query,
+      articles: [],
+      isLoading: true,
+      num: 0,
+    });
+  };
+
+  getSearchQuery = async (query) => {
+    const { num } = this.state;
+    // const url = `http://localhost:5000/api/filterdb/${query}/${num}`;
+    const url = `https://shop-integral.herokuapp.com/api/filterdb/${query}/${num}`;
+    await fetch(url)
+      .then((res) => res.json())
+      .then((data) => {
+        this.setState((state) => ({
+          articles: [...state.articles, ...Object.values(data).flat()],
+          num: state.num + 20,
+        }));
+      })
+      .catch((error) => {
+        this.setState({ error });
+      })
+      .finally(() => {
+        this.setState({ isLoading: false });
+        window.scrollTo({
+          top: document.getElementById("root").scrollHeight,
+          behavior: "smooth",
+        });
+      });
+  };
+
+  fetchArticles = () => {
+    this.setState({ isLoading: true });
+    this.getSearchQuery();
+  };
+
+  handleKeyPress = (e) => {
     if (e.code !== "Escape") {
       return;
     }
@@ -390,6 +441,7 @@ class IntegralPage extends Component {
       arrCategory,
       isOpenArrCategory,
       arrMain,
+      articles,
       isLoading,
       inputValue,
       patternValue,
@@ -433,43 +485,63 @@ class IntegralPage extends Component {
 
                 {/* <ul className={stylish.boxUlMain}> */}
 
-                {arrMain === null
-                  ? this.fetchHomeProducts()
-                  : arrMain.map((elem) =>
-                      elem.productID === null ? (
-                        this.fetchHomeProducts()
-                      ) : (
-                        <div
-                          key={elem.productID}
-                          className={stylish.nameProductMain}
+                {articles.length > 0 ? (
+                  <>
+                    {/* {error && <ErrorNotyf />} */}
+                    {/* {isLoading && <ThreeDots />} */}
+                    <Gallery articles={articles} />
+                    <div className={stylish.btnWrap}>
+                      {articles.length > 0 && (
+                        <button
+                          className={stylish.button}
+                          type="button"
+                          // onClick={this.fetchArticles}
+                          onClick={this.getSearchQuery}
                         >
-                          <div className={stylish.fontProductMain}>
-                            {elem.name}
-                          </div>
-                          <div className={stylish.fontProductMain}>
-                            Код: {elem.product_code}
-                          </div>
-                          <NavLink
-                            className={stylish.NavLinkProd}
-                            to={`${routes.PRODUCT}/${elem.productID}`}
-                          >
-                            <div className={stylish.imgBox}>
-                              <img
-                                className={stylish.imgMain}
-                                src={elem.small_image}
-                                alt={elem.product_code}
-                              />
-                            </div>
-                          </NavLink>
-                          <div className={stylish.fontPayProductMain}>
-                            {/* {elem.retail_price_uah} грн. */}
-                          </div>
-                          <div className={stylish.fontProductMain}>
-                            {elem.country}
-                          </div>
+                          Отобразить больше
+                        </button>
+                      )}
+                    </div>
+                  </>
+                ) : arrMain === null ? (
+                  this.fetchHomeProducts()
+                ) : (
+                  arrMain.map((elem) =>
+                    elem.productID === null ? (
+                      this.fetchHomeProducts()
+                    ) : (
+                      <div
+                        key={elem.productID}
+                        className={stylish.nameProductMain}
+                      >
+                        <div className={stylish.fontProductMain}>
+                          {elem.name}
                         </div>
-                      )
-                    )}
+                        <div className={stylish.fontProductMain}>
+                          Код: {elem.product_code}
+                        </div>
+                        <NavLink
+                          className={stylish.NavLinkProd}
+                          to={`${routes.PRODUCT}/${elem.productID}`}
+                        >
+                          <div>
+                            <img
+                              className={stylish.imgMain}
+                              src={elem.small_image}
+                              alt={elem.product_code}
+                            />
+                          </div>
+                        </NavLink>
+                        <div className={stylish.fontPayProductMain}>
+                          {/* {elem.retail_price_uah} грн. */}
+                        </div>
+                        <div className={stylish.fontProductMain}>
+                          {elem.country}
+                        </div>
+                      </div>
+                    )
+                  )
+                )}
 
                 {isOpenArrCategory && (
                   <ul
@@ -497,6 +569,12 @@ class IntegralPage extends Component {
                 )}
               </div>
             </div>
+            {/* <NavLink className={stylish.searchform} to={`${routes.FILTERDB}`}> */}
+            <SearchInput
+              onSearch={this.onSearch}
+              onFetch={this.getSearchQuery}
+            />
+            {/* </NavLink> */}
             <form>
               <label htmlFor={this.inputIds.nameInputId}>
                 <div className={stylish.searchInput}>

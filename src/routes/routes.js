@@ -5,5 +5,6 @@ export default {
   PRODUCT: "/product",
   PRODUCT_CODE: "/product/product_code",
   PRODUCTS: "/products",
+  FILTERDB: "/filterdb",
   //   PRODUCTS_DETAILS: "/products/:someone"
 };

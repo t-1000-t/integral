@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import routes from "../../../../routes/routes";
-
 import stylish from "./AllViewProducts.module.css";
 
 class AllViewProducts extends Component {

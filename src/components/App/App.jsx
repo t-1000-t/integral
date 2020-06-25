@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import stylish from "./App.module.css";
 import routes from "../../routes/routes";
 // import widthResize from "../services/widthResize";
+// import SearchForm from "../Page/GlobalSearch/SearchForm/SearchForm";
 import NavigationPage from "../Page/NavigationPage/NavigationPage";
 import ContactPage from "../Page/ContactPage/ContactPage";
 import FooterPage from "../Page/FooterPage/FooterPage";
@@ -36,6 +37,7 @@ class App extends Component {
               path={`${routes.PRODUCT}/:someIDproduct`}
               component={IntegralProductDetails}
             />
+            {/* <Route exact path={`${routes.FILTERDB}`} component={SearchForm} /> */}
             <Redirect to={routes.HOME} />
           </Switch>
         </div>

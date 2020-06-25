@@ -1,0 +1,37 @@
+.nameProductMain {
+  width: 230px;
+  text-align: center;
+  margin: 20px;
+  padding: 10px;
+  border: 1px solid;
+  border-color: gray;
+  border-radius: 8px;
+}
+
+.fontProductMain {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-family: "Roboto", sans-serif;
+  font-size: 10px;
+}
+
+.NavLinkProd {
+  text-decoration: none;
+}
+.NavLinkProd:active,
+.NavLinkProd:focus {
+  border: none;
+  outline: none;
+}
+
+.imgMain {
+  width: 105px;
+  height: 105px;
+}
+
+.fontPayProductMain {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+}

@@ -7,6 +7,7 @@ import stylish from "./IntegralProductDetails.module.css";
 import PhotoCard from "./PhotoCard/PhotoCard";
 import ModalLiqPay from "../../Modals/ModalLiqPay/ModalLiqPay";
 import routes from "../../../routes/routes";
+import shortid from "shortid";
 
 class IntegralProductDetails extends Component {
   state = {
@@ -17,6 +18,10 @@ class IntegralProductDetails extends Component {
     pictures: null,
     // comments: null,
     stocksexpect: null,
+  };
+
+  idprod = {
+    ids: shortid.generate(),
   };
 
   sortByDate = (obj) => {
@@ -158,7 +163,7 @@ class IntegralProductDetails extends Component {
                   className={stylish.BtnBack}
                   onClick={this.setHistoryPush}
                 >
-                  Назад
+                  В категорию товара
                 </button>
               </div>
             </div>
@@ -213,7 +218,7 @@ class IntegralProductDetails extends Component {
                   {isOpenInfo && (
                     <ul className={stylish.ulRight}>
                       {prodDetails.options.map((elem) => (
-                        <li className={stylish.liRight}>
+                        <li key={this.idprod.ids} className={stylish.liRight}>
                           {elem.name}: {elem.value}
                         </li>
                       ))}
